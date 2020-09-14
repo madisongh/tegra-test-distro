@@ -1,0 +1,15 @@
+[Unit]
+Description=System boot count check
+DefaultDependencies=no
+Requires=dev-mmcblk0boot0.device dev-mmcblk0boot1.device
+After=dev-mmcblk0boot0.device dev-mmcblk0boot1.device
+Before=cryptsetup-pre.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStartPre=@BINDIR@/setup-nv-boot-control
+ExecStart=@SBINDIR@/bootcountcheck
+
+[Install]
+WantedBy=sysinit.target

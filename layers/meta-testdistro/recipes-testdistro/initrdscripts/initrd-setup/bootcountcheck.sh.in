@@ -1,0 +1,19 @@
+#!@BASE_BINDIR@/sh
+while true; do
+    curslot=$(nvbootctrl get-current-slot 2>/dev/null)
+    [ -z "$curslot" ] || break
+    echo "Could not get current boot slot, retrying..." >&2
+    sleep 1
+done
+echo "Current boot slot: $curslot"
+nvbootctrl mark-boot-successful
+tegra-bootinfo --check-status
+if [ $? = 77 ]; then
+    slot=$(expr 1 - $curslot)
+    echo "Switching to boot slot $slot"
+    nvbootctrl set-active-boot-slot $slot
+    sync
+    reboot -f
+fi
+
+exit 0
