@@ -1,0 +1,15 @@
+[Unit]
+Description=Unseal dm-crypt passphrase
+DefaultDependencies=no
+RequiresMountsFor=/run
+Before=cryptsetup-pre.target
+ConditionPathExists=!/run/crypt/passphrase
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStartPre=@BASE_BINDIR@/mkdir -p -m 0700 /run/crypt
+ExecStart=@BASE_BINDIR@/sh -c "[ `cat /sys/devices/platform/tegra-fuse/odm_production_mode` = "0x00000000" ] || @BINDIR@/keystoretool --dmc-passphrase --output=/run/crypt/passphrase"
+
+[Install]
+WantedBy=cryptsetup-pre.target
