@@ -1,0 +1,13 @@
+[Unit]
+Description="Get dm-crypt passphrase"
+DefaultDependencies=no
+RequiresMountsFor=/run
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStartPre=/bin/mkdir -m 700 /run/crypt
+ExecStart=/bin/sh -c "keystoretool -p > /run/crypt/passphrase"
+
+[Install]
+WantedBy=cryptsetup-pre.target

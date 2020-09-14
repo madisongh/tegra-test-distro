@@ -6,7 +6,8 @@ PROGNAME=$(basename "$SETUP_SCRIPT")
 SETUP_SCRIPTDIR=$(dirname "$SETUP_SCRIPT")
 TD_TOP="${TD_TOP:-$(readlink -f $SETUP_SCRIPTDIR)}"
 
-DISTRO_DEFAULT="tegrademo"
+DISTRO_LAYERS="meta-testdistro meta-tegrademo"
+DISTRO_DEFAULT="testdistro"
 BUILDDIR_DEFAULT="build"
 
 distro_list() {
