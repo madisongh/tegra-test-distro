@@ -1,0 +1,3 @@
+APP	PARTLABEL=crypt-APP	/run/crypt/passphrase	luks,x-initrd.attach
+APP_b	PARTLABEL=crypt-APP_b	/run/crypt/passphrase	luks,x-initrd.attach
+DATA	PARTLABEL=crypt-DATA	/run/crypt/passphrase	luks

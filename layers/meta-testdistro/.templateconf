@@ -1,0 +1,1 @@
+TEMPLATECONF=${TEMPLATECONF:-meta-testdistro/conf/template-$DISTRO}

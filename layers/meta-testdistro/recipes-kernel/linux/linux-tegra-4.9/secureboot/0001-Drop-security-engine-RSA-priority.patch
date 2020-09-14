@@ -1,0 +1,27 @@
+From 5a3fe19c61117619c944430e62dc9c12fd2aed57 Mon Sep 17 00:00:00 2001
+From: Matt Madison <matt@madison.systems>
+Date: Fri, 17 Jan 2020 13:07:05 -0800
+Subject: [PATCH] Drop security engine RSA priority
+
+---
+ .../kernel-dts/tegra186-quill-p3310-1000-a00-00-base.dts      | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/nvidia/platform/t18x/quill/kernel-dts/tegra186-quill-p3310-1000-a00-00-base.dts b/nvidia/platform/t18x/quill/kernel-dts/tegra186-quill-p3310-1000-a00-00-base.dts
+index ed560d3de52d..83a4187b99b1 100644
+--- a/nvidia/platform/t18x/quill/kernel-dts/tegra186-quill-p3310-1000-a00-00-base.dts
++++ b/nvidia/platform/t18x/quill/kernel-dts/tegra186-quill-p3310-1000-a00-00-base.dts
+@@ -332,6 +332,10 @@
+ 	tegra_udrm: tegra_udrm {
+ 		compatible = "nvidia,tegra-udrm";
+ 	};
++
++	se_elp@3ad0000 {
++		pka1-rsa-priority = <50>;
++	};
+ };
+ 
+ #if LINUX_VERSION >= 414
+-- 
+2.20.1
+
