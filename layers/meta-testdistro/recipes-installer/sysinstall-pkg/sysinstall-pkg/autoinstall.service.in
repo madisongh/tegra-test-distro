@@ -1,0 +1,14 @@
+[Unit]
+Description=Automated system installer
+Requires=setup-nv-boot-control.service
+Wants=time-sync.target
+After=time-sync.target setup-nv-boot-control.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=@SBINDIR@/tegra-sysinstall
+StandardOutput=journal+console
+
+[Install]
+WantedBy=multi-user.target
