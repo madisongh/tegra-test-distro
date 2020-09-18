@@ -1,0 +1,1 @@
+../../meta-tegrademo/classes/mender-workarounds.bbclass
