@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=f547d56278324f08919c3805e5fb8df9"
 DEPENDS = "zlib systemd"
 
 SRC_URI = "https://github.com/madisongh/${BPN}/releases/download/v${PV}/${BP}.tar.gz"
-SRC_URI[sha256sum] = "2ed0a79a9abfea24f82a14ab6e62830f9892cfc0b75dd82f024237eab2d69cad"
+SRC_URI[sha256sum] = "3722d3c5d761a05df779d0d47a4a8624ec15f02ab9ecf413cdd26d9f53a8cde5"
 
 EXTRA_OECONF = "--with-systemdsystemunitdir=${systemd_system_unitdir}"
 
