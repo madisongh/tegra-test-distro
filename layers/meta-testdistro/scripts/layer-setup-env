@@ -33,9 +33,9 @@ if [ -z "$TD_S3_BUCKET" ]; then
     fi
 fi
 if [ -n "$TD_S3_BUCKET" ]; then
-    sed -i -e"/@TD_S3_MIRRORS@/c \SOURCE_MIRROR_URL ?= \"${TD_S3_BUCKET}/downloads\"\
-OE_IMPORTS += \"oeaws.botos3fetcher\"\
-INHERIT += \"own-mirrors\"\
+    sed -i -e"/@TD_S3_MIRRORS@/c \SOURCE_MIRROR_URL ?= \"${TD_S3_BUCKET}/downloads\"\n\
+OE_IMPORTS += \"oeaws.botos3fetcher\"\n\
+INHERIT += \"own-mirrors\"\n\
 SSTATE_MIRRORS ?= \"file://.* ${TD_S3_BUCKET}/sstate_mirror/PATH;downloadfilename=PATH\"" \
 	"$BUILDDIR/conf/local.conf"
 fi
