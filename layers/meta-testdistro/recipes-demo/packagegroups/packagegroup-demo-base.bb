@@ -6,6 +6,8 @@ inherit packagegroup
 
 RDEPENDS_${PN} = " \
     fuse3 \
+    gdb \
+    gdbserver \
     haveged \
     procps \
     sshfs-fuse \
