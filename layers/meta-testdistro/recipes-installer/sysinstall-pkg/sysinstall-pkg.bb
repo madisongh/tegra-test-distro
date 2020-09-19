@@ -21,6 +21,9 @@ do_compile() {
 do_install() {
     install -d ${D}/installer
     install -m 0644 ${DEPLOY_DIR_IMAGE}/${SYSINSTALL_PKG_IMAGE}-${MACHINE}.tar.gz ${D}/installer/image.tar.gz
+    if [ -e ${DEPLOY_DIR_IMAGE}/${SYSINSTALL_PKG_IMAGE}-${MACHINE}.data.tar.gz ]; then
+        install -m 0644 ${DEPLOY_DIR_IMAGE}/${SYSINSTALL_PKG_IMAGE}-${MACHINE}.data.tar.gz ${D}/installer/data.tar.gz
+    fi
     install -d ${D}${systemd_system_unitdir}
     install -m 0644 ${B}/autoinstall.service ${D}${systemd_system_unitdir}/
 }
