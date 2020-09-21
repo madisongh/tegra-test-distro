@@ -38,3 +38,23 @@ do_image_complete[vardepsexclude] += "rm_work_rootfs"
 IMAGE_POSTPROCESS_COMMAND = ""
 
 inherit nopackages
+
+# Override this function provided in mender_workarounds
+update_version_files () {
+    dest="$1"
+
+    if [ -f $dest/${sysconfdir}/os-release ]; then
+        sed -i -r -e's,^VERSION=.*,VERSION="${OS_RELEASE_VERSION}",' \
+	    -e's,^VERSION_ID=.*,VERSION_ID="${BUILDNAME}",' \
+	    -e's,^PRETTY_NAME=.*,PRETTY_NAME="${DISTRO_NAME} ${BUILDNAME}",' \
+	    $dest/${sysconfdir}/os-release
+    fi
+
+    if [ -f $dest/${sysconfdir}/issue ]; then
+        printf "%s \\%s \\l\n\n" "${DISTRO_NAME} ${BUILDNAME}" "n" >$dest/${sysconfdir}/issue
+    fi
+
+    if [ -f $dest/${sysconfdir}/issue.net ]; then
+        printf "%s %%h\n\n" "${DISTRO_NAME} ${BUILDNAME}" >$dest/${sysconfdir}/issue.net
+    fi
+}
