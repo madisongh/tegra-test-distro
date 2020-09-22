@@ -16,7 +16,7 @@
 	branch = patches-master-next
 [submodule "repos/meta-mender-community"]
 	path = repos/meta-mender-community
-	url = https://github.com/OE4T/meta-mender-community.git
+	url = https://github.com/madisongh/meta-mender-community.git
 	branch = master-next
 [submodule "repos/meta-tegra"]
 	path = repos/meta-tegra
