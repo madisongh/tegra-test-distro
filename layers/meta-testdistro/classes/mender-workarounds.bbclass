@@ -1,5 +1,4 @@
 MENDER_DATA_PART_FSTAB_OPTS ?= "defaults,data=journal"
-TEGRA_MENDER_STORAGE_TOTAL_SIZE_MB_tegra = "${MENDER_STORAGE_TOTAL_SIZE_MB_DEFAULT}"
 OS_RELEASE_VERSION = "${BUILDNAME}${@' (%s)' % DISTRO_CODENAME if 'DISTRO_CODENAME' in d else ''}"
 
 update_version_files () {
