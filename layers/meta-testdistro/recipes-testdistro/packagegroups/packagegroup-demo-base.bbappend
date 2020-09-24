@@ -1,4 +1,5 @@
 RDEPENDS_${PN}_append = " \
+    gptfdisk \
     i2c-tools \
     tegra-bup-payload \
     tegra-eeprom-tool \
