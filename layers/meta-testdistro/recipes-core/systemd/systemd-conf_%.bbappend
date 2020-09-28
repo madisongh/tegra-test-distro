@@ -9,13 +9,13 @@ SRC_URI_append_secureboot = " file://prod-additions.fstab"
 inherit systemd
 
 do_install_append() {
+    install -d ${D}${sysconfdir}/systemd/system.conf.d
+    install -m 0644 ${WORKDIR}/system-overrides.conf ${D}${sysconfdir}/systemd/system.conf.d/99-system-overrides.conf
     install -d ${D}${sysconfdir}/systemd/system/systemd-networkd-wait-online.service.d
     install -m 0644 ${WORKDIR}/networkd-wait-any.conf ${D}${sysconfdir}/systemd/system/systemd-networkd-wait-online.service.d/
 }
 
 do_install_append_secureboot() {
-    install -d ${D}${sysconfdir}/systemd/system.conf.d
-    install -m 0644 ${WORKDIR}/system-overrides.conf ${D}${sysconfdir}/systemd/system.conf.d/99-system-overrides.conf
     install -m 0644 ${WORKDIR}/crypttab ${D}${sysconfdir}/
     install -d ${D}${sysconfdir}/systemd/system
     install -m 0644 ${WORKDIR}/dmcrypt-cleanup.service ${D}${sysconfdir}/systemd/system/
