@@ -1,0 +1,47 @@
+From 3050a03145e0761e96305fbf9301c31b36637f83 Mon Sep 17 00:00:00 2001
+From: Oliver Giles <ohw.giles@gmail.com>
+Date: Thu, 13 Feb 2020 08:55:57 +0200
+Subject: [PATCH] makefs: strdup arguments to mkfs
+
+Don't pass values from argv[] directly to child process forked using
+safe_fork, because it clears argv[]. strdup them first.
+
+Upstream-Status: backport [c315b79fb43a4d921a533ba0c2cb303324887993]
+---
+ src/partition/makefs.c | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
+
+diff --git a/src/partition/makefs.c b/src/partition/makefs.c
+index ee4907f73f..8c678dc90e 100644
+--- a/src/partition/makefs.c
++++ b/src/partition/makefs.c
+@@ -43,8 +43,7 @@ static int makefs(const char *type, const char *device) {
+ }
+ 
+ static int run(int argc, char *argv[]) {
+-        const char *device, *type;
+-        _cleanup_free_ char *detected = NULL;
++        _cleanup_free_ char *device = NULL, *type = NULL, *detected = NULL;
+         struct stat st;
+         int r;
+ 
+@@ -54,8 +53,14 @@ static int run(int argc, char *argv[]) {
+                 return log_error_errno(SYNTHETIC_ERRNO(EINVAL),
+                                        "This program expects two arguments.");
+ 
+-        type = argv[1];
+-        device = argv[2];
++        /* type and device must be copied because makefs calls safe_fork, which clears argv[] */
++        type = strdup(argv[1]);
++        if (!type)
++                return -ENOMEM;
++
++        device = strdup(argv[2]);
++        if (!device)
++                return -ENOMEM;
+ 
+         if (stat(device, &st) < 0)
+                 return log_error_errno(errno, "Failed to stat \"%s\": %m", device);
+-- 
+2.25.1
+
