@@ -1,0 +1,21 @@
+From f24f868736b302e9960e3e88259aa3aa8ca45216 Mon Sep 17 00:00:00 2001
+From: Matt Madison <matt@madison.systems>
+Date: Tue, 29 Sep 2020 10:05:08 -0700
+Subject: [PATCH] Align group names with systemd requirements
+
+Signed-off-by: Matt Madison <matt@madison.systems>
+---
+ group.master | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/group.master b/group.master
+index 5b62284..a438186 100644
+--- a/group.master
++++ b/group.master
+@@ -39,4 +39,5 @@ staff:*:50:
+ games:*:60:
+ shutdown:*:70:
+ users:*:100:
+-nogroup:*:65534:
++render:*:134:
++nobody:*:65534:
