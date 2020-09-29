@@ -26,7 +26,7 @@ do_compile() {
     done
 }
 
-do_install_append() {
+do_install() {
     install -d ${D}${sysconfdir}/systemd/system-generators
     install -m 0755 ${B}/bootdev-generator.sh ${D}${sysconfdir}/systemd/system-generators/bootdev-generator
 }
