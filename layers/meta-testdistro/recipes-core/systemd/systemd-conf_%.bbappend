@@ -2,17 +2,27 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${BPN}:"
 
 SRC_URI += "file://networkd-wait-any.conf"
 SRC_URI += "file://system-overrides.conf"
+SRC_URI += "file://srv-cache-tmpfiles.conf"
 SRC_URI_append_secureboot = " file://crypttab"
 SRC_URI_append_secureboot = " file://dmcrypt-cleanup.service"
 SRC_URI_append_secureboot = " file://prod-additions.fstab"
 
 inherit systemd
 
+install_tmpfiles_config() {
+    install -d ${D}${sysconfdir}/tmpfiles.d
+    install -m 0644 ${WORKDIR}/srv-cache-tmpfiles.conf ${D}${sysconfdir}/tmpfiles.d/00-srv-cache.conf
+}
+install_tmpfiles_config_semi-stateless() {
+    :
+}
+
 do_install_append() {
     install -d ${D}${sysconfdir}/systemd/system.conf.d
     install -m 0644 ${WORKDIR}/system-overrides.conf ${D}${sysconfdir}/systemd/system.conf.d/99-system-overrides.conf
     install -d ${D}${sysconfdir}/systemd/system/systemd-networkd-wait-online.service.d
     install -m 0644 ${WORKDIR}/networkd-wait-any.conf ${D}${sysconfdir}/systemd/system/systemd-networkd-wait-online.service.d/
+    install_tmpfiles_config
 }
 
 # Must block systemd's automatic /tmp mountpoint when using
@@ -38,4 +48,4 @@ PACKAGES_prepend_secureboot = "${PN}-prod "
 SYSTEMD_PACKAGES_append_secureboot = " ${PN}-prod"
 SYSTEMD_SERVICE_${PN}-prod = "dmcrypt-cleanup.service"
 FILES_${PN}-prod = "${sysconfdir}/prod-additions.fstab /data ${sysconfdir}/crypttab"
-FILES_${PN} += "${sysconfdir}/systemd"
+FILES_${PN} += "${sysconfdir}/systemd ${sysconfdir}/tmpfiles.d"
