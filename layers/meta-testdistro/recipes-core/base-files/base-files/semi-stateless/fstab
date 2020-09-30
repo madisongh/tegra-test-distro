@@ -1,0 +1,8 @@
+/dev/root            /                    auto       defaults              1  1
+proc                 /proc                proc       defaults              0  0
+devpts               /dev/pts             devpts     mode=0620,ptmxmode=0666,gid=5      0  0
+tmpfs                /run                 tmpfs      mode=0755,nodev,nosuid,strictatime 0  0
+PARTLABEL=LOGS       /var/log             ext4       defaults,x-systemd.makefs,x-systemd.growfs 0  2
+PARTLABEL=EXTRA      /var/extra           ext4       defaults,x-systemd.makefs,x-systemd.growfs 0  2
+overlay              /var/lib             overlay    lowerdir=/var/lib,upperdir=/var/extra/overlays/var-lib-upper,workdir=/var/extra/overlays/var-lib-work,x-systemd.requires-mounts-for=/var/extra,x-systemd.requires=overlay-setup.service 0  0
+overlay              /home                overlay    lowerdir=/home,upperdir=/var/extra/overlays/home-upper,workdir=/var/extra/overlays/home-work,x-systemd.requires-mounts-for=/var/extra,x-systemd.requires=overlay-setup.service 0  0
