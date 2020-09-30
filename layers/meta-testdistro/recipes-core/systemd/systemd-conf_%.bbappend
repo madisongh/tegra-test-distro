@@ -15,6 +15,12 @@ do_install_append() {
     install -m 0644 ${WORKDIR}/networkd-wait-any.conf ${D}${sysconfdir}/systemd/system/systemd-networkd-wait-online.service.d/
 }
 
+# Must block systemd's automatic /tmp mountpoint when using
+# the volatile rootfs overlay - it's not needed in that case anyway.
+do_install_append_semi-stateless() {
+    ln -sf /dev/null ${D}${sysconfdir}/systemd/system/tmp.mount
+}
+
 do_install_append_secureboot() {
     install -m 0644 ${WORKDIR}/crypttab ${D}${sysconfdir}/
     install -d ${D}${sysconfdir}/systemd/system
