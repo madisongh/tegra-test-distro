@@ -46,6 +46,9 @@ SSTATE_SKIP_CREATION_task-image-qa = "0"
 do_image_complete[vardepsexclude] += "rm_work_rootfs"
 IMAGE_POSTPROCESS_COMMAND = ""
 
+# Undo this addition by mender
+EXTRA_IMAGEDEPENDS_remove = "u-boot"
+
 inherit nopackages
 
 # Override this function provided in mender_workarounds
