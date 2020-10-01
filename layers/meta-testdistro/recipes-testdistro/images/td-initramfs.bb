@@ -34,12 +34,16 @@ IMAGE_ROOTFS_EXTRA_SPACE = "0"
 
 FORCE_RO_REMOVE ?= "1"
 
+BAD_RECOMMENDATIONS = "systemd-extra-utils"
+
 inherit core-image
 
 IMAGE_FSTYPES_forcevariable = "${INITRAMFS_FSTYPES}"
 
 ROOTFS_POSTPROCESS_COMMAND_remove = "mender_update_fstab_file;"
 ROOTFS_POSTPROCESS_COMMAND_remove = "mender_create_scripts_version_file;"
+
+ROOTFS_POSTPROCESS_COMMAND += "trim_fstab;"
 
 SSTATE_SKIP_CREATION_task-image-complete = "0"
 SSTATE_SKIP_CREATION_task-image-qa = "0"
@@ -50,6 +54,12 @@ IMAGE_POSTPROCESS_COMMAND = ""
 EXTRA_IMAGEDEPENDS_remove = "u-boot"
 
 inherit nopackages
+
+trim_fstab() {
+    if [ -e ${IMAGE_ROOTFS}${sysconfdir}/fstab ]; then
+        sed -i -n -e'1,/^tmpfs/p' ${IMAGE_ROOTFS}${sysconfdir}/fstab
+    fi
+}
 
 # Override this function provided in mender_workarounds
 update_version_files () {
