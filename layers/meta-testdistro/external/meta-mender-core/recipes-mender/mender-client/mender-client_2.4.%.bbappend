@@ -1,6 +1,6 @@
 SRC_REPO = "github.com/madisongh/mender.git;protocol=https"
-SRC_URI = "git://${SRC_REPO};branch=2.3.x"
-SRCREV = "83f0f4fa94dca9d637ec5980801397d1e5371b44"
+SRC_URI = "git://${SRC_REPO};branch=2.4.x"
+SRCREV = "deea1a63ecf9f604f924ac0d26f3a76c6528de25"
 PV .= "+git${SRCPV}"
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/${BPN}:"
