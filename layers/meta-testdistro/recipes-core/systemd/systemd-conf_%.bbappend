@@ -11,7 +11,6 @@ SRC_URI_append_secureboot = " file://fs-pre-workaround.conf"
 inherit systemd
 
 install_tmpfiles_config() {
-    install -d ${D}${sysconfdir}/tmpfiles.d
     install -m 0644 ${WORKDIR}/srv-cache-tmpfiles.conf ${D}${sysconfdir}/tmpfiles.d/00-srv-cache.conf
 }
 install_tmpfiles_config_semi-stateless() {
@@ -23,6 +22,8 @@ do_install_append() {
     install -m 0644 ${WORKDIR}/system-overrides.conf ${D}${sysconfdir}/systemd/system.conf.d/99-system-overrides.conf
     install -d ${D}${sysconfdir}/systemd/system/systemd-networkd-wait-online.service.d
     install -m 0644 ${WORKDIR}/networkd-wait-any.conf ${D}${sysconfdir}/systemd/system/systemd-networkd-wait-online.service.d/
+    install -d ${D}${sysconfdir}/tmpfiles.d
+    ln -sf /dev/null ${D}${sysconfdir}/tmpfiles.d/tmp.conf
     install_tmpfiles_config
 }
 
