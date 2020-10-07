@@ -6,6 +6,7 @@ SRC_URI += "file://srv-cache-tmpfiles.conf"
 SRC_URI_append_secureboot = " file://crypttab"
 SRC_URI_append_secureboot = " file://dmcrypt-cleanup.service"
 SRC_URI_append_secureboot = " file://prod-additions.fstab"
+SRC_URI_append_secureboot = " file://fs-pre-workaround.conf"
 
 inherit systemd
 
@@ -37,6 +38,10 @@ do_install_append_secureboot() {
     install -m 0644 ${WORKDIR}/dmcrypt-cleanup.service ${D}${sysconfdir}/systemd/system/
     install -m 0644 ${WORKDIR}/prod-additions.fstab ${D}${sysconfdir}/
     install -d ${D}/data
+    # XXX can remove this after updating to systemd v245 or later
+    install -d ${D}${sysconfdir}/systemd/system/local-fs-pre-target.d
+    install -m 0644 ${WORKDIR}/fs-pre-workaround.conf ${D}${sysconfdir}/systemd/system/local-fs-pre-target.d/
+    # XXX
 }
 
 pkg_postinst_${PN}-prod() {
