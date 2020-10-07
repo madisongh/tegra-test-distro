@@ -110,4 +110,6 @@ mkdir -p "$normaldir/initrd-root-device.target.requires"
 ln -sf "../systemd-cryptsetup@APP$sfx.service" "$normaldir/initrd-root-device.target.requires"
 mkdir -p "$normaldir/initrd-root-fs.target.requires"
 ln -sf "../sysroot.mount" "$normaldir/initrd-root-fs.target.requires"
+mkdir -p /run/bootdev
+ln -sf /dev/mapper/APP$sfx /run/bootdev/rootfs-device
 exit 0
