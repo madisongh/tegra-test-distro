@@ -3,6 +3,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${BPN}:"
 SRC_URI += "file://networkd-wait-any.conf"
 SRC_URI += "file://system-overrides.conf"
 SRC_URI += "file://srv-cache-tmpfiles.conf"
+SRC_URI += "file://var-log-journal.conf"
 SRC_URI_append_secureboot = " file://crypttab"
 SRC_URI_append_secureboot = " file://dmcrypt-cleanup.service"
 SRC_URI_append_secureboot = " file://prod-additions.fstab"
@@ -23,7 +24,10 @@ do_install_append() {
     install -m 0644 ${WORKDIR}/networkd-wait-any.conf ${D}${sysconfdir}/systemd/system/systemd-networkd-wait-online.service.d/
     install -d ${D}${sysconfdir}/tmpfiles.d
     ln -sf /dev/null ${D}${sysconfdir}/tmpfiles.d/tmp.conf
+    install -m 0644 ${WORKDIR}/var-log-journal.conf ${D}${sysconfdir}/tmpfiles.d/00-var-log-journal.conf
     install_tmpfiles_config
+    # OE-Core installs this to forward to syslog, which we're not using
+    rm -rf ${D}${systemd_unitdir}/journald.conf.d
 }
 
 # Must block systemd's automatic /tmp mountpoint when using
@@ -45,8 +49,9 @@ pkg_postinst_${PN}-prod() {
     rm -f $D${sysconfdir}/prod-additions.fstab
 }
 
-PACKAGES_prepend_secureboot = "${PN}-prod "
+PACKAGES_prepend_secureboot = "${PN}-prod ${PN}-crypttab "
 SYSTEMD_PACKAGES_append_secureboot = " ${PN}-prod"
 SYSTEMD_SERVICE_${PN}-prod = "dmcrypt-cleanup.service"
-FILES_${PN}-prod = "${sysconfdir}/prod-additions.fstab /data ${sysconfdir}/crypttab"
+FILES_${PN}-prod = "${sysconfdir}/prod-additions.fstab /data"
+FILES_${PN}-crypttab = "${sysconfdir}/crypttab"
 FILES_${PN} += "${sysconfdir}/systemd ${sysconfdir}/tmpfiles.d"
