@@ -4,7 +4,11 @@ RDEPENDS_${PN}_append = " \
     tegra-bup-payload \
     tegra-eeprom-tool \
     tegra-fuse-tool \   
+"
+
+RDEPENDS_${PN}_append_secureboot = " \
     tegra-sysinstall-tools \
+    systemd-conf-crypttab \
 "
 
 RRECOMMENDS_${PN}_append = " \
