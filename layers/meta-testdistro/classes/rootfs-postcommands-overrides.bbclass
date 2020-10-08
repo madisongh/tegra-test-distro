@@ -19,4 +19,9 @@ semi_stateless_rootfs_hook () {
 	    sed -i -e's,^RequiresMountsFor=.*,RequiresMountsFor=${localstatedir}/lib /run,' ${IMAGE_ROOTFS}${systemd_system_unitdir}/sshdgenkeys.service
 	fi
     fi
+    # Also ensure that the split-off mountpoint directories are empty,
+    # except for /data, which has to stick around for mender imaging.
+    for d in /var/log /var/extra; do
+	find ${IMAGE_ROOTFS}$d -mindepth 1 -maxdepth 1 -exec rm -rf {} \;
+    done
 }
