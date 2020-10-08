@@ -6,8 +6,9 @@ RDEPENDS_${PN}_append = " \
     tegra-fuse-tool \   
 "
 
-RDEPENDS_${PN}_append_jetson-tx2-sb = " \
+RDEPENDS_${PN}_append_secureboot = " \
     tegra-sysinstall-tools \
+    systemd-conf-crypttab \
 "
 
 RRECOMMENDS_${PN}_append = " \
