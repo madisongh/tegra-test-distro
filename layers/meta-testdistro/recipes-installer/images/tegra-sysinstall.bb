@@ -9,6 +9,7 @@ IMAGE_INSTALL = "packagegroup-core-boot \
                  sysinstall-pkg \
                  tegra-sysinstall-tools \
 "
+IMAGE_INSTALL_remove = "mender-client"
 IMAGE_FEATURES = "empty-root-password allow-empty-password"
 IMAGE_LINUGAS = ""
 
@@ -19,8 +20,13 @@ IMAGE_ROOTFS_SIZE = "2097152"
 IMAGE_ROOTFS_MAXSIZE = "2097152"
 IMAGE_ROOTFS_EXTRA_SPACE = "0"
 IMAGE_OVERHEAD_FACTOR = "1.0"
+
+IMAGE_TEGRAFLASH_KERNEL = "${DEPLOY_DIR_IMAGE}/td-sysinstall-kernel/${KERNEL_IMAGETYPE}-sysinstall-initramfs.cboot"
+TEGRAFLASH_PKG_DEPENDS_append = " linux-td-sysinstall:do_deploy"
+
 KERNEL_ARGS_append = " root=PARTLABEL=INSTALLER"
 KERNEL_ARGS_remove = "console=tty0"
+KERNEL_ARGS_remove = "systemd.volatile=overlay"
 
 ROOTFS_POSTPROCESS_COMMAND_prepend = "ensure_data_exists; trim_fstab;"
 ROOTFS_POSTPROCESS_COMMAND_remove = "mender_update_fstab_file;"
