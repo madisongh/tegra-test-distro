@@ -1,58 +1,37 @@
-# tegra-demo-distro
+# tegra-test-distro
 
-Reference/demo distribution for NVIDIA Jetson platforms
-using Yocto Project tools and the [meta-tegra](https://github.com/OE4T/meta-tegra) BSP layer.
+![Build status](https://builder.madison.systems/badges/testdistro-master.svg)
 
-![Build status](https://builder.madison.systems/badges/tegrademo-master.svg)
+Distro for testing the following:
 
-Metadata layers are brought in as git submodules:
+* Jetson secure boot support with
+  * LUKS partition encryption
+  * The [keystore](https://github.com/madisongh/keystore) Trusted Application
+* Other miscellaneous distribution features, such as
+  * Full use of systemd in the initramfs
+  * Semi-stateless rootfs using ramdisk overlay
+  * Use of an AWS S3 bucket for downloads and sstate mirrors
+  * Use of [digsigserver](https://github.com/madisongh/digisgserver) for signing boot artifacts, kernel modules, and Mender artifacts.
+  * Cloud-based CI in AWS EC2 using the buildbot-based [autobuilder](https://github.com/madisongh/autobuilder)
 
-| Layer Repo            | Branch         | Description                                         |
-| --------------------- | ---------------|---------------------------------------------------- |
-| poky                  | master         | OE-Core from poky repo at yoctoproject.org          |
-| meta-tegra            | master         | L4T BSP layer - L4T R35.1.0/JetPack 5.0.2           |
-| meta-tegra-community  | master         | OE4T layer with additions from the community        |
-| meta-openembedded     | master         | OpenEmbedded layers                                 |
-| meta-virtualization   | master         | Virtualization layer for docker support             |
+This test distro is derived from the OE4T
+[reference/demo distro](https://github.com/OE4T/tegra-demo-distro).
+Some features and fixes implemented here are for upstreaming to that
+repository.
 
-## Prerequisites
+You are welcome to fork this repository for your own use; however,
+you may find that:
 
-See the [Yocto Project Quick Build](https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html)
-documentation for information on setting up your build host.
+* branches are frequently rebased on top of changes in the OE4T upstream,
+losing history
+* builds may get broken as new features are integrated (check the CI
+status indicator on commits)
 
-For burning SDcards (for Jetson Xavier NX developer kits), the `bmap-tools`
-package is recommended.
+I recommend using the OE4T repository as a base instead.
 
-## Setting up
+## Prerequisites and setup instructions
 
-1. Clone this repository:
-
-        $ git clone https://github.com/OE4T/tegra-demo-distro.git
-
-2. Switch to the appropriate branch, using the
-   [wiki page](https://github.com/OE4T/tegra-demo-distro/wiki/Which-branch-should-I-use%3F)
-   for guidance.
-
-3. Initialize the git submodules:
-
-        $ cd tegra-demo-distro
-        $ git submodule update --init
-
-4. Source the `setup-env` script to create a build directory,
-   specifying the MACHINE you want to configure as the default
-   for your builds. For example, to set up a build directory
-   called `build` that is set up for the Jetson Xavier NX
-   developer kit and the default `tegrademo` distro:
-
-        $ . ./setup-env --machine jetson-xavier-nx-devkit
-
-   You can get a complete list of available options, MACHINE
-   names, and DISTRO names with
-
-        $ . ./setup-env --help
-
-5. Optional: Install pre-commit hook for commit autosigning using
-        $ ./scripts-setup/setup-git-hooks
+Prerequisites and setup are the same as for the OE4T [reference/demo distro](https://github.com/OE4T/tegra-demo-distro).
 
 ## Distributions
 
@@ -65,14 +44,15 @@ Currently supported distributions are listed below:
 
 | Distribution name | Description                                                   |
 | ----------------- | ------------------------------------------------------------- |
-| tegrademo         | Default distro used to demonstrate/test meta-tegra features   |
+| testdistro        | Default distro used to demonstrate/test meta-tegra features   |
+| tegrademo         | from upstream OE4T repository; not regularly tested here      |
+| tegrademo-mender  | from upstream OE4T repository; not regularly tested here      |
 
 ## Images
 
-The `tegrademo` distro includes the following image recipes, which
-are dervied from the `core-image-XXX` recipes in OE-Core but configured
-for Jetson platforms. They include some additional test tools and
-demo applications.
+The `testdistro` distros include the following image recipes, which are based on
+the image recipes in the OE4T demo distro with some additions for testing and
+troubleshooting.
 
 | Recipe name       | Description                                                   |
 | ----------------- | ------------------------------------------------------------- |
@@ -81,8 +61,3 @@ demo applications.
 | demo-image-sato   | X11 image with Sato UI                                        |
 | demo-image-weston | Wayland with Weston compositor                                |
 | demo-image-full   | Sato image plus nvidia-docker, openCV, multimedia API samples |
-
-# Contributing
-
-Please see the contributor wiki page at [this link](https://github.com/OE4T/meta-tegra/wiki/OE4T-Contributor-Guide).
-Contributions are welcome!
