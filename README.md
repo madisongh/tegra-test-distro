@@ -1,43 +1,44 @@
-# tegra-demo-distro
+# tegra-test-distro
 
-Reference/demo distribution for NVIDIA Jetson platforms
-using Yocto Project tools and the meta-tegra BSP layer.
+![Build status](https://builder.madison.systems/badges/testdistro-dunfell.svg)
 
-![Build status](https://builder.madison.systems/badges/tegrademo-dunfell.svg)
+Distro for testing the following:
 
-## Prerequisites
+* meta-tegra platforms
+* meta-mender-core/meta-mender-tegra integration
+* Jetson secure boot support with
+  * LUKS partition encryption
+  * The [keystore](https://github.com/madisongh/keystore) Trusted Application
+* Other miscellaneous distribution features, such as
+  * Full use of systemd in the initramfs
+  * Semi-stateless rootfs using ramdisk overlay
+  * Use of an AWS S3 bucket for downloads and sstate mirrors
+  * Use of [digsigserver](https://github.com/madisongh/digisgserver) for signing boot artifacts, kernel modules, and Mender artifacts.
+  * Cloud-based CI in AWS EC2 using the buildbot-based [autobuilder](https://github.com/madisongh/autobuilder)
 
-See the [Yocto Project Quick Build](https://www.yoctoproject.org/docs/3.1.2/brief-yoctoprojectqs/brief-yoctoprojectqs.html)
-documentation for information on setting up your build host.
-In addition to the packages mentioned in that documentation, you
-will need gcc and g++ 8 (on Ubuntu, packages `gcc-8` and `g++-8`).
+This test distro is derived from the OE4T
+[reference/demo distro](https://github.com/OE4T/tegra-demo-distro).
+Some features and fixes implemented here are for upstreaming to that
+repository.
 
-For burning SDcards (for the Jetson Nano or Jetson Xavier NX developer
-kits), the `bmap-tools` package is recommended.
+You are welcome to fork this repository for your own use; however,
+you may find that:
 
-## Setting up
+* branches are frequently rebased on top of changes in the OE4T upstream,
+losing history
+* builds may get broken as new features are integrated (check the CI
+status indicator on commits)
 
-1. Clone this repository:
+I recommend using the OE4T repository as a base instead.
 
-        $ git clone -b dunfell-l4t-r32.4.3 https://github.com/OE4T/tegra-demo-distro.git
+## Prerequisites and setup instructions
 
-2. Initialize the git submodules:
+Prerequisites and setup are the same as for the OE4T [reference/demo distro](https://github.com/OE4T/tegra-demo-distro).
 
-        $ cd tegra-demo-distro
-		$ git submodule update --init
+If you intend to use S3 as a mirror for downloads and/or sstate, you should also install the `python3-boto3`
+and `python3-s3transfer` packages on your build host for faster transfers, and have suitable AWS CLI
+configuration and credentials available for access to your S3 bucket during builds.
 
-3. Source the `setup-env` script to create a build directory,
-   specifying the MACHINE you want to configure as the default
-   for your builds. For example, to set up a build directory
-   called `build` that is set up for the Jetson Xavier NX
-   developer kit and the default `tegrademo` distro:
-
-        $ . ./setup-env --machine jetson-xavier-nx-devkit
-
-   You can get a complete list of available options, MACHINE
-   names, and DISTRO names with
-
-        $ . ./setup-env --help
 
 4. Optional: Install pre-commit hook for commit autosigning using
         $ ./scripts-setup/setup-git-hooks
@@ -53,8 +54,10 @@ Currently supported distributions are listed below:
 
 | Distribution name | Description                                                   |
 | ----------------- | ------------------------------------------------------------- |
-| tegrademo         | Default distro used to demonstrate/test meta-tegra features   |
-| tegrademo-mender  | Adds [mender](https://www.mender.io/) OTA support             |
+| testdistro        | Default distro used to demonstrate/test meta-tegra features   |
+| testdistro-mender | Adds [mender](https://www.mender.io/) OTA support             |
+| tegrademo         | from upstream OE4T repository; not regularly tested here      |
+| tegrademo-mender  | from upstream OE4T repository; not regularly tested here      |
 
 ### tegrademo-mender
 
@@ -76,10 +79,9 @@ of `PREFERRED_PROVIDER_virtual/bootloader_tegra186` in your distro layer.
 
 ## Images
 
-The `tegrademo` distro includes the following image recipes, which
-are dervied from the `core-image-XXX` recipes in OE-Core but configured
-for Jetson platforms. They include some additional test tools and
-demo applications.
+The `testdistro` distros include the following image recipes, which are based on
+the image recipes in the OE4T demo distro with some additions for testing and
+troubleshooting.
 
 | Recipe name       | Description                                                   |
 | ----------------- | ------------------------------------------------------------- |
