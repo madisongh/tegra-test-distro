@@ -4,7 +4,7 @@
 
 <partition_layout version="01.00.0000">
     <device type="spi" instance="0">
-        <partition name="BCT" id="2" type="boot_config_table">
+        <partition name="BCT" type="boot_config_table">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> 262144 </size>
@@ -14,7 +14,7 @@
             <description> **Required.** Contains Boot Configuration Table (BCT). </description>
         </partition>
 
-        <partition name="NXC" id="3" type="NVCTYPE">
+        <partition name="NXC" type="NVCTYPE">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> 196608 </size>
@@ -25,7 +25,7 @@
             <description> **Required.** Contains TegraBoot binary. </description>
         </partition>
 
-        <partition name="PT" id="4" type="partition_table">
+        <partition name="PT" type="partition_table">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> 65536 </size>
@@ -36,7 +36,7 @@
             <description> **Required.** Contains Partition Table. </description>
         </partition>
 
-        <partition name="NXC_R" id="5" type="NVCTYPE">
+        <partition name="NXC_R" type="NVCTYPE">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> 196608 </size>
@@ -59,7 +59,7 @@
             <description> U-Boot environment area  </description>
         </partition>
 
-        <partition name="VER_b" id="7" type="data">
+        <partition name="VER_b" type="data">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
 	    <start_location> 0x3E0000 </start_location>
@@ -73,7 +73,7 @@
               information. </description>
         </partition>
 
-        <partition name="VER" id="8" type="data">
+        <partition name="VER" type="data">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
 	    <start_location> 0x3F0000 </start_location>
@@ -88,7 +88,7 @@
 
     </device>
     <device type="sdcard" instance="0">
-        <partition name="GP1" id="9" type="GP1">
+        <partition name="GP1" type="GP1">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> 2097152 </size>
@@ -100,7 +100,7 @@
               by standard partition tools such as gdisk and parted. </description>
         </partition>
 
-        <partition name="APP" id="10" type="data">
+        <partition name="APP" type="data">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> APPSIZE </size>
@@ -114,7 +114,7 @@
               `/dev/mmcblk0p1`. </description>
         </partition>
 
-        <partition name="TXC" id="11" type="TBCTYPE">
+        <partition name="TXC" type="TBCTYPE">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> 131072 </size>
@@ -125,7 +125,7 @@
             <description> **Required.** Contains TegraBoot CPU-side binary. </description>
         </partition>
 
-        <partition name="RP1" id="12" type="data">
+        <partition name="RP1" type="data">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> 458752 </size>
@@ -136,7 +136,7 @@
             <description> **Required.** Contains Bootloader DTB binary. </description>
         </partition>
 
-        <partition name="EBT" id="13" type="bootloader">
+        <partition name="EBT" type="bootloader">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> 589824 </size>
@@ -148,7 +148,7 @@
               binary that loads the binary in the kernel partition.. </description>
         </partition>
 
-        <partition name="WX0" id="14" type="WB0TYPE">
+        <partition name="WX0" type="WB0TYPE">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> 65536 </size>
@@ -159,7 +159,7 @@
             <description> **Required.** Contains warm boot binary. </description>
         </partition>
 
-        <partition name="BXF" id="15" type="data">
+        <partition name="BXF" type="data">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> 196608 </size>
@@ -171,7 +171,7 @@
             <description> **Required.** Contains SC7 entry firmware. </description>
         </partition>
 
-        <partition name="BXF-DTB" id="16" type="data">
+        <partition name="BXF-DTB" type="data">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> 393216 </size>
@@ -182,7 +182,7 @@
             <description> **Optional.** Reserved for future use by BPMP DTB binary; can't remove. </description>
         </partition>
 
-        <partition name="FX" id="17" type="FBTYPE">
+        <partition name="FX" type="FBTYPE">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> 65536 </size>
@@ -193,7 +193,7 @@
             <description> **Optional.** Reserved for fuse bypass; removeable. </description>
         </partition>
 
-        <partition name="TXS" id="18" type="data">
+        <partition name="TXS" type="data">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> 458752 </size>
@@ -205,7 +205,7 @@
             <description> **Required.** Contains TOS binary. </description>
         </partition>
 
-        <partition name="DXB" id="19" type="data">
+        <partition name="DXB" type="data">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> 458752 </size>
@@ -216,7 +216,7 @@
             <description> **Required.** Contains kernel DTB binary. </description>
         </partition>
 
-        <partition name="LNX" id="20" type="data">
+        <partition name="LNX" type="data">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> 786432 </size>
@@ -228,7 +228,7 @@
               the rootfs at `/boot`. </description>
         </partition>
 
-        <partition name="EXS" id="21" type="data">
+        <partition name="EXS" type="data">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> 65536 </size>
@@ -240,7 +240,7 @@
             <description> **Optional.** Contains the encrypted keys. </description>
         </partition>
 
-        <partition name="BMP" id="22" type="data">
+        <partition name="BMP" type="data">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> 81920 </size>
@@ -252,7 +252,7 @@
               boot. </description>
         </partition>
 
-        <partition name="RP4" id="23" type="data">
+        <partition name="RP4" type="data">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> 131072 </size>
@@ -264,7 +264,7 @@
               a true USB 3.0 compliant host controller. </description>
         </partition>
 
-        <partition name="APP_b" id="24" type="data">
+        <partition name="APP_b" type="data">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> APPSIZE </size>
@@ -275,7 +275,7 @@
             <filename> APPFILE </filename>
         </partition>
 
-        <partition name="UDA" id="25" type="data">
+        <partition name="UDA" type="data">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> 16777216 </size>
@@ -283,7 +283,7 @@
 	    <percent_reserved> 0 </percent_reserved>
 	    <filename> DATAFILE </filename>
         </partition>
-        <partition name="LOGS" id="26" type="data">
+        <partition name="LOGS" type="data">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> 67108864 </size>
@@ -291,7 +291,7 @@
 	    <percent_reserved> 0 </percent_reserved>
             <description>/var/log partition</description>
         </partition>
-        <partition name="EXTRA" id="27" type="data">
+        <partition name="EXTRA" type="data">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> 2097152 </size>
@@ -299,7 +299,7 @@
 	    <percent_reserved> 0 </percent_reserved>
         </partition>
 
-        <partition name="GPT" id="28" type="GPT">
+        <partition name="GPT" type="GPT">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> 2097152 </size>
