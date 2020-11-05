@@ -6,7 +6,7 @@ RDEPENDS_${PN}_append = " \
     tegra-fuse-tool \   
 "
 
-RDEPENDS_${PN}_append_secureboot = " \
+RDEPENDS_${PN}_append_cryptparts = " \
     tegra-sysinstall-tools \
     systemd-conf-crypttab \
 "
