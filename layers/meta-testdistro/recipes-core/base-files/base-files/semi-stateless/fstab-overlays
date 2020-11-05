@@ -1,0 +1,2 @@
+overlay              /var/lib             overlay    lowerdir=/var/lib,upperdir=/var/extra/overlays/var-lib-upper,workdir=/var/extra/overlays/var-lib-work,x-systemd.requires-mounts-for=/var/extra,x-systemd.requires=overlay-setup.service 0  0
+overlay              /home                overlay    lowerdir=/home,upperdir=/var/extra/overlays/home-upper,workdir=/var/extra/overlays/home-work,x-systemd.requires-mounts-for=/var/extra,x-systemd.requires=overlay-setup.service 0  0
