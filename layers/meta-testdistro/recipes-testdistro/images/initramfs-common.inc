@@ -7,7 +7,8 @@ TEGRA_INITRD_BASEUTILS ?= "busybox"
 
 TEGRA_INITRD_ROOTFSMOUNT ??= ""
 TEGRA_INITRD_BOOTCOUNTCHECK = ""
-TEGRA_INITRD_BOOTCOUNTCHECK_secureboot = "initrd-bootcountcheck"
+TEGRA_INITRD_BOOTCOUNTCHECK_tegra186_secureboot = "initrd-bootcountcheck"
+TEGRA_INITRD_BOOTCOUNTCHECK_tegra194_secureboot = "initrd-bootcountcheck"
 
 PACKAGE_INSTALL = "\
     tegra-firmware-xusb \
