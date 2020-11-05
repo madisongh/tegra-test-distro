@@ -1,5 +1,7 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/base-files:"
 
+SRC_URI += "file://fstab-overlays"
+
 # Differences from OE-Core default base-files:
 #
 #   * No /var/volatile (with its tmp and log subdirectories)
@@ -23,6 +25,7 @@ make_extra_symlinks_semi-stateless() {
 }
 
 do_install_append() {
+    cat ${WORKDIR}/fstab-overlays >>${D}${sysconfdir}/fstab
     make_extra_symlinks
 }
 
