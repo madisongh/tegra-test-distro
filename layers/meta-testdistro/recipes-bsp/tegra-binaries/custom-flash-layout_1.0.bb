@@ -3,7 +3,7 @@ LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 
 INHIBIT_DEFAULT_DEPS = "1"
-COMPATIBLE_MACHINE = "(jetson-tx2-sb|jetson-xavier-nx-devkit-sb)"
+COMPATIBLE_MACHINE = "(jetson-tx2-sb|jetson-xavier-nx-devkit-emmc-sb)"
 
 SRC_URI = "file://flash_${MACHINE}_custom.xml"
 
