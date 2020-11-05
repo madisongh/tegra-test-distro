@@ -7,6 +7,7 @@
             <file_system_attribute> 0 </file_system_attribute>
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
+            <description> **Required.** Contains Boot Configuration Table (BCT). </description>
         </partition>
         <partition name="mb1" type="mb1_bootloader">
             <allocation_policy> sequential </allocation_policy>
@@ -16,6 +17,7 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> MB1FILE </filename>
+            <description> **Required.** Slot A; contains NVIDIA signed MB1 binary. </description>
         </partition>
         <partition name="mb1_b" type="mb1_bootloader">
             <allocation_policy> sequential </allocation_policy>
@@ -25,6 +27,7 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> MB1FILE </filename>
+            <description> **Required.** Slot B; contains NVIDIA signed MB1 binary. </description>
         </partition>
         <partition name="MB1_BCT" type="mb1_boot_config_table">
             <allocation_policy> sequential </allocation_policy>
@@ -33,6 +36,7 @@
             <file_system_attribute> 0 </file_system_attribute>
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
+            <description> **Required.** Slot A; contains MB1 boot configuration table. </description>
         </partition>
         <partition name="MB1_BCT_b" type="mb1_boot_config_table">
             <allocation_policy> sequential </allocation_policy>
@@ -41,6 +45,7 @@
             <file_system_attribute> 0 </file_system_attribute>
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
+            <description> **Required.** Slot B; contains MB1 boot configuration table. </description>
         </partition>
         <partition name="MEM_BCT" type="mem_boot_config_table">
             <allocation_policy> sequential </allocation_policy>
@@ -49,6 +54,7 @@
             <file_system_attribute> 0 </file_system_attribute>
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
+            <description> **Required.** Slot A; contains memory configuration table. </description>
         </partition>
         <partition name="MEM_BCT_b" type="mem_boot_config_table">
             <allocation_policy> sequential </allocation_policy>
@@ -57,6 +63,7 @@
             <file_system_attribute> 0 </file_system_attribute>
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
+            <description> **Required.** Slot B; contains memory configuration table. </description>
         </partition>
         <partition name="spe-fw" type="spe_fw" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -66,6 +73,7 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> SPEFILE </filename>
+            <description> **Required.** Slot A; contains BPMP SPE-FW binary. </description>
         </partition>
         <partition name="spe-fw_b" type="spe_fw" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -75,6 +83,7 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> SPEFILE </filename>
+            <description> **Required.** Slot B; contains BPMP SPE-FW binary. </description>
         </partition>
         <partition name="mb2" type="mb2_bootloader" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -84,6 +93,7 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> TEGRABOOT </filename>
+            <description> **Required.** Slot A; contains TegraBoot binary. </description>
         </partition>
         <partition name="mb2_b" type="mb2_bootloader" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -93,6 +103,7 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> TEGRABOOT </filename>
+            <description> **Required.** Slot B; contains TegraBoot binary. </description>
         </partition>
         <partition name="mts-preboot" type="mts_preboot" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -102,6 +113,7 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> MTSPREBOOT </filename>
+            <description> **Required.** Slot A; contains Denver preboot firmware. </description>
         </partition>
         <partition name="mts-preboot_b" type="mts_preboot" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -111,6 +123,7 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> MTSPREBOOT </filename>
+            <description> **Required.** Slot B; contains Denver preboot firmware. </description>
 
         </partition>
         <partition name="mts-mce" type="mts_mce" oem_sign="true">
@@ -121,6 +134,8 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> MTS_MCE </filename>
+            <description> **Required.** Slot A; contains microcode associated with boot, power management,
+              and clocks. </description>
         </partition>
         <partition name="mts-mce_b" type="mts_mce" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -130,6 +145,8 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> MTS_MCE </filename>
+            <description> **Required.** Slot B; contains microcode associated with boot, power management,
+              and clocks. </description>
         </partition>
         <partition name="mts-proper" type="mts_proper" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -139,6 +156,8 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> MTSPROPER </filename>
+            <description> **Required.** Slot A; contains microcode associated with execution
+              and optimization of ARM code. </description>
         </partition>
         <partition name="mts-proper_b" type="mts_proper" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -148,6 +167,8 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> MTSPROPER </filename>
+            <description> **Required.** Slot B; contains microcode associated with execution
+              and optimization of ARM code. </description>
         </partition>
         <partition name="sc7" type="WB0" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -157,6 +178,7 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> WB0BOOT </filename>
+            <description> **Required.** Slot A; contains warm boot firmware. </description>
         </partition>
         <partition name="sc7_b" type="WB0" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -166,6 +188,7 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> WB0BOOT </filename>
+            <description> **Required.** Slot B; contains warm boot firmware. </description>
         </partition>
         <partition name="SMD" type="smd">
             <allocation_policy> sequential </allocation_policy>
@@ -176,6 +199,8 @@
             <allocation_attribute> 0x8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> slot_metadata.bin </filename>
+            <description> **Required.** Slot A; contains slot status for A/B boot and A/B
+              update. </description>
         </partition>
         <partition name="SMD_b" type="smd">
             <allocation_policy> sequential </allocation_policy>
@@ -186,6 +211,8 @@
             <allocation_attribute> 0x8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> slot_metadata.bin </filename>
+            <description> **Required.** Slot B; contains slot status for A/B boot and A/B
+              update. </description>
         </partition>
         <partition name="xusb-fw" type="xusb_fw">
             <allocation_policy> sequential </allocation_policy>
@@ -196,6 +223,8 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> xusb_sil_rel_fw </filename>
+            <description> **Required.** Slot A; contains XUSB module’s firmware file, making XUSB
+              a true USB 3.0 compliant host controller. </description>
         </partition>
         <partition name="xusb-fw_b" type="xusb_fw">
             <allocation_policy> sequential </allocation_policy>
@@ -205,6 +234,8 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> xusb_sil_rel_fw </filename>
+            <description> **Required.** Slot B; contains XUSB module’s firmware file, making XUSB
+              a true USB 3.0 compliant host controller. </description>
         </partition>
         <partition name="cpu-bootloader" type="bootloader" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -214,6 +245,8 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> TBCFILE </filename>
+            <description> **Required.** Slot A; contains CBoot, the final boot stage CPU Bootloader
+              binary that loads the binary in the kernel partition.  </description>
         </partition>
         <partition name="cpu-bootloader_b" type="bootloader" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -223,6 +256,8 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> TBCFILE </filename>
+            <description> **Required.** Slot B; contains CBoot, the final boot stage CPU Bootloader
+              binary that loads the binary in the kernel partition.  </description>
         </partition>
         <partition name="bootloader-dtb" type="data" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -232,6 +267,8 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> TBCDTB-FILE </filename>
+            <description> **Required.** Slot A; contains Bootloader device tree blob
+              (DTB). </description>
         </partition>
         <partition name="bootloader-dtb_b" type="data" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -241,6 +278,8 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> TBCDTB-FILE </filename>
+            <description> **Required.** Slot B; contains Bootloader device tree blob
+              (DTB). </description>
         </partition>
         <partition name="BMP" type="data">
             <allocation_policy> sequential </allocation_policy>
@@ -250,6 +289,8 @@
             <allocation_attribute> 0x8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> bmp.blob </filename>
+            <description> **Optional.** Slot A; contains BMP images for splash screen display during
+              boot. </description>
         </partition>
         <partition name="BMP_b" type="data">
             <allocation_policy> sequential </allocation_policy>
@@ -259,6 +300,8 @@
             <allocation_attribute> 0x8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> bmp.blob </filename>
+            <description> **Optional.** Slot B; contains BMP images for splash screen display during
+              boot. </description>
         </partition>
         <partition name="secure-os" type="data" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -268,6 +311,7 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> TOSFILE </filename>
+            <description> **Required.** Slot A; contains the trusted OS. </description>
         </partition>
         <partition name="secure-os_b" type="data" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -277,6 +321,7 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> TOSFILE </filename>
+            <description> **Required.** Slot B; contains the trusted OS. </description>
         </partition>
         <partition name="eks" type="data" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -286,6 +331,7 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> EKSFILE </filename>
+            <description> **Optional.** Slot A; contains the encrypted keys. </description>
         </partition>
         <partition name="eks_b" type="data" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -295,6 +341,7 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> EKSFILE </filename>
+            <description> **Optional.** Slot B; contains the encrypted keys. </description>
         </partition>
         <partition name="adsp-fw" type="data" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -304,6 +351,7 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> adsp-fw.bin </filename>
+            <description> **Required.** Slot A; contains ADSP software. </description>
         </partition>
         <partition name="adsp-fw_b" type="data" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -313,6 +361,7 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> adsp-fw.bin </filename>
+            <description> **Required.** Slot B; contains ADSP software. </description>
         </partition>
         <partition name="rce-fw" type="data" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -322,6 +371,7 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> CAMERAFW </filename>
+            <description> **Required.** Slot A; contains `camera-rtcpu-rce` firmware. </description>
         </partition>
         <partition name="rce-fw_b" type="data" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -331,6 +381,7 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> CAMERAFW </filename>
+            <description> **Required.** Slot B; contains `camera-rtcpu-rce` firmware. </description>
         </partition>
         <partition name="sce-fw" type="data" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -340,6 +391,7 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
 <!--            <filename> sce-fw.bin </filename>	-->
+            <description> **Required.** Contains `camera-rtcpu-sce` firmware. </description>
         </partition>
         <partition name="sce-fw_b" type="data" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -349,6 +401,7 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
 <!--            <filename> sce-fw.bin </filename>	-->
+            <description> **Required.** Contains `camera-rtcpu-sce` firmware. </description>
         </partition>
         <partition name="bpmp-fw" type="data" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -358,6 +411,7 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> BPFFILE </filename>
+            <description> **Required.** Slot A; contains BPMP firmware. </description>
         </partition>
         <partition name="bpmp-fw_b" type="data" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -367,6 +421,7 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> BPFFILE </filename>
+            <description> **Required.** Slot B; contains BPMP firmware. </description>
         </partition>
         <partition name="bpmp-fw-dtb" type="data" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -376,6 +431,8 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> BPFDTB_FILE </filename>
+            <description> **Required.** Slot A; contains BPMP firmware device tree blob
+              (DTB). </description>
         </partition>
         <partition name="bpmp-fw-dtb_b" type="data" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -385,6 +442,8 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> BPFDTB_FILE </filename>
+            <description> **Required.** Slot B; contains BPMP firmware device tree blob
+              (DTB). </description>
         </partition>
         <partition name="CPUBL-CFG" type="data">
             <allocation_policy> sequential </allocation_policy>
@@ -394,6 +453,7 @@
             <allocation_attribute> 0x8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> CBOOTOPTION_FILE </filename>
+            <description> **Optional.** Contains boot device selection priority list. </description>
         </partition>
         <partition name="CPUBL-CFG_b" type="data">
             <allocation_policy> sequential </allocation_policy>
@@ -403,6 +463,7 @@
             <allocation_attribute> 0x8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> CBOOTOPTION_FILE </filename>
+            <description> **Optional.** Contains boot device selection priority list. </description>
         </partition>
         <partition name="VER" type="data">
             <allocation_policy> sequential </allocation_policy>
@@ -413,6 +474,7 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> VERFILE </filename>
+            <description> **Required.** Contains BSP version information. </description>
         </partition>
         <partition name="VER_b" type="data">
             <allocation_policy> sequential </allocation_policy>
@@ -423,6 +485,7 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> VERFILE </filename>
+            <description> **Required.** Contains a redundant copy of BSP version information. </description>
         </partition>
         <partition name="secondary_gpt" type="secondary_gpt">
             <allocation_policy> sequential </allocation_policy>
@@ -431,6 +494,8 @@
             <file_system_attribute> 0 </file_system_attribute>
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
+            <description> **Required.** Contains secondary GPT of the `spi`
+              device. </description>
         </partition>
     </device>
     <device type="sdmmc_user" instance="3" sector_size="512" num_sectors="30777344">
@@ -441,6 +506,7 @@
             <file_system_attribute> 0 </file_system_attribute>
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
+            <description> **Required.** Contains protective MBR. </description>
         </partition>
         <partition name="primary_gpt" type="primary_gpt">
             <allocation_policy> sequential </allocation_policy>
@@ -449,17 +515,11 @@
             <file_system_attribute> 0 </file_system_attribute>
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
+            <description> **Required.** Contains primary GPT of the `sdmmc_user` device. All
+              partitions defined after this entry are configured in the kernel, and are
+              accessible by standard partition tools such as gdisk and parted. </description>
         </partition>
-        <partition name="APP" type="data">
-            <allocation_policy> sequential </allocation_policy>
-            <filesystem_type> basic </filesystem_type>
-            <size> APPSIZE </size>
-            <file_system_attribute> 0 </file_system_attribute>
-            <allocation_attribute> 0x8 </allocation_attribute>
-            <align_boundary> 4096 </align_boundary>
-            <percent_reserved> 0 </percent_reserved>
-        </partition>
-        <partition name="kernel" type="data" oem_sign="true">
+        <partition name="kernel" id="6" type="data" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> 67108864 </size>
@@ -467,6 +527,8 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> LNXFILE </filename>
+            <description> **Required.** Slot A; contains U-Boot, which loads and launches the kernel
+              from the rootfs at `/boot`. </description>
         </partition>
         <partition name="kernel_b" type="data" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -476,6 +538,8 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> LNXFILE </filename>
+            <description> **Required.** Slot B; contains U-Boot, which loads and launches the kernel
+              from the rootfs at `/boot`. </description>
         </partition>
         <partition name="kernel-dtb" type="data" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -485,6 +549,7 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> DTB_FILE </filename>
+            <description> **Required.** Slot A; contains kernel device tree blob. </description>
         </partition>
         <partition name="kernel-dtb_b" type="data" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -494,6 +559,7 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> DTB_FILE </filename>
+            <description> **Required.** Slot B; contains kernel device tree blob. </description>
         </partition>
         <partition name="RECNAME" type="data" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -503,6 +569,7 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> RECFILE </filename>
+            <description> **Required.** Contains recovery image. </description>
         </partition>
         <partition name="RECDTB-NAME" type="data" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
@@ -512,6 +579,7 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> RECDTB-FILE </filename>
+            <description> **Required.** Contains recovery DTB image. </description>
         </partition>
         <partition name="BOOTCTRLNAME" type="data">
             <allocation_policy> sequential </allocation_policy>
@@ -521,6 +589,7 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> BOOTCTRL-FILE </filename>
+            <description> **Required.** Slot A; contains boot control data. </description>
         </partition>
         <partition name="BOOTCTRLNAME_b" type="data">
             <allocation_policy> sequential </allocation_policy>
@@ -530,6 +599,7 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
             <filename> BOOTCTRL-FILE </filename>
+            <description> **Required.** Slot B; contains boot control data. </description>
         </partition>
         <partition name="RECROOTFS" type="data">
             <allocation_policy> sequential </allocation_policy>
@@ -538,25 +608,41 @@
             <file_system_attribute> 0 </file_system_attribute>
             <allocation_attribute> 0x8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
-        </partition>
-        <partition name="APP_b" type="data">
+            <description> **Optional.** Reserved for future use by the recovery filesystem;
+              removable. </description>
+	</partition>
+        <partition name="crypt-APP" id="1" type="data">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> APPSIZE </size>
             <file_system_attribute> 0 </file_system_attribute>
             <allocation_attribute> 0x8 </allocation_attribute>
-            <percent_reserved> 0 </percent_reserved>
             <align_boundary> 4096 </align_boundary>
+            <percent_reserved> 0 </percent_reserved>
+            <description> **Required.** Contains the rootfs. This partition must be defined
+              after `primary_GPT` so that it can be accessed as the fixed known special device
+              `/dev/mmcblk0p1`. </description>
         </partition>
-        <partition name="DATA" type="data">
+	<partition name="crypt-APP_b" id="2" type="data">
+            <allocation_policy> sequential </allocation_policy>
+            <filesystem_type> basic </filesystem_type>
+            <size> APPSIZE </size>
+            <file_system_attribute> 0 </file_system_attribute>
+            <allocation_attribute> 0x8 </allocation_attribute>
+            <align_boundary> 4096 </align_boundary>
+            <percent_reserved> 0 </percent_reserved>
+            <description> Secondary rootfs partition.</description>
+        </partition>
+        <partition name="crypt-DATA" id="3" type="data">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> 16777216 </size>
             <file_system_attribute> 0 </file_system_attribute>
             <allocation_attribute> 0x8 </allocation_attribute>
-            <percent_reserved> 0 </percent_reserved>
+	    <percent_reserved> 0 </percent_reserved>
+	    <description>/data mount point for Mender</description>
         </partition>
-        <partition name="crypt-LOGS" type="data">
+        <partition name="crypt-LOGS" id="4" type="data">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> 67108864 </size>
@@ -565,16 +651,17 @@
 	    <percent_reserved> 0 </percent_reserved>
             <description>/var/log partition</description>
         </partition>
-        <partition name="crypt-EXTRA" type="data">
+        <partition name="crypt-EXTRA" id="5" type="data">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> 4294967296 </size>
             <file_system_attribute> 0 </file_system_attribute>
             <allocation_attribute> 0x8 </allocation_attribute>
 	    <percent_reserved> 0 </percent_reserved>
-            <description>Extra space for rootfs overlay filesystems and other stoarge.</description>
+            <description>Extra space for rootfs overlay filesystems and other stoarge.
+              May be mounted and used to store user data. </description>
         </partition>
-        <partition name="INSTALLER" type="data">
+        <partition name="INSTALLER" id="30" type="data">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> 2147483648 </size>
@@ -583,14 +670,14 @@
 	    <filename> APPFILE </filename>
             <percent_reserved> 0 </percent_reserved>
         </partition>
-        <partition name="unused" type="data">
+	<partition name="unused" type="data">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
-            <size> 18432 </size>
+            <size> 18342 </size>
             <file_system_attribute> 0 </file_system_attribute>
             <allocation_attribute> 0x808 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
-        </partition>
+	</partition>
         <partition name="secondary_gpt" type="secondary_gpt">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
@@ -598,6 +685,8 @@
             <file_system_attribute> 0 </file_system_attribute>
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
+            <description> **Required.** Contains secondary GPT of the `sdmmc_user`
+              device. </description>
         </partition>
     </device>
 </partition_layout>
