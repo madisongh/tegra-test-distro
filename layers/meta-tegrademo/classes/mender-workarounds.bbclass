@@ -36,4 +36,13 @@ rootfs_version_info() {
 
 ROOTFS_POSTPROCESS_COMMAND_append = " rootfs_version_info;"
 
+# mender-client recipe does not have this, but it installs
+# a machine-specific data file.
 PACKAGE_ARCH_pn-mender-client = "${MACHINE_ARCH}"
+
+# mender-setup-image adds kernel-image and kernel-devicetree
+# to MACHINE_ESSENTIAL_EXTRA_RDEPENDS, but they should *not*
+# be used (by default, at least) on cboot platforms
+MACHINE_ESSENTIAL_EXTRA_RDEPENDS_remove_tegra194 = "kernel-image kernel-devicetree"
+MACHINE_ESSENTIAL_EXTRA_RDEPENDS_remove_tegra186 = "${@'kernel-image kernel-devicetree' if (d.getVar('PREFERRED_PROVIDER_virtual/bootloader') or '').startswith('cboot') else ''}"
+
