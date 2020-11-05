@@ -4,10 +4,11 @@ SRC_URI += "file://networkd-wait-any.conf"
 SRC_URI += "file://system-overrides.conf"
 SRC_URI += "file://srv-cache-tmpfiles.conf"
 SRC_URI += "file://var-log-journal.conf"
-SRC_URI_append_secureboot = " file://crypttab"
-SRC_URI_append_secureboot = " file://dmcrypt-cleanup.service"
-SRC_URI_append_secureboot = " file://prod-additions.fstab"
-SRC_URI_append_secureboot = " file://fs-pre-workaround.conf"
+SRC_URI_append_cryptparts = " file://crypttab"
+SRC_URI_append_cryptparts = " file://dmcrypt-cleanup.service"
+SRC_URI_append_cryptparts = " file://prod-additions.fstab"
+SRC_URI_append_cryptparts = " file://fs-pre-workaround.conf"
+
 
 inherit systemd
 
@@ -37,7 +38,7 @@ do_install_append_semi-stateless() {
     ln -sf /dev/null ${D}${sysconfdir}/systemd/system/tmp.mount
 }
 
-do_install_append_secureboot() {
+do_install_append_cryptparts() {
     install -m 0644 ${WORKDIR}/crypttab ${D}${sysconfdir}/
     install -d ${D}${sysconfdir}/systemd/system
     install -m 0644 ${WORKDIR}/dmcrypt-cleanup.service ${D}${sysconfdir}/systemd/system/
@@ -54,8 +55,8 @@ pkg_postinst_${PN}-prod() {
     rm -f $D${sysconfdir}/prod-additions.fstab
 }
 
-PACKAGES_prepend_secureboot = "${PN}-prod ${PN}-crypttab "
-SYSTEMD_PACKAGES_append_secureboot = " ${PN}-prod"
+PACKAGES_prepend_cryptparts = "${PN}-prod ${PN}-crypttab "
+SYSTEMD_PACKAGES_append_cryptparts = " ${PN}-prod"
 SYSTEMD_SERVICE_${PN}-prod = "dmcrypt-cleanup.service"
 FILES_${PN}-prod = "${sysconfdir}/prod-additions.fstab /data"
 FILES_${PN}-crypttab = "${sysconfdir}/crypttab"
