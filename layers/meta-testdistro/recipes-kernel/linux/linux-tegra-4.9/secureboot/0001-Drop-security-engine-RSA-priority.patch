@@ -1,17 +1,26 @@
-From 5a3fe19c61117619c944430e62dc9c12fd2aed57 Mon Sep 17 00:00:00 2001
+From ff137201354a0f8622a9f56b6ced1787a840571b Mon Sep 17 00:00:00 2001
 From: Matt Madison <matt@madison.systems>
 Date: Fri, 17 Jan 2020 13:07:05 -0800
 Subject: [PATCH] Drop security engine RSA priority
 
+There's a bug in the tegra-se driver that prevents it
+kernel module signature checking from working.  Work
+around this by lowering its priority, so pka1-rsa
+signatures are handled by software instead.
+
+Applies to both tegra186 and tegra194 platforms.
+
+Signed-off-by: Matt Madison <matt@madison.systems>
 ---
  .../kernel-dts/tegra186-quill-p3310-1000-a00-00-base.dts      | 4 ++++
- 1 file changed, 4 insertions(+)
+ .../soc/t19x/kernel-dts/tegra194-soc/tegra194-soc-base.dtsi   | 2 +-
+ 2 files changed, 5 insertions(+), 1 deletion(-)
 
 diff --git a/nvidia/platform/t18x/quill/kernel-dts/tegra186-quill-p3310-1000-a00-00-base.dts b/nvidia/platform/t18x/quill/kernel-dts/tegra186-quill-p3310-1000-a00-00-base.dts
-index ed560d3de52d..83a4187b99b1 100644
+index d919a2405d30..a78004fa85e9 100644
 --- a/nvidia/platform/t18x/quill/kernel-dts/tegra186-quill-p3310-1000-a00-00-base.dts
 +++ b/nvidia/platform/t18x/quill/kernel-dts/tegra186-quill-p3310-1000-a00-00-base.dts
-@@ -332,6 +332,10 @@
+@@ -341,6 +341,10 @@
  	tegra_udrm: tegra_udrm {
  		compatible = "nvidia,tegra-udrm";
  	};
@@ -22,6 +31,16 @@ index ed560d3de52d..83a4187b99b1 100644
  };
  
  #if LINUX_VERSION >= 414
--- 
-2.20.1
-
+diff --git a/nvidia/soc/t19x/kernel-dts/tegra194-soc/tegra194-soc-base.dtsi b/nvidia/soc/t19x/kernel-dts/tegra194-soc/tegra194-soc-base.dtsi
+index 4857c8d600c1..7e0f273e0957 100644
+--- a/nvidia/soc/t19x/kernel-dts/tegra194-soc/tegra194-soc-base.dtsi
++++ b/nvidia/soc/t19x/kernel-dts/tegra194-soc/tegra194-soc-base.dtsi
+@@ -811,7 +811,7 @@
+ 		interrupts = <0 283 0x04>;
+ 		clocks = <&bpmp_clks TEGRA194_CLK_SE>;
+ 		clock-names = "se";
+-		pka1-rsa-priority = <300>;
++		pka1-rsa-priority = <50>;
+ 		status = "disabled";
+ 	};
+ 
