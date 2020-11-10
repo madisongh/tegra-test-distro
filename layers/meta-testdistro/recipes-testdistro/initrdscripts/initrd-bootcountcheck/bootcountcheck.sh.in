@@ -6,6 +6,7 @@ while true; do
     sleep 1
 done
 echo "Current boot slot: $curslot"
+nvbootctrl set-active-boot-slot $curslot
 nvbootctrl mark-boot-successful
 tegra-bootinfo --check-status
 if [ $? = 77 ]; then
