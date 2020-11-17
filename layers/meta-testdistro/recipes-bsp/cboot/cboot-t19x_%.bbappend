@@ -1,0 +1,2 @@
+PACKAGECONFIG = "display machine-id"
+EXTRA_GLOBAL_DEFINES_append_secureboot = " CONFIG_ENABLE_FUSED_MACHINE_ID=1"
