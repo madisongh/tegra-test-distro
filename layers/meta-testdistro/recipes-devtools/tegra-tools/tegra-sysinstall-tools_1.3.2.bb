@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=5e5799d70d07956d01af05a7a92ea0d7"
 DEPENDS = "zlib"
 
 SRC_URI = "https://github.com/madisongh/tegra-sysinstall/releases/download/v${PV}/tegra-sysinstall-${PV}.tar.gz"
-SRC_URI[sha256sum] = "91fde3e80d0b1d484fdf86008385407850a9dafdc4cfdf316c467ce8857c6def"
+SRC_URI[sha256sum] = "041dc69151e881e46e2dc06c34e56b0e439866ed5a8029e1f8eaf831011ee10a"
 
 S = "${WORKDIR}/tegra-sysinstall-${PV}"
 
