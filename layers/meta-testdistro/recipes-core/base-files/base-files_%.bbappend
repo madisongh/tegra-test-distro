@@ -17,7 +17,7 @@ volatiles = ""
 
 make_extra_symlinks() {
     ln -snf ../tmp ${D}${localstatedir}/tmp
-    ln -snf ../run/log ${D}${localstatdir}/log
+    ln -snf ../run/log ${D}${localstatedir}/log
 }
 
 make_extra_symlinks_semi-stateless() {
