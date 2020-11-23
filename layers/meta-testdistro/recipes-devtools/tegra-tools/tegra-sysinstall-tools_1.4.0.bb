@@ -13,7 +13,7 @@ S = "${WORKDIR}/tegra-sysinstall-${PV}"
 inherit autotools
 
 FILES_${PN} += "${datadir}/tegra-sysinstall"
-RDEPENDS_${PN} = "tegra-boot-tools-updater tar cryptsetup keystore-tools tegra-redundant-boot \
+RDEPENDS_${PN} = "tegra-boot-tools-updater tar cryptsetup keystore-tools \
                   bash curl util-linux-blkid util-linux-lsblk util-linux-mountpoint \
                   parted gptfdisk e2fsprogs util-linux-mkfs util-linux-mount \
                   util-linux-umount tegra-fuse-tool tegra-eeprom-tool-boardspec"
