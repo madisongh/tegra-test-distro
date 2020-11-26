@@ -3,7 +3,11 @@ RDEPENDS_${PN}_append = " \
     i2c-tools \
     tegra-bup-payload \
     tegra-eeprom-tool \
-    tegra-fuse-tool \   
+    tegra-fuse-tool \
+"
+
+RDEPENDS_${PN}_append_testdistro-mender = " \
+    tegra-boot-tools-lateboot \
 "
 
 RDEPENDS_${PN}_append_cryptparts = " \
