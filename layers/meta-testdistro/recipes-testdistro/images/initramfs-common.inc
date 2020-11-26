@@ -9,6 +9,8 @@ TEGRA_INITRD_ROOTFSMOUNT ??= ""
 TEGRA_INITRD_BOOTCOUNTCHECK = ""
 TEGRA_INITRD_BOOTCOUNTCHECK_tegra186_secureboot = "tegra-boot-tools-earlyboot"
 TEGRA_INITRD_BOOTCOUNTCHECK_tegra194_secureboot = "tegra-boot-tools-earlyboot"
+TEGRA_INITRD_BOOTCOUNTCHECK_tegra186_testdistro-mender = "tegra-boot-tools-earlyboot"
+TEGRA_INITRD_BOOTCOUNTCHECK_tegra194_testdistro-mender = "tegra-boot-tools-earlyboot"
 
 PACKAGE_INSTALL = "\
     tegra-firmware-xusb \
