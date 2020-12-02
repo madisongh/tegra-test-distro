@@ -20,3 +20,6 @@ BBLAYERS ?= " \
   ##OEROOT##/meta-mender-tegra \
   ##OEROOT##/meta-testdistro \
   "
+
+LAYERSERIES_COMPAT_mender_append = " gatesgarth"
+LAYERSERIES_COMPAT_meta-mender-tegra_append = " gatesgarth"
