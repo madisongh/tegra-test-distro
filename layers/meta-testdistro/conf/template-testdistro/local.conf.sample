@@ -9,19 +9,20 @@
 # You need to select a specific machine to target the build with.
 # The following machines are avilable in the meta-tegra layer:
 #
+#MACHINE ?= "jetson-nano-devkit-emmc"
+#MACHINE ?= "jetson-nano-devkit"
 #MACHINE ?= "jetson-nano-2gb-devkit"
-#MACHINE ?= "jetson-nano-emmc"
-#MACHINE ?= "jetson-nano-qspi-sd"
-#MACHINE ?= "jetson-nano-qspi-sd-sb"
-#MACHINE ?= "jetson-tx1"
-#MACHINE ?= "jetson-tx2-4gb"
-#MACHINE ?= "jetson-tx2-sb"
-#MACHINE ?= "jetson-tx2"
-#MACHINE ?= "jetson-tx2i"
-#MACHINE ?= "jetson-xavier-8gb"
-#MACHINE ?= "jetson-xavier"
+#MACHINE ?= "jetson-tx1-devkit"
+#MACHINE ?= "jetson-tx2-devkit-4gb"
+#MACHINE ?= "jetson-tx2-devkit"
+#MACHINE ?= "jetson-devkit-tx2i"
+#MACHINE ?= "jetson-agx-xavier-devkit-8gb"
+#MACHINE ?= "jetson-agx-xavier-devkit"
 #MACHINE ?= "jetson-xavier-nx-devkit"
 #MACHINE ?= "jetson-xavier-nx-devkit-emmc"
+# Secureboot-enabled platforms
+#MACHINE ?= "jetson-nano-devkit-sb"
+#MACHINE ?= "jetson-tx2-sb"
 #MACHINE ?= "jetson-xavier-nx-sb"
 #@TD_SETUP_MACHINE@ - placeholder for automatic insertion by setup-env
 #
