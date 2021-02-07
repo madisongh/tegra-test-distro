@@ -3,13 +3,16 @@ TD_BBLAYERS_CONF_VERSION ??= "unset-0"
 
 python tegra_distro_update_bblayersconf() {
     current_version = d.getVar('TD_BBLAYERS_CONF_VERSION').split('-')
-
+    current_version_name = '-'.join(current_version[0:-1])
+    current_version_rev = int(current_version[-1])
     required_version = (d.getVar('REQUIRED_TD_BBLAYERS_CONF_VERSION') or 'UNKNOWN-0').split('-')
-    if required_version[0] == "UNKNOWN":
+    required_version_name = '-'.join(required_version[0:-1])
+    required_version_rev = int(required_version[-1])
+    if required_version_name == "UNKNOWN":
         # malformed configuration
         raise NotImplementedError("You need to update bblayers.conf manually for this version transition")
 
-    if current_version[0] == required_version[0] and int(current_version[1]) == int(required_version[1]):
+    if current_version_name == required_version_name and current_version_rev == required_version_rev:
         return
 
     distro_layerdir = d.getVar('TD_DISTRO_LAYERDIR')
