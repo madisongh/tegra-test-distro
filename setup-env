@@ -108,7 +108,7 @@ EOF
             ln -sf "$HOME/$s__/site.conf" "$BUILDDIR/conf/"
         fi
     done
-    unset devnet_info__ s__
+    unset s__
 else
     TD_LAYERPATH=$(cat "$BUILDDIR/conf/distrolayer.cfg")
     TEMPLATECONF=$(cat "$BUILDDIR/conf/templateconf.cfg") COLOR=$TD_COLOR "$TD_TOP/scripts-setup/diff-bblayers-conf"
