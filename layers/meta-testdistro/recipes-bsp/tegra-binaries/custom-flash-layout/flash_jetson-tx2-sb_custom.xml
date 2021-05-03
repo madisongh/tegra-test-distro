@@ -190,16 +190,7 @@
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
         </partition>
-        <partition name="APP" type="data">
-            <allocation_policy> sequential </allocation_policy>
-            <filesystem_type> basic </filesystem_type>
-            <size> APPSIZE </size>
-            <file_system_attribute> 0 </file_system_attribute>
-            <allocation_attribute> 0x8 </allocation_attribute>
-            <percent_reserved> 0 </percent_reserved>
-            <align_boundary> 4096 </align_boundary>
-        </partition>
-        <partition name="MBPNAME" type="MBPTYPE" oem_sign="true">
+        <partition name="MBPNAME" id="6" type="MBPTYPE" oem_sign="true">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> 4194304 </size>
@@ -483,7 +474,17 @@
             <description> **Optional.** Reserved for future use by the recovery filesystem;
               removable. </description>
         </partition>
-        <partition name="APP_b" type="data">
+        <partition name="crypt-APP" id="1" type="data">
+            <allocation_policy> sequential </allocation_policy>
+            <filesystem_type> basic </filesystem_type>
+            <size> APPSIZE </size>
+            <file_system_attribute> 0 </file_system_attribute>
+            <allocation_attribute> 0x8 </allocation_attribute>
+            <percent_reserved> 0 </percent_reserved>
+            <align_boundary> 4096 </align_boundary>
+            <filename> APPFILE </filename>
+        </partition>
+        <partition name="crypt-APP_b" id="2" type="data">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> APPSIZE </size>
@@ -492,7 +493,7 @@
             <percent_reserved> 0 </percent_reserved>
             <align_boundary> 4096 </align_boundary>
         </partition>
-        <partition name="DATA" type="data">
+        <partition name="crypt-DATA" id="3" type="data">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> 16777216 </size>
@@ -500,7 +501,7 @@
             <allocation_attribute> 0x8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
         </partition>
-        <partition name="crypt-LOGS" type="data">
+        <partition name="crypt-LOGS" id="4" type="data">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
             <size> 67108864 </size>
@@ -509,31 +510,14 @@
 	    <percent_reserved> 0 </percent_reserved>
             <description>/var/log partition</description>
         </partition>
-        <partition name="crypt-EXTRA" type="data">
+        <partition name="crypt-EXTRA" id="5" type="data">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
-            <size> 8589934592 </size>
-            <file_system_attribute> 0 </file_system_attribute>
-            <allocation_attribute> 0x8 </allocation_attribute>
-	    <percent_reserved> 0 </percent_reserved>
-            <description>Extra space for rootfs overlay filesystems and other stoarge.</description>
-        </partition>
-        <partition name="INSTALLER" type="data">
-            <allocation_policy> sequential </allocation_policy>
-            <filesystem_type> basic </filesystem_type>
-            <size> 2147483648 </size>
-            <file_system_attribute> 0 </file_system_attribute>
-            <allocation_attribute> 0x8 </allocation_attribute>
-	    <filename> APPFILE </filename>
-            <percent_reserved> 0 </percent_reserved>
-        </partition>
-        <partition name="unused" type="data">
-            <allocation_policy> sequential </allocation_policy>
-            <filesystem_type> basic </filesystem_type>
-            <size> 18432 </size>
+            <size> 18342 </size>
             <file_system_attribute> 0 </file_system_attribute>
             <allocation_attribute> 0x808 </allocation_attribute>
-            <percent_reserved> 0 </percent_reserved>
+	    <percent_reserved> 0 </percent_reserved>
+            <description>Extra space for rootfs overlay filesystems and other stoarge.</description>
         </partition>
         <partition name="secondary_gpt" type="secondary_gpt">
             <allocation_policy> sequential </allocation_policy>
