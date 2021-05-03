@@ -3,12 +3,8 @@ LICENSE = "MIT"
 
 COMPATIBLE_MACHINE = "(tegra)"
 
-IMAGE_INSTALL = "packagegroup-core-boot \
-                 haveged \
-                 lvm2-udevrules \
-                 sysinstall-pkg \
-                 tegra-sysinstall-tools \
-"
+PACKAGE_INSTALL = "sysinstall-pkg"
+
 IMAGE_INSTALL_remove = "mender-client"
 IMAGE_FEATURES = "empty-root-password allow-empty-password"
 IMAGE_LINUGAS = ""
@@ -24,7 +20,6 @@ IMAGE_OVERHEAD_FACTOR = "1.0"
 IMAGE_TEGRAFLASH_KERNEL = "${DEPLOY_DIR_IMAGE}/td-sysinstall-kernel/${KERNEL_IMAGETYPE}-sysinstall-initramfs.cboot"
 TEGRAFLASH_PKG_DEPENDS_append = " linux-td-sysinstall:do_deploy"
 
-KERNEL_ARGS_append = " root=PARTLABEL=INSTALLER"
 KERNEL_ARGS_remove = "console=tty0"
 KERNEL_ARGS_remove = "systemd.volatile=overlay"
 
