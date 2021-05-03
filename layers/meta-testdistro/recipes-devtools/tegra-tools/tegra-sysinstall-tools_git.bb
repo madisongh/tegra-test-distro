@@ -11,12 +11,17 @@ SRC_URI = "git://${SRC_REPO};branch=${SRCBRANCH}"
 SRCREV = "${AUTOREV}"
 PV = "1.3.99+git${SRCPV}"
 
+COMPATIBLE_MACHINE = "(tegra)"
+
 S = "${WORKDIR}/git"
 
 inherit autotools
 
 FILES_${PN} += "${datadir}/tegra-sysinstall"
-RDEPENDS_${PN} = "tegra-boot-tools-updater tar cryptsetup keystore-tools \
+EXTRA_RDEPENDS = ""
+EXTRA_RDEPENDS_cryptparts = "cryptsetup keystore-tools"
+RDEPENDS_${PN} = "tegra-boot-tools tar ${EXTRA_RDEPENDS} \
                   bash curl util-linux-blkid util-linux-lsblk util-linux-mountpoint \
                   parted gptfdisk e2fsprogs util-linux-mkfs util-linux-mount \
-                  util-linux-umount tegra-fuse-tool tegra-eeprom-tool-boardspec"
+                  util-linux-umount tegra-fuse-tool tegra-eeprom-tool-boardspec \
+                  sysinstall-partition-layout mtd-utils"
