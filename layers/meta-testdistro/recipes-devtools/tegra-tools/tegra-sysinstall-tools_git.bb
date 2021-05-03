@@ -9,7 +9,7 @@ SRC_REPO ?= "github.com/madisongh/tegra-sysinstall.git;protocol=https"
 SRCBRANCH ?= "master"
 SRC_URI = "git://${SRC_REPO};branch=${SRCBRANCH}"
 SRCREV = "${AUTOREV}"
-PV = "1.3.99+git${SRCPV}"
+PV = "1.4.99+git${SRCPV}"
 
 COMPATIBLE_MACHINE = "(tegra)"
 
@@ -22,4 +22,4 @@ RDEPENDS_${PN} = "tegra-boot-tools-updater tar cryptsetup keystore-tools \
                   bash curl util-linux-blkid util-linux-lsblk util-linux-mountpoint \
                   parted gptfdisk e2fsprogs util-linux-mkfs util-linux-mount \
                   util-linux-umount tegra-fuse-tool tegra-eeprom-tool-boardspec \
-                  sysinstall-partition-layout"
+                  sysinstall-partition-layout mtd-utils"

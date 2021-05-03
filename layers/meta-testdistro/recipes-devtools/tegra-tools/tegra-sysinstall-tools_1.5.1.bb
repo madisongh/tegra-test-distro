@@ -8,7 +8,7 @@ DEPENDS = "zlib"
 COMPATIBLE_MACHINE = "(tegra)"
 
 SRC_URI = "https://github.com/madisongh/tegra-sysinstall/releases/download/v${PV}/tegra-sysinstall-${PV}.tar.gz"
-SRC_URI[sha256sum] = "6db3af195e81243c116969984242dcbeb7b86dbac0d4687d8be26849d5f0e682"
+SRC_URI[sha256sum] = "9abb37874cad3d9957db1eadd5031b6b0ca72be15c41ed3f9defa930b7c802d4"
 
 S = "${WORKDIR}/tegra-sysinstall-${PV}"
 
@@ -19,4 +19,4 @@ RDEPENDS_${PN} = "tegra-boot-tools-updater tar cryptsetup keystore-tools \
                   bash curl util-linux-blkid util-linux-lsblk util-linux-mountpoint \
                   parted gptfdisk e2fsprogs util-linux-mkfs util-linux-mount \
                   util-linux-umount tegra-fuse-tool tegra-eeprom-tool-boardspec \
-                  sysinstall-partition-layout"
+                  sysinstall-partition-layout mtd-utils"
