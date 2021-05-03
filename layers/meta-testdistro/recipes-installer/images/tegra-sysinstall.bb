@@ -24,7 +24,6 @@ KERNEL_ARGS_remove = "console=tty0"
 KERNEL_ARGS_remove = "systemd.volatile=overlay"
 
 ROOTFS_POSTPROCESS_COMMAND_prepend = "ensure_data_exists; trim_fstab;"
-ROOTFS_POSTPROCESS_COMMAND_remove = "semi_stateless_rootfs_hook;"
 
 trim_fstab() {
     if [ -e ${IMAGE_ROOTFS}${sysconfdir}/fstab ]; then
@@ -34,4 +33,8 @@ trim_fstab() {
 
 ensure_data_exists() {
     [ -d "${IMAGE_ROOTFS}/data" ] || install -d "${IMAGE_ROOTFS}/data"
+}
+
+semi_stateless_rootfs_hook() {
+    :
 }
