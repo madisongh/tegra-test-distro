@@ -36,3 +36,7 @@ trim_fstab() {
 ensure_data_exists() {
     [ -d "${IMAGE_ROOTFS}/data" ] || install -d "${IMAGE_ROOTFS}/data"
 }
+
+semi_stateless_rootfs_hook() {
+    :
+}
