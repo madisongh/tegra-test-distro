@@ -26,7 +26,6 @@ KERNEL_ARGS_remove = "systemd.volatile=overlay"
 ROOTFS_POSTPROCESS_COMMAND_prepend = "ensure_data_exists; trim_fstab;"
 ROOTFS_POSTPROCESS_COMMAND_remove = "mender_update_fstab_file;"
 ROOTFS_POSTPROCESS_COMMAND_remove = "mender_create_scripts_version_file;"
-ROOTFS_POSTPROCESS_COMMAND_remove = "semi_stateless_rootfs_hook;"
 
 trim_fstab() {
     if [ -e ${IMAGE_ROOTFS}${sysconfdir}/fstab ]; then
@@ -36,4 +35,8 @@ trim_fstab() {
 
 ensure_data_exists() {
     [ -d "${IMAGE_ROOTFS}/data" ] || install -d "${IMAGE_ROOTFS}/data"
+}
+
+semi_stateless_rootfs_hook() {
+    :
 }
