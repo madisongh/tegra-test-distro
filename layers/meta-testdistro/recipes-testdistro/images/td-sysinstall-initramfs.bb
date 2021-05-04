@@ -15,4 +15,6 @@ ROOTFS_POSTPROCESS_COMMAND =. "make_varextra;"
 make_varextra() {
     [ -d ${IMAGE_ROOTFS}/var/extra ] || install -d ${IMAGE_ROOTFS}/var/extra
     [ -d ${IMAGE_ROOTFS}/installer ] || install -d ${IMAGE_ROOTFS}/installer
+    # And disable systemd's automatic initrd support
+    rm -f ${IMAGE_ROOTFS}/etc/initrd-release
 }
