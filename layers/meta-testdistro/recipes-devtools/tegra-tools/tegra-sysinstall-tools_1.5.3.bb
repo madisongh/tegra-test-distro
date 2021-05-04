@@ -8,7 +8,7 @@ DEPENDS = "zlib"
 COMPATIBLE_MACHINE = "(tegra)"
 
 SRC_URI = "https://github.com/madisongh/tegra-sysinstall/releases/download/v${PV}/tegra-sysinstall-${PV}.tar.gz"
-SRC_URI[sha256sum] = "6c51ee71e8c09ac2238d51159c5aee1b22230c38d7f38003748717aaf74e2f1a"
+SRC_URI[sha256sum] = "b0843356e456b79717817f6a4c0354eaa606583e6e458ff78fa143a2900ecebe"
 
 S = "${WORKDIR}/tegra-sysinstall-${PV}"
 
