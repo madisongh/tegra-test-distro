@@ -21,4 +21,4 @@ RDEPENDS_${PN} = "tegra-boot-tools tar ${EXTRA_RDEPENDS} \
                   bash curl util-linux-blkid util-linux-lsblk util-linux-mountpoint \
                   parted gptfdisk e2fsprogs util-linux-mkfs util-linux-mount \
                   util-linux-umount tegra-fuse-tool tegra-eeprom-tool-boardspec \
-                  sysinstall-partition-layout"
+                  sysinstall-partition-layout mtd-utils"
