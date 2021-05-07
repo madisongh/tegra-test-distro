@@ -4,10 +4,10 @@ RDEPENDS_${PN}_append = " \
     tegra-bup-payload \
     tegra-eeprom-tool \
     tegra-fuse-tool \   
+    tegra-sysinstall-tools \
 "
 
 RDEPENDS_${PN}_append_cryptparts = " \
-    tegra-sysinstall-tools \
     systemd-conf-crypttab \
 "
 
