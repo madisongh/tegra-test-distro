@@ -22,3 +22,12 @@
 	path = repos/meta-tegra
 	url = https://github.com/OE4T/meta-tegra.git
 	branch = dunfell-l4t-r32.4.3
+[submodule "repos/meta-rauc"]
+	path = repos/meta-rauc
+	url = https://github.com/rauc/meta-rauc.git
+	branch = dunfell
+[submodule "repos/meta-swupdate"]
+	path = repos/meta-swupdate
+	url = https://github.com/sbabic/meta-swupdate.git
+	branch = dunfell
+
