@@ -1,0 +1,39 @@
+From e24effa49963da1cba378592402aeba2bce426f1 Mon Sep 17 00:00:00 2001
+From: Matt Madison <matt@madison.systems>
+Date: Thu, 17 Jun 2021 04:36:57 -0700
+Subject: [PATCH] nvidia: crypto: disable sha256 algorithm in tegra-se driver
+
+There is either a bug or some difference in the hardware implementation
+that can cause dm-verity to report hash mismatches when this is enabled.
+Using the kernel's internal software implementation works OK.
+
+Signed-off-by: Matt Madison <matt@madison.systems>
+---
+ nvidia/drivers/crypto/tegra-se.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/nvidia/drivers/crypto/tegra-se.c b/nvidia/drivers/crypto/tegra-se.c
+index 9eaf2f898438..5be81daefe2c 100644
+--- a/nvidia/drivers/crypto/tegra-se.c
++++ b/nvidia/drivers/crypto/tegra-se.c
+@@ -3092,7 +3092,8 @@ static struct shash_alg shash_algs[] = {
+ 			.cra_init = tegra_se_shash_cra_init,
+ 			.cra_exit = tegra_se_shash_cra_exit,
+ 		}
+-	}, {
++#if 0 /* XXX disabling due to verity hash mismatches */
++}, {
+ 		.init = tegra_se_shash_init,
+ 		.update = tegra_se_shash_update,
+ 		.final = tegra_se_shash_final,
+@@ -3111,6 +3112,7 @@ static struct shash_alg shash_algs[] = {
+ 			.cra_init = tegra_se_shash_cra_init,
+ 			.cra_exit = tegra_se_shash_cra_exit,
+ 		}
++#endif /* disabling due to verity hash mismatches XXX */
+ 	}, {
+ 		.init = tegra_se_shash_init,
+ 		.update = tegra_se_shash_update,
+-- 
+2.30.2
+
