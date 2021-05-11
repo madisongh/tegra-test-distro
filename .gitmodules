@@ -26,3 +26,7 @@
 	path = repos/meta-tegra-community
 	url = https://github.com/OE4T/meta-tegra-community
 	branch = kirkstone-l4t-r32.7.x
+[submodule "repos/meta-rauc"]
+	path = repos/meta-rauc
+	url = https://github.com/rauc/meta-rauc.git
+	branch = kirkstone
