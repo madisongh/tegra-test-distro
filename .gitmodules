@@ -18,3 +18,7 @@
 	path = repos/meta-tegra-community
 	url = https://github.com/OE4T/meta-tegra-community
 	branch = master
+[submodule "repos/meta-rauc"]
+	path = repos/meta-rauc
+	url = https://github.com/rauc/meta-rauc.git
+	branch = master
