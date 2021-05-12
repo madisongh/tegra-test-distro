@@ -1,7 +1,9 @@
 EXTRADEPS = "bootfiles"
 EXTRADEPS_append_cryptparts = " custom-flash-layout"
+EXTRADEPS_append_jetson-tx2 = " custom-flash-layout"
 DEPENDS += "${EXTRADEPS}"
 PARTITION_FILE_cryptparts = "${STAGING_DATADIR}/custom-flash-layout/${PARTITION_LAYOUT_TEMPLATE}"
+PARTITION_FILE_jetson-tx2 = "${STAGING_DATADIR}/custom-flash-layout/${PARTITION_LAYOUT_TEMPLATE}"
 MENDER_PARTITION_FILE_cryptparts = "${STAGING_DATADIR}/custom-flash-layout/${PARTITION_LAYOUT_TEMPLATE}"
 CBOOTOPTION_FILE = "${STAGING_DATADIR}/bootfiles/cbo.dts"
 
