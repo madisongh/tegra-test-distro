@@ -1,9 +1,12 @@
 RDEPENDS_${PN}_append = " \
     gptfdisk \
     i2c-tools \
+    rauc \
+    casync \
     tegra-bup-payload \
     tegra-eeprom-tool \
     tegra-fuse-tool \
+    tegra-sysinstall-tools \
 "
 
 RDEPENDS_${PN}_append_testdistro-mender = " \
@@ -11,7 +14,6 @@ RDEPENDS_${PN}_append_testdistro-mender = " \
 "
 
 RDEPENDS_${PN}_append_cryptparts = " \
-    tegra-sysinstall-tools \
     systemd-conf-crypttab \
 "
 
