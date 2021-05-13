@@ -17,7 +17,7 @@ set_state() {
     [ -n "$curslot" -a -n "$1" ] || return 1
     if [ "slot$curslot" != "$1" -o "$2" != "good" ]; then
 	echo "Unsupported operation: set-state $1 $2" >&2
-	return 1
+	return 0
     fi
     tegra-boot-control --mark-successful
 }
