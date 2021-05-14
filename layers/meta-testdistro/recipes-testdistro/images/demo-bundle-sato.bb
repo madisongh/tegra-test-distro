@@ -15,7 +15,7 @@ RAUC_KEY_FILE = "${TOPDIR}/openssl-ca/dev/private/development-1.key.pem"
 RAUC_CERT_FILE = "${TOPDIR}/openssl-ca/dev/development-1.cert.pem"
 RAUC_KEYRING_FILE = "${TOPDIR}/openssl-ca/dev/ca.cert.pem"
 
-RAUC_BUNDLE_COMPATIBLE = "NVIDIA Jetson TX2 development kit"
+RAUC_BUNDLE_COMPATIBLE = "${MACHINE}"
 RAUC_BUNDLE_FORMAT = "verity"
 RAUC_BUNDLE_VERSION = "${DISTRO_VERSION}"
 RAUC_CASYNC_BUNDLE = "1"
