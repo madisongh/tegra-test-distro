@@ -31,7 +31,7 @@ COMPATIBLE_MACHINE = "(tegra)"
 
 KERNELDEPMODDEPEND = ""
 
-IMAGE_ROOTFS_SIZE = "32768"
+IMAGE_ROOTFS_SIZE_forcevariable = "32768"
 IMAGE_ROOTFS_EXTRA_SPACE = "0"
 
 FORCE_RO_REMOVE ?= "1"
@@ -46,7 +46,7 @@ IMAGE_FSTYPES_forcevariable = "${INITRAMFS_FSTYPES}"
 ROOTFS_POSTPROCESS_COMMAND_remove = "mender_update_fstab_file;"
 ROOTFS_POSTPROCESS_COMMAND_remove = "mender_create_scripts_version_file;"
 
-ROOTFS_POSTPROCESS_COMMAND += "trim_fstab;"
+ROOTFS_POSTPROCESS_COMMAND += "trim_fstab; journal_fixups;"
 
 SSTATE_SKIP_CREATION_task-image-complete = "0"
 SSTATE_SKIP_CREATION_task-image-qa = "0"
@@ -62,6 +62,11 @@ trim_fstab() {
     if [ -e ${IMAGE_ROOTFS}${sysconfdir}/fstab ]; then
         sed -i -n -e'1,/^tmpfs/p' ${IMAGE_ROOTFS}${sysconfdir}/fstab
     fi
+}
+
+journal_fixups() {
+    rm -rf ${IMAGE_ROOTFS}${localstatedir}/log/journal
+    rm -f ${IMAGE_ROOTFS}${sysconfdir}/tmpfiles.d/00-var-log-journal.conf
 }
 
 # Override this function provided in mender_workarounds
