@@ -4,6 +4,7 @@ TEGRA_INITRD_INSTALL = "packagegroup-core-boot \
                         haveged \
                         lvm2-udevrules \
                         tegra-sysinstall-tools \
+                        sysinstall-autoinstaller \
 "
 
 require initramfs-common.inc
