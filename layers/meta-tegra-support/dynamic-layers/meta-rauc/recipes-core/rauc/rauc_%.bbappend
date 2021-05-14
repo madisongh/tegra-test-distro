@@ -8,17 +8,16 @@ install_cboot_script() {
     install -m 0755 ${WORKDIR}/rauc-cboot-script.sh ${D}${sysconfdir}/rauc/scripts/rauc-cboot-script
 }
 
-do_install_append_tegra() {
-    install -d ${D}/data/rauc
+do_install_append() {
+    sed -i -e'/^StateDirectory=/d' -e '/^RuntimeDirectory=/a \StateDirectory=rauc' ${D}${systemd_system_unitdir}/rauc.service
 }
+
 do_install_append_tegra186() {
     install_cboot_script
 }
 do_install_append_tegra194() {
     install_cboot_script
 }
-
-FILES_${PN} += "/data/rauc"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 RDEPENDS_${PN}_append_tegra186 = " tegra-boot-tools e2fsprogs-resize2fs"
