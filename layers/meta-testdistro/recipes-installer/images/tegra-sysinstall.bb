@@ -12,11 +12,7 @@ IMAGE_LINUGAS = ""
 
 inherit core-image
 
-IMAGE_FSTYPES = "tegraflash"
-IMAGE_ROOTFS_SIZE = "2097152"
-IMAGE_ROOTFS_MAXSIZE = "2097152"
-IMAGE_ROOTFS_EXTRA_SPACE = "0"
-IMAGE_OVERHEAD_FACTOR = "1.0"
+IMAGE_FSTYPES_forcevariable = "tegraflash"
 
 IMAGE_TEGRAFLASH_KERNEL_tegra186 = "${DEPLOY_DIR_IMAGE}/td-sysinstall-kernel/${KERNEL_IMAGETYPE}-sysinstall-initramfs.cboot"
 IMAGE_TEGRAFLASH_KERNEL_tegra194 = "${DEPLOY_DIR_IMAGE}/td-sysinstall-kernel/${KERNEL_IMAGETYPE}-sysinstall-initramfs.cboot"
