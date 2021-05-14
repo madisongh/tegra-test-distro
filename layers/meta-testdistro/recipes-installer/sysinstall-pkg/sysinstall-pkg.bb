@@ -21,4 +21,3 @@ do_install[depends] += "${SYSINSTALL_PKG_IMAGE}:do_image_complete"
 FILES_${PN} = "/installer"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
-
