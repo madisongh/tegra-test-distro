@@ -31,7 +31,7 @@ COMPATIBLE_MACHINE = "(tegra)"
 
 KERNELDEPMODDEPEND = ""
 
-IMAGE_ROOTFS_SIZE = "32768"
+IMAGE_ROOTFS_SIZE_forcevariable = "32768"
 IMAGE_ROOTFS_EXTRA_SPACE = "0"
 INITRAMFS_MAXSIZE ?= "262144"
 
@@ -63,6 +63,11 @@ trim_fstab() {
     if [ -e ${IMAGE_ROOTFS}${sysconfdir}/fstab ]; then
         sed -i -n -e'1,/^tmpfs/p' ${IMAGE_ROOTFS}${sysconfdir}/fstab
     fi
+}
+
+journal_fixups() {
+    rm -rf ${IMAGE_ROOTFS}${localstatedir}/log/journal
+    rm -f ${IMAGE_ROOTFS}${sysconfdir}/tmpfiles.d/00-var-log-journal.conf
 }
 
 # Override this function provided in mender_workarounds
