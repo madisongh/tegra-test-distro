@@ -1,0 +1,16 @@
+#!/bin/sh
+appdev=$(blkid -o device -t PARTLABEL=APP)
+[ -n "$appdev" ] || appdev=$(blkid -o device -t PARTLABEL=crypt-APP)
+if [ -z "$appdev" ]; then
+    echo "ERR: cannot locate APP partition" >&2
+    exit 1
+fi
+mnt=$(mktemp -p /run/autoinstall -d -t amount.XXXXXX)
+mount "$appdev" "$mnt" || exit 1
+cp -v "$mnt"/installer/*.tar.gz /installer/ || exit 1
+umount "$mnt"
+if tegra-sysinstall; then
+    reboot
+fi
+exit 1
+

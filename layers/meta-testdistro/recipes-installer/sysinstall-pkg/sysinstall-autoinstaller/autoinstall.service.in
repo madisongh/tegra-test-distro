@@ -1,0 +1,14 @@
+[Unit]
+Description=Automated system installer
+Wants=time-sync.target
+After=time-sync.target
+
+[Service]
+Type=oneshot
+RuntimeDirectory=autoinstall
+RemainAfterExit=yes
+ExecStart=@BINDIR@/autoinstall
+StandardOutput=journal+console
+
+[Install]
+WantedBy=multi-user.target
