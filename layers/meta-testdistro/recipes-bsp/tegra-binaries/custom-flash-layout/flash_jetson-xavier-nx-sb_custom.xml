@@ -525,6 +525,7 @@
             <size> 67108864 </size>
             <file_system_attribute> 0 </file_system_attribute>
             <allocation_attribute> 8 </allocation_attribute>
+            <align_boundary> 4096 </align_boundary>
             <percent_reserved> 0 </percent_reserved>
             <filename> LNXFILE </filename>
             <description> **Required.** Slot A; contains U-Boot, which loads and launches the kernel
