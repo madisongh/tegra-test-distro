@@ -197,6 +197,7 @@
             <file_system_attribute> 0 </file_system_attribute>
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
+            <align_boundary> 4096 </align_boundary>
             <filename> MBPFILE </filename>
         </partition>
         <partition name="MBPNAME_b" type="MBPTYPE" oem_sign="true">
