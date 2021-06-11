@@ -1,1 +1,0 @@
-../../../meta-tegrademo/recipes-demo/packagegroups/packagegroup-demo-weston.bb
