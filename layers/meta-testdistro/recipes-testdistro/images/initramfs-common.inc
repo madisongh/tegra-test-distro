@@ -46,7 +46,7 @@ IMAGE_FSTYPES_forcevariable = "${INITRAMFS_FSTYPES}"
 ROOTFS_POSTPROCESS_COMMAND_remove = "mender_update_fstab_file;"
 ROOTFS_POSTPROCESS_COMMAND_remove = "mender_create_scripts_version_file;"
 
-ROOTFS_POSTPROCESS_COMMAND += "trim_fstab;"
+ROOTFS_POSTPROCESS_COMMAND .= "trim_fstab;journal_fixups;"
 
 SSTATE_SKIP_CREATION_task-image-complete = "0"
 SSTATE_SKIP_CREATION_task-image-qa = "0"
@@ -82,4 +82,9 @@ update_version_files () {
     if [ -f $dest/${sysconfdir}/issue.net ]; then
         printf "%s %%h\n\n" "${DISTRO_NAME} ${BUILDNAME}" >$dest/${sysconfdir}/issue.net
     fi
+}
+
+journal_fixups() {
+    rm -rf ${IMAGE_ROOTFS}${systemd_unitdir}/journal.conf.d
+    rm -rf ${IMAGE_ROOTFS}${localstatedir}/log/journal
 }
