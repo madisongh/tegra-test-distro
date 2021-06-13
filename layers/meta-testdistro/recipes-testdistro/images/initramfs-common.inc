@@ -46,7 +46,7 @@ IMAGE_FSTYPES_forcevariable = "${INITRAMFS_FSTYPES}"
 ROOTFS_POSTPROCESS_COMMAND_remove = "mender_update_fstab_file;"
 ROOTFS_POSTPROCESS_COMMAND_remove = "mender_create_scripts_version_file;"
 
-ROOTFS_POSTPROCESS_COMMAND .= "trim_fstab;journal_fixups;"
+ROOTFS_POSTPROCESS_COMMAND += "trim_fstab; journal_fixups;"
 
 SSTATE_SKIP_CREATION_task-image-complete = "0"
 SSTATE_SKIP_CREATION_task-image-qa = "0"
