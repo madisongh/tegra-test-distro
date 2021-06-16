@@ -1,0 +1,42 @@
+From 8a05a0e8a6cd37dc25b1b2f995f8853f503b3adc Mon Sep 17 00:00:00 2001
+From: Matt Madison <matt@madison.systems>
+Date: Wed, 16 Jun 2021 08:36:30 -0700
+Subject: [PATCH] Move kernel and ramdisk locations on t210 platforms
+
+When using systemd in the initrd, the initrd size gets
+pretty large, so load the kernel in front of the initrd
+(the kernel needs to be in the first 128MiB).
+
+Old:
+  ramdisk_addr_r: 0x83200000
+  loadaddr:       0x84000000 (14MiB after ramdisk_addr_r)
+New:
+  ramdisk_addr_r: 0x87200000 (64MiB after loadaddr)
+  loadaddr:       0x83200000 (old ramdisk_addr_r)
+
+Signed-off-by: Matt Madison <matt@madison.systems>
+---
+ include/configs/tegra210-common.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/include/configs/tegra210-common.h b/include/configs/tegra210-common.h
+index a89a02fcea..ba81e4fa73 100644
+--- a/include/configs/tegra210-common.h
++++ b/include/configs/tegra210-common.h
+@@ -46,14 +46,14 @@
+  * etc.), kernel_addr_r is moved to 0x84000000, above fdt/ramdisk and below
+  * pxe/script addresses.
+  */
+-#define CONFIG_LOADADDR 0x84000000
++#define CONFIG_LOADADDR 0x83200000
+ #define MEM_LAYOUT_ENV_SETTINGS \
+ 	"scriptaddr=0x90000000\0" \
+ 	"pxefile_addr_r=0x90100000\0" \
+ 	"kernel_addr_r=" __stringify(CONFIG_LOADADDR) "\0" \
+ 	"fdtfile=" FDTFILE "\0" \
+ 	"fdt_addr_r=0x83000000\0" \
+-	"ramdisk_addr_r=0x83200000\0" \
++	"ramdisk_addr_r=0x87200000\0" \
+ 	"fdt_copy_node_paths=" \
+ 		"/chosen/plugin-manager:" \
+ 		"/chosen/reset:" \
