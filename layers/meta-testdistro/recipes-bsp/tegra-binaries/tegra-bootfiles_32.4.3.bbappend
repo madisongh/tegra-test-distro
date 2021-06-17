@@ -5,6 +5,7 @@ EXTRADEPS_append_jetson-nano-qspi-sd-sb = " custom-flash-layout"
 EXTRADEPS_append_jetson-nano-qspi-sd = " custom-flash-layout"
 EXTRADEPS_append_jetson-nano-emmc = " custom-flash-layout"
 EXTRADEPS_append_jetson-xavier = " custom-flash-layout"
+EXTRADEPS_append_jetson-tx1 = " custom-flash-layout"
 DEPENDS += "${EXTRADEPS}"
 PARTITION_FILE_cryptparts = "${STAGING_DATADIR}/custom-flash-layout/${PARTITION_LAYOUT_TEMPLATE}"
 MENDER_PARTITION_FILE_cryptparts = "${STAGING_DATADIR}/custom-flash-layout/${PARTITION_LAYOUT_TEMPLATE}"
@@ -18,6 +19,8 @@ PARTITION_FILE_jetson-nano-emmc = "${STAGING_DATADIR}/custom-flash-layout/${PART
 MENDER_PARTITION_FILE_jetson-nano-emmc = "${STAGING_DATADIR}/custom-flash-layout/${PARTITION_LAYOUT_TEMPLATE}"
 PARTITION_FILE_jetson-xavier = "${STAGING_DATADIR}/custom-flash-layout/${PARTITION_LAYOUT_TEMPLATE}"
 MENDER_PARTITION_FILE_jetson-xavier = "${STAGING_DATADIR}/custom-flash-layout/${PARTITION_LAYOUT_TEMPLATE}"
+PARTITION_FILE_jetson-tx1 = "${STAGING_DATADIR}/custom-flash-layout/${PARTITION_LAYOUT_TEMPLATE}"
+MENDER_PARTITION_FILE_jetson-tx1 = "${STAGING_DATADIR}/custom-flash-layout/${PARTITION_LAYOUT_TEMPLATE}"
 CBOOTOPTION_FILE = "${STAGING_DATADIR}/bootfiles/cbo.dts"
 
 do_install_append_cryptparts() {
