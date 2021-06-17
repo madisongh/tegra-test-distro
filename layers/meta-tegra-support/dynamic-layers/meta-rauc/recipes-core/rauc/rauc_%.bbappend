@@ -1,4 +1,4 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+FILESEXTRAPATHS_prepend := "${THISDIR}/files:${COREBASE}/meta-testdistro/files/rauc:"
 
 SRC_URI_append_tegra186 = " file://rauc-cboot-script.sh"
 SRC_URI_append_tegra194 = " file://rauc-cboot-script.sh"
