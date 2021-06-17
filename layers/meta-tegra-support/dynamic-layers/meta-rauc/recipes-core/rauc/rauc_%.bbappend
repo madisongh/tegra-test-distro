@@ -29,5 +29,4 @@ do_install_append_tegra194() {
 }
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
-RDEPENDS_${PN}_append_tegra186 = " tegra-boot-tools e2fsprogs-resize2fs"
-RDEPENDS_${PN}_append_tegra194 = " tegra-boot-tools e2fsprogs-resize2fs"
+RDEPENDS_${PN}_append_tegra = " tegra-boot-tools e2fsprogs-resize2fs"
