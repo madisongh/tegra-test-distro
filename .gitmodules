@@ -22,3 +22,7 @@
 	path = repos/meta-rauc
 	url = https://github.com/rauc/meta-rauc.git
 	branch = master
+[submodule "repos/meta-swupdate"]
+	path = repos/meta-swupdate
+	url = https://github.com/sbabic/meta-swupdate.git
+	branch = master
