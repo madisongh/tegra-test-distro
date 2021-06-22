@@ -1,0 +1,51 @@
+software =
+{
+	version = "@@DISTRO_VERSION@@";
+
+	@@MACHINE@@ =
+	{
+		hardware-compatibility = [ "1.0" ];
+
+		system =
+		{
+			slot_a:
+			{
+				images: (
+				{
+					filename = "@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.ext4.gz";
+					type = "raw";
+					compressed = "zlib";
+					sha256 = "@@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.ext4.gz";
+					device = "@@ROOTFS_DEVICE_PATH@@/APP_b";
+					installed-directly = true;
+				});
+				scripts: (
+				{
+					filename = "swupdate-bl-update.sh";
+					type = "postinstall";
+					sha256 = "@swupdate-bl-update.sh";
+					data = "@@ROOTFS_DEVICE_PATH@@/APP_b";
+				});
+			}
+			slot_b:
+			{
+				images: (
+				{
+					filename = "@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.ext4.gz";
+					type = "raw";
+					compressed = "zlib";
+					sha256 = "@@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.ext4.gz";
+					device = "@@ROOTFS_DEVICE_PATH@@/APP";
+					installed-directly = true;
+				});
+				scripts: (
+				{
+					filename = "swupdate-bl-update.sh";
+					type = "postinstall";
+					sha256 = "@swupdate-bl-update.sh";
+					data = "@@ROOTFS_DEVICE_PATH@@/APP";
+				});
+			}
+		}
+	}
+}
