@@ -1,6 +1,9 @@
 RDEPENDS_${PN}_append = " \
     gptfdisk \
     i2c-tools \
+    swupdate \
+    swupdate-client \
+    swupdate-progress \
     tegra-bup-payload \
     tegra-eeprom-tool \
     tegra-fuse-tool \
