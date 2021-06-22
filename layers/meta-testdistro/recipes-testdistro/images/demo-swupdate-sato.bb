@@ -1,0 +1,1 @@
+require swupdate-common.inc
