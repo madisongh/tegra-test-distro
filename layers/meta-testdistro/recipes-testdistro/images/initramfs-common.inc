@@ -68,6 +68,7 @@ trim_fstab() {
 journal_fixups() {
     rm -rf ${IMAGE_ROOTFS}${localstatedir}/log/journal
     rm -f ${IMAGE_ROOTFS}${sysconfdir}/tmpfiles.d/00-var-log-journal.conf
+    rm -rf ${IMAGE_ROOTFS}${systemd_unitdir}/journal.conf.d
 }
 
 # Override this function provided in mender_workarounds
@@ -88,9 +89,4 @@ update_version_files () {
     if [ -f $dest/${sysconfdir}/issue.net ]; then
         printf "%s %%h\n\n" "${DISTRO_NAME} ${BUILDNAME}" >$dest/${sysconfdir}/issue.net
     fi
-}
-
-journal_fixups() {
-    rm -rf ${IMAGE_ROOTFS}${systemd_unitdir}/journal.conf.d
-    rm -rf ${IMAGE_ROOTFS}${localstatedir}/log/journal
 }
