@@ -9,6 +9,7 @@ RDEPENDS_${PN}_append = " \
     tegra-eeprom-tool \
     tegra-fuse-tool \   
     tegra-sysinstall-tools \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'rauc', 'rauc-hawkbit-updater', '', d)} \
 "
 
 RDEPENDS_${PN}_append_cryptparts = " \
