@@ -45,6 +45,7 @@ docker::133:
 render::134:
 weston-launch::135:
 wayland::136:
+rauc-hawkbit::899:
 weston::989:
 avahi-autoipd::990:
 systemd-bus-proxy::992:
