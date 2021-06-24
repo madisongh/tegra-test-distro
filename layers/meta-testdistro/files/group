@@ -43,7 +43,8 @@ pulse::131:
 systemd-journal::132:
 docker::133:
 render::134:
-weston-launch::135
+weston-launch::135:
+rauc-hawkbit::899:
 avahi-autoipd::990:
 systemd-bus-proxy::992:
 systemd-timesync::993:
