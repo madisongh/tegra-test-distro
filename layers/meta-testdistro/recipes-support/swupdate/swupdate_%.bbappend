@@ -1,5 +1,8 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/${BPN}:"
 
+PACKAGECONFIG ??= ""
+PACKAGECONFIG[hawkbit] = ",,,,,"
+
 SRC_URI += "\
     file://systemd.cfg \
     file://rdiff.cfg \
@@ -10,13 +13,18 @@ SRC_URI += "\
     file://disable_http_server.cfg \
 "
 
+HAWKBIT_STUFF = "\
+    file://suricatta_hawkbit.cfg \
+    file://hawkbit-server.sh \
+"
+
 SRC_URI_append_secureboot = "\
     file://keyargs.sh \
     file://swupdate.pem \
     file://signed-images.cfg \
-    file://suricatta_hawkbit.cfg \
-    file://hawkbit-server.sh \
+    ${@bb.utils.contains('PACKAGECONFIG', 'hawkbit', '${HAWKBIT_STUFF}', '', d)} \
 "
+
 
 do_install_append() {
     install -d ${D}${sysconfdir}/swupdate/conf.d
@@ -29,7 +37,9 @@ do_install_append() {
 do_install_append_secureboot() {
     install -m 0644 ${WORKDIR}/swupdate.pem ${D}${sysconfdir}/swupdate/
     install -m 0644 ${WORKDIR}/keyargs.sh ${D}${sysconfdir}/swupdate/conf.d/10-key-args
-    install -m 0644 ${WORKDIR}/hawkbit-server.sh ${D}${sysconfdir}/swupdate/conf.d/20-hawkbit
+    if ${@bb.utils.contains('PACKAGECONFIG', 'hawkbit', 'true', 'false', d)}; then
+        install -m 0644 ${WORKDIR}/hawkbit-server.sh ${D}${sysconfdir}/swupdate/conf.d/20-hawkbit
+    fi
 }
 
 RDEPENDS_${PN} += "tegra-boot-tools swupdate-machine-config"
