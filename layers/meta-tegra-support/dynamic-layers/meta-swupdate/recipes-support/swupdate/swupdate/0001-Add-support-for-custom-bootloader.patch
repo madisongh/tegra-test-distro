@@ -1,0 +1,136 @@
+From 51bcf0a8b0dbeba980d5cae4779f258f40640be2 Mon Sep 17 00:00:00 2001
+From: Matt Madison <matt@madison.systems>
+Date: Wed, 23 Jun 2021 12:48:42 -0700
+Subject: [PATCH] Add support for custom bootloader
+
+Signed-off-by: Matt Madison <matt@madison.systems>
+---
+ bootloader/Config.in | 18 +++++++++++
+ bootloader/Makefile  |  1 +
+ bootloader/custom.c  | 72 ++++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 91 insertions(+)
+ create mode 100644 bootloader/custom.c
+
+diff --git a/bootloader/Config.in b/bootloader/Config.in
+index ad9fec1..9938412 100644
+--- a/bootloader/Config.in
++++ b/bootloader/Config.in
+@@ -42,6 +42,12 @@ config BOOTLOADER_GRUB
+ 	help
+ 	  Support for GRUB
+ 	  https://www.gnu.org/software/grub/
++
++config BOOTLOADER_CUSTOM
++       bool "CUSTOM"
++       help
++         Support for custom bootloader interface
++
+ endchoice
+ 
+ config UBOOT_FWENV
+@@ -95,3 +101,15 @@ config GRUBENV_PATH
+ 	default "/boot/efi/EFI/BOOT/grub/grubenv"
+ 	help
+ 	  Provide path to GRUB environment block file
++
++config BOOTLOADER_CUSTOM_COMMAND
++       string "Command for interfacing with custom bootloader"
++       depends on BOOTLOADER_CUSTOM
++       default "/usr/sbin/swupdate-bootloader-interface"
++       help
++         Provide path to binary for getting and setting
++	 bootloader variables. The command should take
++	 up to 3 arguments: command (get/set/unset/apply),
++	 for get/set/unset, the variable name (for apply,
++	 the name of the file containing var=value lines),
++	 and for set commands, the value.
+diff --git a/bootloader/Makefile b/bootloader/Makefile
+index ff56387..cd9fecf 100644
+--- a/bootloader/Makefile
++++ b/bootloader/Makefile
+@@ -6,3 +6,4 @@ lib-$(CONFIG_UBOOT)		+= uboot.o
+ lib-$(CONFIG_BOOTLOADER_NONE)	+= none.o
+ lib-$(CONFIG_BOOTLOADER_GRUB)	+= grub.o
+ lib-$(CONFIG_BOOTLOADER_EBG)		+= ebg.o
++lib-$(CONFIG_BOOTLOADER_CUSTOM) += custom.o
+diff --git a/bootloader/custom.c b/bootloader/custom.c
+new file mode 100644
+index 0000000..f9592ae
+--- /dev/null
++++ b/bootloader/custom.c
+@@ -0,0 +1,72 @@
++/*
++ * Copyright (c) 2021, Matthew Madison.
++ *
++ * SPDX-License-Identifier:     GPL-2.0-only
++ */
++
++#include <unistd.h>
++#include <string.h>
++#include <stdio.h>
++#include <stdlib.h>
++#include "bootloader.h"
++#include "swupdate_dict.h"
++
++static const char bootloader_cmd[] = CONFIG_BOOTLOADER_CUSTOM_COMMAND;
++
++static int run_cmd(const char *op, const char *name,
++		   const char  *value)
++{
++	char cmdbuf[1024];
++	ssize_t n;
++
++	if (value)
++		n = snprintf(cmdbuf, sizeof(cmdbuf)-1, "%s %s %s \"%s\"",
++			     bootloader_cmd, op, name, value);
++	else
++		n = snprintf(cmdbuf, sizeof(cmdbuf)-1, "%s %s %s",
++			     bootloader_cmd, op, name);
++	if (n < 0)
++		return n;
++	cmdbuf[n] = '\0';
++	return system(cmdbuf);
++
++}
++
++int bootloader_env_set(const char *name, const char *value)
++{
++	return run_cmd("set", name, value);
++}
++
++int bootloader_env_unset(const char *name)
++{
++	return run_cmd("unset", name, NULL);
++}
++
++char *bootloader_env_get(const char  *name)
++{
++	char cmdbuf[1024];
++	FILE *pipein;
++	ssize_t n;
++	size_t len;
++
++	n = snprintf(cmdbuf, sizeof(cmdbuf)-1, "%s get %s",
++		     bootloader_cmd, name);
++	if (n < 0)
++		return NULL;
++	cmdbuf[n] = '\0';
++	pipein = popen(cmdbuf, "r");
++	if (!pipein)
++		return NULL;
++	len = fread(cmdbuf, sizeof(cmdbuf[0]), sizeof(cmdbuf)/sizeof(cmdbuf[0])-1, pipein);
++	if (pclose(pipein))
++		return NULL;
++	while (len > 0 && cmdbuf[len] == '\n')
++		len--;
++	cmdbuf[len] = '\0';
++	return strdup(cmdbuf);
++}
++
++int bootloader_apply_list(const char *filename)
++{
++	return run_cmd("apply", filename, NULL);
++}
+-- 
+2.30.2
+
