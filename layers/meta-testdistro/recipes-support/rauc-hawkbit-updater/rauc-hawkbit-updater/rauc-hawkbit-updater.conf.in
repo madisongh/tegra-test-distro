@@ -1,0 +1,43 @@
+[client]
+# host or IP and optional port
+hawkbit_server            = 172.16.1.170:9090
+
+# true = HTTPS, false = HTTP
+ssl                       = false
+
+# validate ssl certificate (only use if ssl is true)
+ssl_verify                = false
+
+# Tenant id
+tenant_id                 = DEFAULT
+
+# Target name (controller id)
+target_name               = @MACHINEID@
+
+# Security token
+auth_token                = @AUTH_TOKEN@
+
+# Or gateway_token can be used instead of auth_token
+#gateway_token             = cb115a721af28f781b493fa467819ef5
+
+# Temporay file RAUC bundle should be downloaded to
+bundle_download_location  = /var/extra/rauc-hawkbit-updater/tmp.raucb
+
+# time in seconds to wait before retrying
+retry_wait                = 60
+
+# connection timeout in seconds
+connect_timeout           = 20
+
+# request timeout in seconds
+timeout                   = 60
+
+# reboot after a successful update
+post_update_reboot        = true
+
+# debug, info, message, critical, error, fatal
+log_level                 = debug
+
+[device]
+mac_address               = @ETHADDR@
+model                     = @MACHINE@
