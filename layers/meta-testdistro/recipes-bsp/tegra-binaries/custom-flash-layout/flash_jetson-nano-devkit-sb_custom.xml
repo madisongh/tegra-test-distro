@@ -167,8 +167,8 @@
         <partition name="UBENV" type="data">
             <allocation_policy> sequential </allocation_policy>
             <filesystem_type> basic </filesystem_type>
-	    <start_location> 0x3B0000 </start_location>
-            <size> 131072 </size>
+	    <start_location> 0x3D8000 </start_location>
+            <size> 32768 </size>
             <file_system_attribute> 0 </file_system_attribute>
             <allocation_attribute> 8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
