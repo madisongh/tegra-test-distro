@@ -7,7 +7,7 @@ CBOOTFILES = "\
     file://swupdate-bootloader-interface-cboot.sh \
 "
 
-CBOOTFILES_tegra210 = ""
+CBOOTFILES_tegra210 = "file://enable-uboot.cfg"
 
 SRC_URI_append_tegra = "\
     file://disable-mtd.cfg \
@@ -29,6 +29,6 @@ do_install_append() {
 
 FILES_${PN} += "${sbindir}/swupdate-bootloader-interface"
 CBOOTTOOLS = "tegra-boot-tools"
-CBOOTTOOLS_tegra210 = ""
+CBOOTTOOLS_tegra210 = "u-boot-default-env"
 RDEPENDS_${PN} += "${CBOOTTOOLS}"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
