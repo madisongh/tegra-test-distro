@@ -42,6 +42,9 @@ do_install_append_secureboot() {
     fi
 }
 
-RDEPENDS_${PN} += "tegra-boot-tools swupdate-machine-config"
+EXTRADEPS = ""
+EXTRADEPS_tegra = "tegra-boot-tools"
+EXTRADEPS_tegra210 = "util-linux-lsblk"
+RDEPENDS_${PN} += "${EXTRADEPS} swupdate-machine-config"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
