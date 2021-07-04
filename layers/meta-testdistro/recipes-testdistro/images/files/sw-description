@@ -48,4 +48,21 @@ software =
 			}
 		}
 	}
+	@@ALTMACHINE@@ =
+	{												//ALTMACHINE
+		hardware-compatibility = { ref = "#../@@MACHINE@@/hardware-compatibility"; }		//ALTMACHINE
+		system =	       	       	 					   		//ALTMACHINE
+		{											//ALTMACHINE
+			slot_a:										//ALTMACHINE
+			{										//ALTMACHINE
+				images = { ref = "#../../../@@MACHINE@@/system/slot_a/images"; }	//ALTMACHINE
+				scripts = { ref = "#../../../@@MACHINE@@/system/slot_a/scripts"; }	//ALTMACHINE
+			}		    	  						 	//ALTMACHINE
+			slot_b:										//ALTMACHINE
+			{										//ALTMACHINE
+				images = { ref = "#../../../@@MACHINE@@/system/slot_b/images"; }	//ALTMACHINE
+				scripts = { ref = "#../../../@@MACHINE@@/system/slot_b/scripts"; }	//ALTMACHINE
+			}		    	  						 	//ALTMACHINE
+		}											//ALTMACHINE
+	}												//ALTMACHINE
 }
