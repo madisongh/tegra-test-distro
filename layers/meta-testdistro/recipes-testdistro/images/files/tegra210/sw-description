@@ -66,4 +66,23 @@ software =
 			}
 		}
 	}
+	@@ALTMACHINE@@ =
+	{
+		hardware-compatibility = { ref = "#../@@MACHINE@@/hardware-compatibility"; }
+		system =
+		{
+			slot_a:
+			{
+				images = { ref = "#../../../@@MACHINE@@/system/slot_a/images"; }
+				scripts = { ref = "#../../../@@MACHINE@@/system/slot_a/scripts"; }
+				bootenv = { ref = "#../../../@@MACHINE@@/system/slot_a/bootenv"; }
+			}
+			slot_b:
+			{
+				images = { ref = "#../../../@@MACHINE@@/system/slot_b/images"; }
+				scripts = { ref = "#../../../@@MACHINE@@/system/slot_b/scripts"; }
+				bootenv = { ref = "#../../../@@MACHINE@@/system/slot_b/bootenv"; }
+			}
+		}
+	}
 }
