@@ -1,0 +1,36 @@
+From 8a4ad6fabc8a28e6b8f81c878a6eee254ca1ecd4 Mon Sep 17 00:00:00 2001
+From: Matt Madison <matt@madison.systems>
+Date: Thu, 20 May 2021 05:44:35 -0700
+Subject: [PATCH] Use pre-fetched firmware files
+
+Signed-off-by: Matt Madison <matt@madison.systems>
+---
+ common/fw/CMakeLists.txt | 14 +++++---------
+ 1 file changed, 5 insertions(+), 9 deletions(-)
+
+Index: git/common/fw/CMakeLists.txt
+===================================================================
+--- git.orig/common/fw/CMakeLists.txt
++++ git/common/fw/CMakeLists.txt
+@@ -50,16 +50,12 @@ target_include_directories(${PROJECT_NAM
+ set_target_properties (${PROJECT_NAME} PROPERTIES FOLDER Resources)
+ 
+ function(target_binary url version sha1 symbol ext)
+-  set(binary "${CMAKE_CURRENT_BINARY_DIR}/${symbol}-${version}${ext}")
+-  message(STATUS "${url}/${symbol}-${version}${ext}")
+-  file(DOWNLOAD "${url}/${symbol}-${version}${ext}" "${binary}"
+-       EXPECTED_HASH SHA1=${sha1}
+-       STATUS status)
+-  list(GET status 0 error_code)
+-  if (NOT ${error_code} EQUAL 0)
+-    message(FATAL_ERROR "Download firmwnare (${status}) - ${url}")
++  set(binary "${CMAKE_CURRENT_SOURCE_DIR}/${symbol}-${version}${ext}")
++  file(SHA1 ${binary} binhash)
++  if(NOT "${binhash}" STREQUAL "${sha1}")
++    message(FATAL_ERROR "Firmware mismatch for ${symbol}-${version}${ext}")
+   else()
+-    message(STATUS "Download firmware ${status} for ${symbol}-${version}${ext}")
++    message(STATUS "Firmware OK for ${symbol}-${version}${ext}")
+   endif()
+   string(TOUPPER ${symbol} SYMBOL)
+   string(REPLACE "." "," version_commas ${version})
