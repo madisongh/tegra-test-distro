@@ -14,6 +14,6 @@ S = "${WORKDIR}/git/tools"
 B = "${WORKDIR}/build"
 
 PACKAGES =+ "${PN}-eksgen"
-FILES_${PN}-eksgen = "${bindir}/eksgen"
+FILES:${PN}-eksgen = "${bindir}/eksgen"
 
 BBCLASSEXTEND = "native nativesdk"

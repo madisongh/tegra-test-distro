@@ -38,6 +38,6 @@ do_install() {
 }
 
 SYSTEMD_SERVICE = " dmc-passphrase.service"
-RDEPENDS_${PN} = "initrd-setup keystore-tools lvm2-udevrules"
-RCONFLICTS_${PN} = "initrd-noncrypt-setup"
+RDEPENDS:${PN} = "initrd-setup keystore-tools lvm2-udevrules"
+RCONFLICTS:${PN} = "initrd-noncrypt-setup"
 PACKAGE_ARCH = "${TEGRA_PKGARCH}"

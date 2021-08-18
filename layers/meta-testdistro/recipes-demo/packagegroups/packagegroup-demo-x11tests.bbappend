@@ -1,1 +1,1 @@
-RDEPENDS_${PN} += "argus-samples"
+RDEPENDS:${PN} += "argus-samples"

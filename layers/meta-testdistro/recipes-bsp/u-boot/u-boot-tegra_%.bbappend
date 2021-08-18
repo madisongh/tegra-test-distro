@@ -1,4 +1,4 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:${COREBASE}/meta-tegra-support/dynamic-layers/meta-rauc/recipes-bsp/u-boot/files:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:${COREBASE}/meta-tegra-support/dynamic-layers/meta-rauc/recipes-bsp/u-boot/files:"
 
 SRC_URI += "file://0001-Move-kernel-and-ramdisk-locations-on-t210-platforms.patch"
 SRC_URI += "file://rauc.cfg"
@@ -8,7 +8,7 @@ SRC_URI += "file://rauc.cfg"
 # invoked, but they don't process any configlets.  So add yet another
 # prepend so they do get processed, copy-pasting the norma
 # do_configure from core u-boot.inc, minus the cml1_do_configure.
-do_configure_prepend_mender-uboot() {
+do_configure:prepend_mender-uboot() {
     if [ -n "${UBOOT_CONFIG}" ]; then
         unset i j
         for config in ${UBOOT_MACHINE}; do

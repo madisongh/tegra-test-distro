@@ -1,4 +1,4 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/${BPN}:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/${BPN}:"
 
 PACKAGECONFIG ??= ""
 PACKAGECONFIG[hawkbit] = ",,,,,"
@@ -18,7 +18,7 @@ HAWKBIT_STUFF = "\
     file://hawkbit-server.sh \
 "
 
-SRC_URI_append_secureboot = "\
+SRC_URI:append:secureboot = "\
     file://keyargs.sh \
     file://swupdate.pem \
     file://signed-images.cfg \
@@ -26,7 +26,7 @@ SRC_URI_append_secureboot = "\
 "
 
 
-do_install_append() {
+do_install:append() {
     install -d ${D}${sysconfdir}/swupdate/conf.d
     install -m 0644 ${WORKDIR}/get-slot.sh ${D}${sysconfdir}/swupdate/conf.d/00-tegra-boot-slot
     sed -i -r -e'/^Type=/d' -e'/\[Service/a Type=notify' \
@@ -34,7 +34,7 @@ do_install_append() {
               -e'/^ExecStartPre=.bin.mkdir/d' -e'/\[Service/a ExecStartPre=/bin/mkdir -p /run/swupdate/tmp' ${D}${systemd_system_unitdir}/swupdate.service
 }
 
-do_install_append_secureboot() {
+do_install:append:secureboot() {
     install -m 0644 ${WORKDIR}/swupdate.pem ${D}${sysconfdir}/swupdate/
     install -m 0644 ${WORKDIR}/keyargs.sh ${D}${sysconfdir}/swupdate/conf.d/10-key-args
     if ${@bb.utils.contains('PACKAGECONFIG', 'hawkbit', 'true', 'false', d)}; then
@@ -43,8 +43,8 @@ do_install_append_secureboot() {
 }
 
 EXTRADEPS = ""
-EXTRADEPS_tegra = "tegra-boot-tools"
-EXTRADEPS_tegra210 = "util-linux-lsblk"
-RDEPENDS_${PN} += "${EXTRADEPS} swupdate-machine-config"
+EXTRADEPS:tegra = "tegra-boot-tools"
+EXTRADEPS:tegra210 = "util-linux-lsblk"
+RDEPENDS:${PN} += "${EXTRADEPS} swupdate-machine-config"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"

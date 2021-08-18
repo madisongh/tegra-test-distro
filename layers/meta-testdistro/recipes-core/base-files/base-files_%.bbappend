@@ -1,4 +1,4 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/base-files:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/base-files:"
 
 SRC_URI += "file://fstab-overlays"
 
@@ -9,10 +9,10 @@ SRC_URI += "file://fstab-overlays"
 #     a symlink to /tmp on non-rootfs-overlay devices
 #   * /var/log is a symlink to /run/log on non-rootfs-overlay devices
 
-dirs755_remove = "${localstatedir}/volatile"
-dirs1777_remove = "${localstatedir}/volatile/tmp"
-dirs755_append_semi-stateless = " ${localstatedir}/extra"
-dirs1777_append_semi-stateless = " ${localstatedir}/tmp"
+dirs755:remove = "${localstatedir}/volatile"
+dirs1777:remove = "${localstatedir}/volatile/tmp"
+dirs755:append:semi-stateless = " ${localstatedir}/extra"
+dirs1777:append:semi-stateless = " ${localstatedir}/tmp"
 volatiles = ""
 
 make_extra_symlinks() {
@@ -20,15 +20,15 @@ make_extra_symlinks() {
     ln -snf ../run/log ${D}${localstatedir}/log
 }
 
-make_extra_symlinks_semi-stateless() {
+make_extra_symlinks:semi-stateless() {
     :
 }
 
-do_install_append() {
+do_install:append() {
     cat ${WORKDIR}/fstab-overlays >>${D}${sysconfdir}/fstab
     make_extra_symlinks
 }
 
 # Needed for the fstab entries
-RDEPENDS_${PN}_append_semi-stateless = " overlay-setup e2fsprogs-e2fsck e2fsprogs-mke2fs"
-RRECOMMENDS_${PN}_append_semi-stateless = " kernel-module-overlay"
+RDEPENDS:${PN}:append:semi-stateless = " overlay-setup e2fsprogs-e2fsck e2fsprogs-mke2fs"
+RRECOMMENDS:${PN}:append:semi-stateless = " kernel-module-overlay"

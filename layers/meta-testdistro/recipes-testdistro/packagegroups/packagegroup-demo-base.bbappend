@@ -1,4 +1,4 @@
-RDEPENDS_${PN}_append = " \
+RDEPENDS:${PN}:append = " \
     gptfdisk \
     i2c-tools \
     swupdate \
@@ -11,11 +11,11 @@ RDEPENDS_${PN}_append = " \
     tegra-sysinstall-tools \
 "
 
-RDEPENDS_${PN}_append_cryptparts = " \
+RDEPENDS:${PN}:append:cryptparts = " \
     systemd-conf-crypttab \
 "
 
-RRECOMMENDS_${PN}_append = " \
+RRECOMMENDS:${PN}:append = " \
     kernel-module-hid-logitech-hidpp \
     kernel-module-hid-logitech-dj \
     kernel-module-uvcvideo \
