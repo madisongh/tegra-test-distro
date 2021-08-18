@@ -1,13 +1,11 @@
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:${COREBASE}/meta-tegra-support/dynamic-layers/meta-rauc/recipes-bsp/u-boot/files:"
 
-SRC_URI += "file://rauc.cfg"
-
 # Work around Mender's too-early configuration checks.  They do them
 # as a prepend rather than append to avoid cml1_do_configure being
 # invoked, but they don't process any configlets.  So add yet another
 # prepend so they do get processed, copy-pasting the norma
 # do_configure from core u-boot.inc, minus the cml1_do_configure.
-do_configure:prepend_mender-uboot() {
+do_configure:prepend:mender-uboot() {
     if [ -n "${UBOOT_CONFIG}" ]; then
         unset i j
         for config in ${UBOOT_MACHINE}; do
