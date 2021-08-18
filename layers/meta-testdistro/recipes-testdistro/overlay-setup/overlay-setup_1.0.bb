@@ -34,4 +34,4 @@ do_install() {
     install -m 0644 ${B}/overlay-setup.service ${D}${systemd_system_unitdir}/
 }
 
-SYSTEMD_SERVICE_${PN} = "overlay-setup.service"
+SYSTEMD_SERVICE:${PN} = "overlay-setup.service"

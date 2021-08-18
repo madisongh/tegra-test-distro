@@ -31,5 +31,5 @@ do_install() {
     install -m 0755 ${B}/bootdev-generator.sh ${D}${sysconfdir}/systemd/system-generators/bootdev-generator
 }
 
-RDEPENDS_${PN} = "initrd-setup util-linux-blkid"
+RDEPENDS:${PN} = "initrd-setup util-linux-blkid"
 PACKAGE_ARCH = "${TEGRA_PKGARCH}"

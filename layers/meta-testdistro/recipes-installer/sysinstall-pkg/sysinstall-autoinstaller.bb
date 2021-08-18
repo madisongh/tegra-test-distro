@@ -26,6 +26,6 @@ do_install() {
     install -m 0755 ${B}/autoinstall ${D}${bindir}/
 }
 
-SYSTEMD_SERVICE_${PN} = "autoinstall.service"
+SYSTEMD_SERVICE:${PN} = "autoinstall.service"
 
 

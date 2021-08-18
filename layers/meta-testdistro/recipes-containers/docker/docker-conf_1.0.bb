@@ -15,14 +15,14 @@ do_install() {
     :
 }
 
-do_install_semi-stateless() {
+do_install:semi-stateless() {
     add_docker_service_override
 }
 
-do_install_cryptparts() {
+do_install:cryptparts() {
     add_docker_service_override
 }
 
-ALLOW_EMPTY_${PN} = "1"
-FILES_${PN} = "${systemd_system_unitdir}"
+ALLOW_EMPTY:${PN} = "1"
+FILES:${PN} = "${systemd_system_unitdir}"
 

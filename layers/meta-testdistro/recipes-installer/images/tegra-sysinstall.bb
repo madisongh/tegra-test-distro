@@ -4,31 +4,31 @@ LICENSE = "MIT"
 COMPATIBLE_MACHINE = "(tegra)"
 
 PACKAGE_INSTALL = "sysinstall-pkg"
-PACKAGE_INSTALL_append_tegra210 = " u-boot-extlinux"
+PACKAGE_INSTALL:append:tegra210 = " u-boot-extlinux"
 
-IMAGE_INSTALL_remove = "mender-client"
+IMAGE_INSTALL:remove = "mender-client"
 IMAGE_FEATURES = "empty-root-password allow-empty-password"
 IMAGE_LINUGAS = ""
 
 inherit core-image
 
-IMAGE_FSTYPES_forcevariable = "tegraflash"
+IMAGE_FSTYPES:forcevariable = "tegraflash"
 
-IMAGE_TEGRAFLASH_KERNEL_tegra186 = "${DEPLOY_DIR_IMAGE}/td-sysinstall-kernel/${KERNEL_IMAGETYPE}-sysinstall-initramfs.cboot"
-IMAGE_TEGRAFLASH_KERNEL_tegra194 = "${DEPLOY_DIR_IMAGE}/td-sysinstall-kernel/${KERNEL_IMAGETYPE}-sysinstall-initramfs.cboot"
-TEGRAFLASH_PKG_DEPENDS_append_tegra186 = " linux-td-sysinstall:do_deploy"
-TEGRAFLASH_PKG_DEPENDS_append_tegra194 = " linux-td-sysinstall:do_deploy"
+IMAGE_TEGRAFLASH_KERNEL:tegra186 = "${DEPLOY_DIR_IMAGE}/td-sysinstall-kernel/${KERNEL_IMAGETYPE}-sysinstall-initramfs.cboot"
+IMAGE_TEGRAFLASH_KERNEL:tegra194 = "${DEPLOY_DIR_IMAGE}/td-sysinstall-kernel/${KERNEL_IMAGETYPE}-sysinstall-initramfs.cboot"
+TEGRAFLASH_PKG_DEPENDS:append:tegra186 = " linux-td-sysinstall:do_deploy"
+TEGRAFLASH_PKG_DEPENDS:append:tegra194 = " linux-td-sysinstall:do_deploy"
 
-KERNEL_ARGS_remove = "console=tty0"
-KERNEL_ARGS_remove = "systemd.volatile=overlay"
+KERNEL_ARGS:remove = "console=tty0"
+KERNEL_ARGS:remove = "systemd.volatile=overlay"
 
-ROOTFS_POSTPROCESS_COMMAND_prepend = "ensure_data_exists; trim_fstab;"
-ROOTFS_POSTPROCESS_COMMAND_remove = "mender_update_fstab_file;"
-ROOTFS_POSTPROCESS_COMMAND_remove = "mender_create_scripts_version_file;"
-ROOTFS_POSTPROCESS_COMMAND_append_tegra210 = " use_installer_initrd;"
+ROOTFS_POSTPROCESS_COMMAND:prepend = "ensure_data_exists; trim_fstab;"
+ROOTFS_POSTPROCESS_COMMAND:remove = "mender_update_fstab_file;"
+ROOTFS_POSTPROCESS_COMMAND:remove = "mender_create_scripts_version_file;"
+ROOTFS_POSTPROCESS_COMMAND:append:tegra210 = " use_installer_initrd;"
 
 ROOTFS_EXTRADEPS = ""
-ROOTFS_EXTRADEPS_tegra210 = " linux-td-sysinstall:do_deploy"
+ROOTFS_EXTRADEPS:tegra210 = " linux-td-sysinstall:do_deploy"
 do_rootfs[depends] += "${ROOTFS_EXTRADEPS}"
 
 trim_fstab() {
