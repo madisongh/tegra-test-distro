@@ -1,4 +1,4 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/${BPN}:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/${BPN}:"
 
 SRC_URI += "\
     file://rauc-hawkbit-updater.conf.in \
@@ -6,7 +6,7 @@ SRC_URI += "\
     file://rauc-hawkbit-updater-setup.sh \
 "
 
-do_install_append() {
+do_install:append() {
     rm -f ${D}${sysconfdir}/${PN}/config.conf
     ln -s /run/rauc-hawkbit-updater/config.conf ${D}${sysconfdir}/${PN}/config.conf
     sed -e's,@MACHINE@,${MACHINE},' ${WORKDIR}/rauc-hawkbit-updater.conf.in >${D}${sysconfdir}/${PN}/config.conf.template

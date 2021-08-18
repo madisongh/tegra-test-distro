@@ -35,5 +35,5 @@ do_install() {
     install -m 0644 ${B}/partition_table ${D}${datadir}/tegra-sysinstall/
 }
 
-FILES_${PN} = "${datadir}/tegra-sysinstall"
+FILES:${PN} = "${datadir}/tegra-sysinstall"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
