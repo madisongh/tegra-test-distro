@@ -10,7 +10,7 @@ BOOTLOADER = "custom"
 BOOTLOADER = "custom"
 BOOTLOADER:tegra210 = "uboot"
 
-install:cboot_script() {
+install_cboot_script() {
     install -d ${D}${sysconfdir}/rauc/scripts
     install -m 0755 ${WORKDIR}/rauc-cboot-script.sh ${D}${sysconfdir}/rauc/scripts/rauc-cboot-script
     sed -i -e's,^#cboot:,,' ${D}${sysconfdir}/rauc/system.conf
@@ -22,10 +22,10 @@ do_install:append() {
 }
 
 do_install:append:tegra186() {
-    install:cboot_script
+    install_cboot_script
 }
 do_install:append:tegra194() {
-    install:cboot_script
+    install_cboot_script
 }
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
