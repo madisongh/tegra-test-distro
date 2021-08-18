@@ -12,7 +12,7 @@ require initramfs-common.inc
 SYSTEMD_DEFAULT_TARGET = "multi-user.target"
 
 ROOTFS_POSTPROCESS_COMMAND =+ "make_varextra; remove_etc_initrd;"
-ROOTFS_POSTPROCESS_COMMAND_prepend_testdistro-mender = "make_data; "
+ROOTFS_POSTPROCESS_COMMAND:prepend:testdistro-mender = "make_data; "
 
 make_varextra() {
     [ -d ${IMAGE_ROOTFS}/var/extra ] || install -d ${IMAGE_ROOTFS}/var/extra

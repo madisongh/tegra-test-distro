@@ -6,8 +6,8 @@ INHIBIT_DEFAULT_DEPS = "1"
 COMPATIBLE_MACHINE = "(tegra)"
 
 SRC_URI = ""
-SRC_URI_append_tegra194 = " file://cbo.dts"
-SRC_URI_append_cryptparts = " file://eks.img"
+SRC_URI:append:tegra194 = " file://cbo.dts"
+SRC_URI:append:cryptparts = " file://eks.img"
 
 S = "${WORKDIR}"
 
@@ -23,12 +23,12 @@ do_install() {
     :
 }
 
-do_install_tegra194() {
+do_install:tegra194() {
     install -d ${D}${datadir}/bootfiles
     install -m 0644 ${S}/cbo.dts ${D}${datadir}/bootfiles/
 }
 
-do_install_append_cryptparts() {
+do_install:append:cryptparts() {
     install -d ${D}${datadir}/bootfiles
     install -m 0644 ${S}/eks.img ${D}${datadir}/bootfiles/
 }

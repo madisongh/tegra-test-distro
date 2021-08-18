@@ -1,7 +1,7 @@
 inherit signing_server
 
 PACKAGE_DEPENDS += "${@' '.join([dep.split(':')[0] for dep in d.getVar('DIGSIG_DEPS').split()])}"
-PACKAGEBUILDPKGD_append_secureboot = " sign_modules"
+PACKAGEBUILDPKGD:append:secureboot = " sign_modules"
 
 PKGD_SIGNED = "${WORKDIR}/package-signed"
 

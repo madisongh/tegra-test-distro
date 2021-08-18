@@ -1,8 +1,8 @@
 # No /var/volatile in our builds
-ROOTFS_POSTPROCESS_COMMAND_remove = "empty_var_volatile;"
+ROOTFS_POSTPROCESS_COMMAND:remove = "empty_var_volatile;"
 
-ROOTFS_POSTPROCESS_COMMAND_remove_semi-stateless = "read_only_rootfs_hook;"
-ROOTFS_POSTPROCESS_COMMAND_append_semi-stateless = "semi_stateless_rootfs_hook;"
+ROOTFS_POSTPROCESS_COMMAND:remove:semi-stateless = "read_only_rootfs_hook;"
+ROOTFS_POSTPROCESS_COMMAND:append:semi-stateless = "semi_stateless_rootfs_hook;"
 
 # Adjust the sshd configuration when using semi-stateless setup, so
 # we preserve the host keys across boots in the (persistent) /var/lib overlay

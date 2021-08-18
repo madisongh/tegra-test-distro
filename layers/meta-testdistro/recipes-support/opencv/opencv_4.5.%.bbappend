@@ -1,1 +1,1 @@
-PACKAGECONFIG_append_cuda = " dnn"
+PACKAGECONFIG:append_cuda = " dnn"

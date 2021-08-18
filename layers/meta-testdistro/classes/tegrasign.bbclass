@@ -1,5 +1,5 @@
-TEGRA_SIGNING_EXCLUDE_TOOLS_secureboot = "1"
-TEGRA_SIGNING_EXTRA_DEPS_secureboot = "${DIGSIG_DEPS} gzip-native:do_populate_sysroot"
+TEGRA_SIGNING_EXCLUDE_TOOLS:secureboot = "1"
+TEGRA_SIGNING_EXTRA_DEPS:secureboot = "${DIGSIG_DEPS} gzip-native:do_populate_sysroot"
 
 inherit signing_server l4t_bsp
 
@@ -20,7 +20,7 @@ BOARDREV=${TEGRA_BOARDREV}
 EOF
 }
 
-tegraflash_custom_sign_pkg_secureboot() {
+tegraflash_custom_sign_pkg:secureboot() {
     tegrasign_create_manifest ${LNXFILE}
     tar -c -h -z -f ${WORKDIR}/tegrasign-in.tar.gz --exclude=${IMAGE_BASENAME}.img --exclude=${IMAGE_BASENAME}.ext4 *
     digsig_post sign/tegra -F "machine=${MACHINE}" -F "soctype=${SOC_FAMILY}" -F "bspversion=${L4T_VERSION}" -F "artifact=@${WORKDIR}/tegrasign-in.tar.gz" --output ${WORKDIR}/tegrasign-out.tar.gz
@@ -33,7 +33,7 @@ tegraflash_custom_sign_pkg_secureboot() {
     tegraflash_post_sign_pkg
 }
 
-tegraflash_custom_sign_bup_secureboot() {
+tegraflash_custom_sign_bup:secureboot() {
     tegrasign_create_manifest boot.img
     echo "BUPGENSPECS=${TEGRA_BUPGEN_SPECS}" >>MANIFEST
     tar -c -h -z -f ${WORKDIR}/tegrasign-bupgen-in.tar.gz *

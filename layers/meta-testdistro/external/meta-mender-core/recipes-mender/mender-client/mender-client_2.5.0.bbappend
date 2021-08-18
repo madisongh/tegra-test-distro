@@ -3,7 +3,7 @@ SRC_URI = "git://${SRC_REPO};branch=patches-2.5.0"
 SRCREV = "590309cda7c47f82e37418c25fcdbad53fddf47f"
 PV .= "+git${SRCPV}"
 
-do_install_append() {
+do_install:append() {
     if ${@bb.utils.contains('MENDER_FEATURES', 'mender-image', 'true', 'false', d)}; then
         # symlink /var/lib/mender to /data/mender
         rm -rf ${D}/${localstatedir}/lib/mender

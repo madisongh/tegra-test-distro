@@ -19,5 +19,5 @@ do_install() {
     install -d ${D}/sysroot
 }
 
-FILES_${PN} += "/sysroot"
-RDEPENDS_${PN} = "systemd"
+FILES:${PN} += "/sysroot"
+RDEPENDS:${PN} = "systemd"
