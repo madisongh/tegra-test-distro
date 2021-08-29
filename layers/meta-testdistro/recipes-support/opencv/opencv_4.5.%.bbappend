@@ -1,1 +1,2 @@
-PACKAGECONFIG:append_cuda = " dnn"
+PACKAGECONFIG:append:cuda = " dnn"
+PSEUDO_IGNORE_PATHS:append = ",${WORKDIR}/contrib"
