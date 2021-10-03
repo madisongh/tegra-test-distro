@@ -1,6 +1,5 @@
 FILESEXTRAPATHS:prepend := "${THISDIR}/linux-tegra-4.9:"
 SRC_URI += "file://dm-crypt.cfg file://overlayfs.cfg"
-SRC_URI:append:secureboot = " file://0001-Drop-security-engine-RSA-priority.patch"
 SRC_URI:append:secureboot = " file://test-signing-key.pem"
 SRC_URI:append:secureboot = " file://module-signing.cfg"
 
