@@ -1,7 +1,7 @@
 # Version of layers configuration, specific to
 # each defined distro in the repository.
 # Format: ${DISTRO}-<version>
-TD_BBLAYERS_CONF_VERSION = "testdistro-mender-3"
+TD_BBLAYERS_CONF_VERSION = "testdistro-mender-5"
 
 BBPATH = "${TOPDIR}"
 BBFILES ?= ""
@@ -17,6 +17,7 @@ BBLAYERS ?= " \
   ##OEROOT##/meta-virtualization \
   ##OEROOT##/meta-rauc \
   ##OEROOT##/meta-swupdate \
+  ##OEROOT##/meta-tegra-community \
   ##OEROOT##/meta-tegra-support \
   ##OEROOT##/meta-demo-ci \
   ##OEROOT##/meta-mender-core \
