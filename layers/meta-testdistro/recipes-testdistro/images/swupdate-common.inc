@@ -7,7 +7,7 @@ SRC_URI = "\
 "
 
 ROOTFS_DEVICE_PATH = "/dev/disk/by-partlabel"
-ROOTFS_DEVICE_PATH_secureboot = "/dev/mapper"
+ROOTFS_DEVICE_PATH_cryptparts = "/dev/mapper"
 
 SWUPDATE_IMAGE_NAME ?= "${@d.getVar('BPN').replace('-swupdate-', '-image-')}"
 
