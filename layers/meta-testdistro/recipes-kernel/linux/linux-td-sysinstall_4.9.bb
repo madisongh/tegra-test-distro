@@ -8,3 +8,4 @@ INITRAMFS_LINK_NAME = "sysinstall-initramfs"
 INITRAMFS_IMAGE_BUNDLE = "1"
 
 KERNEL_ARGS:remove = "systemd.volatile=overlay"
+PROVIDES:remove = "virtual/kernel"
