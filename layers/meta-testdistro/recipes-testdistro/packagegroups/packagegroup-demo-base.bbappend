@@ -4,7 +4,7 @@ RDEPENDS:${PN}:append = " \
     swupdate \
     swupdate-client \
     swupdate-progress \
-    swupdate-tools-hawkbit \
+    swupdate-tools-ipc \
     tegra-bup-payload \
     tegra-eeprom-tool \
     tegra-fuse-tool \   
