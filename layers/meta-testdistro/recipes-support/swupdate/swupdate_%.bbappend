@@ -11,12 +11,15 @@ SRC_URI += "\
     file://part-format.cfg \
     file://get-slot.sh \
     file://disable_http_server.cfg \
+    file://enable_delta.cfg \
 "
 
 HAWKBIT_STUFF = "\
     file://suricatta_hawkbit.cfg \
     file://hawkbit-server.sh \
 "
+
+DEPENDS += "zchunk"
 
 SRC_URI_append_secureboot = "\
     file://keyargs.sh \
@@ -46,5 +49,6 @@ EXTRADEPS = ""
 EXTRADEPS_tegra = "tegra-boot-tools"
 EXTRADEPS_tegra210 = "util-linux-lsblk"
 RDEPENDS_${PN} += "${EXTRADEPS} swupdate-machine-config"
+ALLOW_EMPTY_${PN}-tools-hawkbit = "1"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
