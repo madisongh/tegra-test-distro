@@ -11,12 +11,15 @@ SRC_URI += "\
     file://part-format.cfg \
     file://get-slot.sh \
     file://disable_http_server.cfg \
+    file://enable_delta.cfg \
 "
 
 HAWKBIT_STUFF = "\
     file://suricatta_hawkbit.cfg \
     file://hawkbit-server.sh \
 "
+
+DEPENDS += "zchunk"
 
 SRC_URI:append:secureboot = "\
     file://keyargs.sh \
