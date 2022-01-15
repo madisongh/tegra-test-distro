@@ -1,3 +1,7 @@
+IMAGE_CLASSES += "image_types_zck"
+
+IMAGE_FSTYPES += "ext4.zck"
+
 IMAGE_FEATURES += "ssh-server-openssh"
 
 LICENSE = "MIT"
