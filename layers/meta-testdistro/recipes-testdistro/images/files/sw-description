@@ -12,12 +12,15 @@ software =
 			{
 				images: (
 				{
-					filename = "@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.ext4.gz";
-					type = "raw";
-					compressed = "zlib";
-					sha256 = "@@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.ext4.gz";
+					filename = "@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.header";
+					type = "delta";
+					sha256 = "@@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.header";
 					device = "@@ROOTFS_DEVICE_PATH@@/APP_b";
-					installed-directly = true;
+					properties: {
+						url = "http://172.16.2.143:8080/deltapacks/@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.ext4.zck";
+						chain = "raw";
+						source = "@@ROOTFS_DEVICE_PATH@@/APP";
+					}
 				});
 				scripts: (
 				{
@@ -31,12 +34,15 @@ software =
 			{
 				images: (
 				{
-					filename = "@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.ext4.gz";
-					type = "raw";
-					compressed = "zlib";
-					sha256 = "@@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.ext4.gz";
+					filename = "@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.header";
+					type = "delta";
+					sha256 = "@@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.header";
 					device = "@@ROOTFS_DEVICE_PATH@@/APP";
-					installed-directly = true;
+					properties: {
+						url = "http://172.16.2.143:8080/deltapacks/@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.ext4.zck";
+						chain = "raw";
+						source = "@@ROOTFS_DEVICE_PATH@@/APP_b";
+					}
 				});
 				scripts: (
 				{

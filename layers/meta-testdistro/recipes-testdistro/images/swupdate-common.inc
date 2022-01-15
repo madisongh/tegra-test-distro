@@ -11,7 +11,7 @@ ROOTFS_DEVICE_PATH:cryptparts = "/dev/mapper"
 
 SWUPDATE_IMAGE_NAME ?= "${@d.getVar('BPN').replace('-swupdate-', '-image-')}"
 
-SWUPDATE_IMAGES = "${SWUPDATE_IMAGE_NAME}-${MACHINE}.ext4.gz"
+SWUPDATE_IMAGES = "${WORKDIR}/${SWUPDATE_IMAGE_NAME}-${MACHINE}.header"
 
 IMAGE_DEPENDS ?= "${SWUPDATE_IMAGE_NAME}"
 
@@ -34,6 +34,10 @@ do_swdescription_update() {
     else
         sed -i -e'/ALTMACHINE/d' ${WORKDIR}/sw-description
     fi
+    HSIZE=$(zck_read_header -v ${DEPLOY_DIR_IMAGE}/${SWUPDATE_IMAGE_NAME}-${MACHINE}.ext4.zck | grep "Header size" | cut -d: -f2 | tr -d ' ')
+    rm -f ${WORKDIR}/${SWUPDATE_IMAGE_NAME}-${MACHINE}.header
+    dd if=${DEPLOY_DIR_IMAGE}/${SWUPDATE_IMAGE_NAME}-${MACHINE}.ext4.zck of=${WORKDIR}/${SWUPDATE_IMAGE_NAME}-${MACHINE}.header bs=1 count=$HSIZE
 }
+do_swdescription_update[depends] += "zchunk-native:do_populate_sysroot ${SWUPDATE_IMAGE_NAME}:do_image_complete"
 
 addtask swdescription_update after do_unpack do_prepare_recipe_sysroot before do_swuimage
