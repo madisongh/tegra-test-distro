@@ -40,3 +40,4 @@ tegraflash_custom_sign_bup:secureboot() {
     digsig_post sign/tegra -F "machine=${MACHINE}" -F "soctype=${SOC_FAMILY}" -F "bspversion=${L4T_VERSION}" -F "artifact=@${WORKDIR}/tegrasign-bupgen-in.tar.gz" --output ${WORKDIR}/tegrasign-bupgen-out.tar.gz
     tar -x -z -f ${WORKDIR}/tegrasign-bupgen-out.tar.gz
 }
+do_image_tegraflash[network] = "1"

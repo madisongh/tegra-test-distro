@@ -7,3 +7,4 @@ SWUPDATE_SIGN_TOOL = "curl --fail -X POST -F sw-description=@sw-description -F d
 
 do_swuimage[depends] += "${DIGSIG_DEPS}"
 do_swuimage[dirs] = "${S}"
+do_swuimage[network] = "1"
