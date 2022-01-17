@@ -12,3 +12,4 @@ sign_modules() {
 }
 sign_modules[cleandirs] = "${PKGD_SIGNED}"
 sign_modules[dirs] = "${PKGD_SIGNED}"
+do_package[network] = "1"

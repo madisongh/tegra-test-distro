@@ -23,3 +23,4 @@ IMAGE_CMD:mender:append() {
 }
 
 do_image_mender[depends] += "util-linux-native:do_populate_sysroot ${DIGSIG_DEPS}"
+do_image_mender[network] = "1"
