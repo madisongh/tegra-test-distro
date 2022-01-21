@@ -1,0 +1,11 @@
+[Unit]
+Description=SWUpdate daemon
+Documentation=https://github.com/sbabic/swupdate
+Documentation=https://sbabic.github.io/swupdate
+
+[Service]
+ExecStart=/usr/bin/swupdate -u "-e"
+KillMode=mixed
+
+[Install]
+WantedBy=multi-user.target
