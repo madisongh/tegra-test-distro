@@ -17,7 +17,7 @@ software =
 					sha256 = "@@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.header";
 					device = "@@ROOTFS_DEVICE_PATH@@/APP_b";
 					properties: {
-						url = "http://172.16.2.143:8080/deltapacks/@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.ext4.zck";
+						url = "@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.ext4.zck";
 						chain = "raw";
 						source = "@@ROOTFS_DEVICE_PATH@@/APP";
 					}
@@ -39,7 +39,7 @@ software =
 					sha256 = "@@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.header";
 					device = "@@ROOTFS_DEVICE_PATH@@/APP";
 					properties: {
-						url = "http://172.16.2.143:8080/deltapacks/@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.ext4.zck";
+						url = "@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.ext4.zck";
 						chain = "raw";
 						source = "@@ROOTFS_DEVICE_PATH@@/APP_b";
 					}
