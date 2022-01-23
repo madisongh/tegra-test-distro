@@ -7,12 +7,13 @@ SRC_URI += "\
     file://systemd.cfg \
     file://hash.cfg \
     file://disable_http_server.cfg \
-    file://enable_delta.cfg \
+    file://part-format.cfg \
+    file://archive.cfg \
     file://suricatta_general.cfg \
     file://signed-images.cfg \
 "
 
-DEPENDS += "zchunk"
+DEPENDS += "e2fsprogs"
 
 do_install:append() {
     rm -rf ${D}${libdir}/swupdate
