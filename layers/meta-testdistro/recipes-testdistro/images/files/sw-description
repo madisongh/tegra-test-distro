@@ -10,17 +10,24 @@ software =
 		{
 			slot_a:
 			{
+				partitions: (
+				{
+					type = "diskformat";
+					device = "/dev/mapper/APP_b";
+					properties: {
+						fstype = "ext4";
+						force = "true";
+					}
+				});
 				images: (
 				{
-					filename = "@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.header";
-					type = "delta";
-					sha256 = "@@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.header";
+					filename = "@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.tar.gz";
+					type = "archive";
+					sha256 = "@@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.tar.gz";
 					device = "@@ROOTFS_DEVICE_PATH@@/APP_b";
-					properties: {
-						url = "@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.ext4.zck";
-						chain = "raw";
-						source = "@@ROOTFS_DEVICE_PATH@@/APP";
-					}
+					filesystem = "ext4";
+					path = "/";
+					installed-directly = true;
 				});
 				scripts: (
 				{
@@ -32,17 +39,24 @@ software =
 			}
 			slot_b:
 			{
+				partitions: (
+				{
+					type = "diskformat";
+					device = "/dev/mapper/APP";
+					properties: {
+						fstype = "ext4";
+						force = "true";
+					}
+				});
 				images: (
 				{
-					filename = "@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.header";
-					type = "delta";
-					sha256 = "@@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.header";
+					filename = "@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.tar.gz";
+					type = "archive";
+					sha256 = "@@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.tar.gz";
 					device = "@@ROOTFS_DEVICE_PATH@@/APP";
-					properties: {
-						url = "@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.ext4.zck";
-						chain = "raw";
-						source = "@@ROOTFS_DEVICE_PATH@@/APP_b";
-					}
+					filesystem = "ext4";
+					path = "/";
+					installed-directly = true;
 				});
 				scripts: (
 				{
@@ -57,18 +71,18 @@ software =
 	@@ALTMACHINE@@ =
 	{												//ALTMACHINE
 		hardware-compatibility = { ref = "#../@@MACHINE@@/hardware-compatibility"; }		//ALTMACHINE
-		system =	       	       	 					   		//ALTMACHINE
+		system =										//ALTMACHINE
 		{											//ALTMACHINE
 			slot_a:										//ALTMACHINE
 			{										//ALTMACHINE
 				images = { ref = "#../../../@@MACHINE@@/system/slot_a/images"; }	//ALTMACHINE
 				scripts = { ref = "#../../../@@MACHINE@@/system/slot_a/scripts"; }	//ALTMACHINE
-			}		    	  						 	//ALTMACHINE
+			}										//ALTMACHINE
 			slot_b:										//ALTMACHINE
 			{										//ALTMACHINE
 				images = { ref = "#../../../@@MACHINE@@/system/slot_b/images"; }	//ALTMACHINE
 				scripts = { ref = "#../../../@@MACHINE@@/system/slot_b/scripts"; }	//ALTMACHINE
-			}		    	  						 	//ALTMACHINE
+			}										//ALTMACHINE
 		}											//ALTMACHINE
 	}												//ALTMACHINE
 }
