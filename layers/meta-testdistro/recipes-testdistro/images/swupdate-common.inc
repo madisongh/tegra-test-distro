@@ -11,7 +11,7 @@ ROOTFS_DEVICE_PATH:cryptparts = "/dev/mapper"
 
 SWUPDATE_IMAGE_NAME ?= "${@d.getVar('BPN').replace('-swupdate-', '-image-')}"
 
-SWUPDATE_IMAGES = "${WORKDIR}/${SWUPDATE_IMAGE_NAME}-${MACHINE}.header"
+SWUPDATE_IMAGES = "${DEPLOY_DIR_IMAGE}/${SWUPDATE_IMAGE_NAME}-${MACHINE}.tar.gz"
 
 IMAGE_DEPENDS ?= "${SWUPDATE_IMAGE_NAME}"
 
@@ -20,6 +20,7 @@ inherit swupdate swupdatesign
 ALTMACHINE = ""
 ALTMACHINE:jetson-tx1-devkit = "jetson-tx1"
 ALTMACHINE:jetson-tx2-devkit = "jetson-tx2"
+ALTMACHINE:jetson-tx2-sb = ""
 ALTMACHINE:jetson-tx2-devkit-tx2i = "jetson-tx2i"
 ALTMACHINE:jetson-tx2-devkit-4gb = "jetson-tx2-4gb"
 ALTMACHINE:jetson-agx-xavier-devkit = "jetson-xavier"
@@ -32,11 +33,11 @@ do_swdescription_update() {
     if [ -n "${ALTMACHINE}" ]; then
         sed -i -r -e's,[[:space:]]*//ALTMACHINE.*,,' ${WORKDIR}/sw-description
     else
-        sed -i -e'/ALTMACHINE/d' ${WORKDIR}/sw-description
+        sed -i -n -e'/ALTMACHINE/!p' ${WORKDIR}/sw-description
     fi
-    HSIZE=$(zck_read_header -v ${DEPLOY_DIR_IMAGE}/${SWUPDATE_IMAGE_NAME}-${MACHINE}.ext4.zck | grep "Header size" | cut -d: -f2 | tr -d ' ')
-    rm -f ${WORKDIR}/${SWUPDATE_IMAGE_NAME}-${MACHINE}.header
-    dd if=${DEPLOY_DIR_IMAGE}/${SWUPDATE_IMAGE_NAME}-${MACHINE}.ext4.zck of=${WORKDIR}/${SWUPDATE_IMAGE_NAME}-${MACHINE}.header bs=1 count=$HSIZE
+    #HSIZE=$(zck_read_header -v ${DEPLOY_DIR_IMAGE}/${SWUPDATE_IMAGE_NAME}-${MACHINE}.ext4.zck | grep "Header size" | cut -d: -f2 | tr -d ' ')
+    #rm -f ${WORKDIR}/${SWUPDATE_IMAGE_NAME}-${MACHINE}.header
+    #dd if=${DEPLOY_DIR_IMAGE}/${SWUPDATE_IMAGE_NAME}-${MACHINE}.ext4.zck of=${WORKDIR}/${SWUPDATE_IMAGE_NAME}-${MACHINE}.header bs=1 count=$HSIZE
 }
 do_swdescription_update[depends] += "zchunk-native:do_populate_sysroot ${SWUPDATE_IMAGE_NAME}:do_image_complete"
 
