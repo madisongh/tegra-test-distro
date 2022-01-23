@@ -4,6 +4,7 @@ SRC_URI += "file://networkd-wait-any.conf"
 SRC_URI += "file://system-overrides.conf"
 SRC_URI += "file://srv-cache-tmpfiles.conf"
 SRC_URI += "file://var-log-journal.conf"
+SRC_URI += "file://locale.conf"
 SRC_URI:append:cryptparts = " file://crypttab"
 SRC_URI:append:cryptparts = " file://dmcrypt-cleanup.service"
 SRC_URI:append:cryptparts = " file://prod-additions.fstab"
@@ -28,6 +29,7 @@ do_install:append() {
     install_tmpfiles_config
     # OE-Core installs this to forward to syslog, which we're not using
     rm -rf ${D}${systemd_unitdir}/journald.conf.d
+    install -m 0644 ${WORKDIR}/locale.conf ${D}${sysconfdir}/
 }
 
 # Must block systemd's automatic /tmp mountpoint when using
@@ -54,4 +56,4 @@ SYSTEMD_PACKAGES:append:cryptparts = " ${PN}-prod"
 SYSTEMD_SERVICE:${PN}-prod = "dmcrypt-cleanup.service"
 FILES:${PN}-prod = "${sysconfdir}/prod-additions.fstab /data"
 FILES:${PN}-crypttab = "${sysconfdir}/crypttab"
-FILES:${PN} += "${sysconfdir}/systemd ${sysconfdir}/tmpfiles.d"
+FILES:${PN} += "${sysconfdir}/systemd ${sysconfdir}/tmpfiles.d ${sysconfdir}/locale.conf"
