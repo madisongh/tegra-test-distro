@@ -1,7 +1,7 @@
 globals:
 {
 	verbose = false;
-	loglevel = 4;
+	loglevel = 3;
 	public-key-file = "/usr/share/swupdate/swupdate.pem";
 	select = "system,slot_@BOOTSLOT@";
 };
