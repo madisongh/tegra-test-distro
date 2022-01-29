@@ -16,7 +16,7 @@ SRC_URI = "git://${SRC_REPO};branch=${SRCBRANCH} \
     file://10-mongoose-args \
     file://90-start-progress \
 "
-SRCREV = "65ac70055155ad1f666a24a1106986547b012af9"
+SRCREV = "d73b72c6747bed1052e14ec48f8af81b09cf7959"
 PV = "2021.99+git${SRCPV}"
 
 CFLAGS += "-Wextra"
