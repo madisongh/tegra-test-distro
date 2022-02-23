@@ -1,7 +1,7 @@
 # Version of layers configuration, specific to
 # each defined distro in the repository.
 # Format: ${DISTRO}-<version>
-TD_BBLAYERS_CONF_VERSION = "testdistro-mender-6"
+TD_BBLAYERS_CONF_VERSION = "testdistro-mender-7"
 
 BBPATH = "${TOPDIR}"
 BBFILES ?= ""
@@ -26,5 +26,5 @@ BBLAYERS ?= " \
   "
 
 # XXX temporary, until Mender supports gatesgarth
-LAYERSERIES_COMPAT_mender:append = " honister"
-LAYERSERIES_COMPAT_meta-mender-tegra:append = " honister"
+LAYERSERIES_COMPAT_mender:append = " kirkstone"
+LAYERSERIES_COMPAT_meta-mender-tegra:append = " kirkstone"
