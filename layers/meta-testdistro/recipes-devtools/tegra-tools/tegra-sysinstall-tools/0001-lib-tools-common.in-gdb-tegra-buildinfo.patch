@@ -1,0 +1,26 @@
+From 13bfd9d573af7acc2d2cfdf377fdfb3d69b0e1bc Mon Sep 17 00:00:00 2001
+From: Tim Orling <tim.orling@konsulko.com>
+Date: Wed, 1 Jun 2022 17:51:26 -0700
+Subject: [PATCH] lib/tools-common.in: gdb tegra-buildinfo
+
+On failure, drop into shell so we can use gdb and strace for tegra-buildinfo
+to attempt to diagnose the Segmentation Fault currently being experienced on
+jetson-agx-xavier-devkit
+
+Signed-off-by: Tim Orling <tim.orling@konsulko.com>
+---
+ lib/tools-common.in | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/lib/tools-common.in b/lib/tools-common.in
+index 4bc6761..eb7f43a 100644
+--- a/lib/tools-common.in
++++ b/lib/tools-common.in
+@@ -586,6 +586,7 @@ update_bootloader() {
+ 	    if tegra-bootinfo --initialize --force-initialize; then
+ 		echo " [OK]"
+ 	    else
++		gdb -ex=r --args tegra-bootinfo --initialize --force-initialize; strace tegra-bootinfo --initialize --force-initialize
+ 		echo " [FAIL]"
+ 		rc=1
+ 	    fi

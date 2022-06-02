@@ -7,7 +7,10 @@ DEPENDS = "zlib"
 
 COMPATIBLE_MACHINE = "(tegra)"
 
-SRC_URI = "https://github.com/madisongh/tegra-sysinstall/releases/download/v${PV}/tegra-sysinstall-${PV}.tar.gz"
+SRC_URI = "https://github.com/madisongh/tegra-sysinstall/releases/download/v${PV}/tegra-sysinstall-${PV}.tar.gz \
+           file://0001-lib-tools-common.in-gdb-tegra-buildinfo.patch \
+           file://0001-lib-tools-common.in-retry-tegra-bootinfo-on-fail.patch \
+           "
 SRC_URI[sha256sum] = "5f2ebb05a4ec243fe9a95b264c4fb3aef5ac66b680bd6b22cfbfbdd799a340af"
 
 S = "${WORKDIR}/tegra-sysinstall-${PV}"
@@ -15,7 +18,7 @@ S = "${WORKDIR}/tegra-sysinstall-${PV}"
 inherit autotools
 
 FILES:${PN} += "${datadir}/tegra-sysinstall"
-EXTRA_RDEPENDS = ""
+EXTRA_RDEPENDS = "gdb strace"
 EXTRA_RDEPENDS:cryptparts = "cryptsetup keystore-tools"
 RDEPENDS:${PN} = "tegra-boot-tools tar ${EXTRA_RDEPENDS} \
                   bash curl util-linux-blkid util-linux-lsblk util-linux-mountpoint \
