@@ -9,7 +9,8 @@ COMPATIBLE_MACHINE = "(tegra)"
 
 SRC_URI = "https://github.com/madisongh/tegra-sysinstall/releases/download/v${PV}/tegra-sysinstall-${PV}.tar.gz \
            file://0001-lib-tools-common.in-gdb-tegra-buildinfo.patch \
-           file://0001-lib-tools-common.in-retry-tegra-bootinfo-on-fail.patch \
+           file://0002-lib-tools-common.in-retry-tegra-bootinfo-on-fail.patch \
+           file://0003-lib-tools-common.in-keystoretool-luks-srv-app.patch \
            "
 SRC_URI[sha256sum] = "5f2ebb05a4ec243fe9a95b264c4fb3aef5ac66b680bd6b22cfbfbdd799a340af"
 
@@ -17,9 +18,15 @@ S = "${WORKDIR}/tegra-sysinstall-${PV}"
 
 inherit autotools
 
+DISK_ENCRYPTION_CONTEXT ??= "dummy-context"
+
+do_install:append () {
+    sed -i -e 's,@DISK_ENCRYPTION_CONTEXT@,${DISK_ENCRYPTION_CONTEXT},g' ${D}${datadir}/tegra-sysinstall/tools-common
+}
+
 FILES:${PN} += "${datadir}/tegra-sysinstall"
 EXTRA_RDEPENDS = "gdb strace"
-EXTRA_RDEPENDS:cryptparts = "cryptsetup keystore-tools"
+EXTRA_RDEPENDS:cryptparts = "cryptsetup luks-srv-app"
 RDEPENDS:${PN} = "tegra-boot-tools tar ${EXTRA_RDEPENDS} \
                   bash curl util-linux-blkid util-linux-lsblk util-linux-mountpoint \
                   parted gptfdisk e2fsprogs util-linux-mkfs util-linux-mount \
