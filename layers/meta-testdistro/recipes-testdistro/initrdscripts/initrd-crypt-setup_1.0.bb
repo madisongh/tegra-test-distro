@@ -15,6 +15,8 @@ B = "${WORKDIR}/build"
 
 inherit systemd
 
+DISK_ENCRYPTION_CONTEXT ??= "dummy-context"
+
 do_compile() {
     for inf in ${S}/*.in; do
         [ -e $inf ] || continue
@@ -24,6 +26,7 @@ do_compile() {
 	    -e 's,@BASE_BINDIR@,${base_bindir},g' \
 	    -e 's,@BASE_SBINDIR@,${base_sbindir},g' \
 	    -e 's,@NONARCH_BASE_LIBDIR@,${nonarch_base_libdir},g' \
+	    -e 's,@DISK_ENCRYPTION_CONTEXT@,${DISK_ENCRYPTION_CONTEXT},g' \
 	    $inf > ${B}/$outf
     done
 }
@@ -38,6 +41,6 @@ do_install() {
 }
 
 SYSTEMD_SERVICE = " dmc-passphrase.service"
-RDEPENDS:${PN} = "initrd-setup keystore-tools lvm2-udevrules"
+RDEPENDS:${PN} = "initrd-setup luks-srv-app lvm2-udevrules"
 RCONFLICTS:${PN} = "initrd-noncrypt-setup"
 PACKAGE_ARCH = "${TEGRA_PKGARCH}"
