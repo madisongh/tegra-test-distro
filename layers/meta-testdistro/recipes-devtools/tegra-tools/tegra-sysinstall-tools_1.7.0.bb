@@ -7,10 +7,13 @@ DEPENDS = "zlib"
 
 COMPATIBLE_MACHINE = "(tegra)"
 
+# file://0001-tools-common.in-set-x-for-debug.patch
 SRC_URI = "https://github.com/madisongh/tegra-sysinstall/releases/download/v${PV}/tegra-sysinstall-${PV}.tar.gz \
            file://0001-lib-tools-common.in-gdb-tegra-buildinfo.patch \
            file://0002-lib-tools-common.in-retry-tegra-bootinfo-on-fail.patch \
            file://0003-lib-tools-common.in-keystoretool-luks-srv-app.patch \
+           file://0004-lib-tools-common.in-align-cryptsetup-args-with-NVidia.patch \
+           file://0005-lib-tools-common.in-ignore-secure-boot-enabled.patch \
            "
 SRC_URI[sha256sum] = "5f2ebb05a4ec243fe9a95b264c4fb3aef5ac66b680bd6b22cfbfbdd799a340af"
 

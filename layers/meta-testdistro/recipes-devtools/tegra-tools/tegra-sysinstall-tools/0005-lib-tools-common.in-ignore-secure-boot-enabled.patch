@@ -1,0 +1,33 @@
+From d6052679e6396dc90f4b7a5cbf0777597570d4a9 Mon Sep 17 00:00:00 2001
+From: Tim Orling <tim.orling@konsulko.com>
+Date: Fri, 10 Jun 2022 14:04:01 -0700
+Subject: [PATCH] lib/tools-common.in: ignore secure boot enabled
+
+For now, we want to test LUKS encryption whether secure boot is enabled
+or not.
+
+Signed-off-by: Tim Orling <tim.orling@konsulko.com>
+---
+ lib/tools-common.in | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/lib/tools-common.in b/lib/tools-common.in
+index 16fbcb6..353a242 100644
+--- a/lib/tools-common.in
++++ b/lib/tools-common.in
+@@ -708,10 +708,11 @@ initialize_devices() {
+ 	fi
+     fi
+ 
+-    if ! secure_boot_enabled; then
+-	echo "NOTE: secure boot not enabled, skipping partition encryption"
+-	return 0
+-    fi
++    # for now, we want to test LUKS without secure boot
++    #if ! secure_boot_enabled; then
++#	echo "NOTE: secure boot not enabled, skipping partition encryption"
++#	return 0
++    #fi
+ 
+     # In case the flash layout doesn't name these with the 'crypt-' prefix
+     for part in APP APP_b DATA; do
