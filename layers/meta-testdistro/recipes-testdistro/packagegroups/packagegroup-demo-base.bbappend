@@ -1,14 +1,16 @@
 RDEPENDS:${PN}:append = " \
     gptfdisk \
     i2c-tools \
-    swupdate \
-    swupdate-client \
-    swupdate-progress \
-    swupdate-tools-ipc \
     tegra-bup-payload \
     tegra-eeprom-tool \
     tegra-fuse-tool \   
     tegra-sysinstall-tools \
+"
+RDEPENDS:${PN}:append:swupdate = " \
+    swupdate \
+    swupdate-client \
+    swupdate-progress \
+    swupdate-tools-ipc \
 "
 
 RDEPENDS:${PN}:append:cryptparts = " \

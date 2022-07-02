@@ -1,0 +1,23 @@
+From 2225e9cf270e6c6821a8990b28ac00fb6c22ece9 Mon Sep 17 00:00:00 2001
+From: Tim Orling <tim.orling@konsulko.com>
+Date: Thu, 2 Jun 2022 12:21:00 -0700
+Subject: [PATCH] tools-common.in: set -x for debug
+
+Signed-off-by: Tim Orling <tim.orling@konsulko.com>
+---
+ lib/tools-common.in | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/lib/tools-common.in b/lib/tools-common.in
+index 39f3ca6..65c0fd1 100644
+--- a/lib/tools-common.in
++++ b/lib/tools-common.in
+@@ -2,6 +2,8 @@
+ # Common functions for tegra installer scripts
+ # Copyright (c) 2019-2020, Matthew Madison
+ 
++set -x
++
+ declare -A EMMC_PARTITIONS CRYPT_PARTITIONS MKFS_ARGS PARTINDEX
+ 
+ PARTITIONS_TO_FORMAT=(DATA EXTRA LOGS UDA)

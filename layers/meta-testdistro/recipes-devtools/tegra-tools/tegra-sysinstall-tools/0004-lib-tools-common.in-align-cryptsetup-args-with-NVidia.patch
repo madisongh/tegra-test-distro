@@ -1,0 +1,44 @@
+From 2e13f0d28d3eef331b4e116ec45e53858e742bb9 Mon Sep 17 00:00:00 2001
+From: Tim Orling <tim.orling@konsulko.com>
+Date: Fri, 10 Jun 2022 13:26:56 -0700
+Subject: [PATCH] lib/tools-common.in: align cryptsetup args with NVidia
+
+The L4T disk_encryption_helper.func uses aes-cbc-essiv:sha256 cipher and
+128 bit key-size.
+
+NVidia is wrong, key-size is 32 hex characters 32x16=512 not 128.
+
+Cipher choice has many factors, aes-xts-plain64 is not a bad choice. For
+some unknown reason, aes-cbc-essiv was failing with:
+device-mapper: table: 253:0: crypt: Error creating IV
+
+Also, chmod 0600 passphrase to avoid a warning about world readable not
+being a good idea.
+
+Signed-off-by: Tim Orling <tim.orling@konsulko.com>
+---
+ lib/tools-common.in | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/lib/tools-common.in b/lib/tools-common.in
+index 09beeb0..8f7b338 100644
+--- a/lib/tools-common.in
++++ b/lib/tools-common.in
+@@ -457,7 +457,7 @@ encrypt_one_partition() {
+     local name="$3"
+     local realname="$4"
+     echo "Encrypting $luksdev($name)..."
+-    if ! cat "$ppdir/passphrase" | cryptsetup --type luks --cipher aes-xts-plain64 --hash sha256 \
++    if ! cat "$ppdir/passphrase" | cryptsetup --type=luks1 --cipher=aes-xts-plain64 --hash=sha256 --key-size=512 \
+ 					      --use-random --key-file - luksFormat $luksdev >/dev/null 2>&1; then
+ 	echo "[FAIL $luksdev($name)]"
+ 	return 1
+@@ -736,7 +736,7 @@ initialize_devices() {
+     local fakept=`mktemp -q`
+     if make_fake_parttable $fakept; then
+ 	local ppdir=`mktemp -q -d /run/setup-pp.XXXXXX`
+-	/usr/sbin/luks-srv-app --get-unique-pass --context-string=@DISK_ENCRYPTION_CONTEXT@ > $ppdir/passphrase
++	/usr/sbin/luks-srv-app --get-unique-pass --context-string=@DISK_ENCRYPTION_CONTEXT@ > $ppdir/passphrase && /bin/chmod 0600 $ppdir/passphrase
+ 	if ! create_luks_partitions $ppdir $fakept; then
+ 	    rm -rf $ppdir
+ 	    return 1

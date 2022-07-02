@@ -1,0 +1,25 @@
+From ceec7053691ff6cd58b177b65d75d33ac22a1069 Mon Sep 17 00:00:00 2001
+From: Tim Orling <tim.orling@konsulko.com>
+Date: Wed, 1 Jun 2022 19:05:47 -0700
+Subject: [PATCH] lib/tools-common.in: retry tegra-bootinfo on fail
+
+Retry tegra-bootinfo on first failure
+
+Signed-off-by: Tim Orling <tim.orling@konsulko.com>
+---
+ lib/tools-common.in | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/lib/tools-common.in b/lib/tools-common.in
+index 840e82a..39f3ca6 100644
+--- a/lib/tools-common.in
++++ b/lib/tools-common.in
+@@ -585,6 +585,8 @@ update_bootloader() {
+ 	    echo -n "Initializing bootinfo area..."
+ 	    if tegra-bootinfo --initialize --force-initialize; then
+ 		echo " [OK]"
++	    elif tegra-bootinfo --initialize --force-initialize; then
++		echo " [OK - 2nd try]"
+ 	    else
+ 		gdb -ex=r --args tegra-bootinfo --initialize --force-initialize; strace tegra-bootinfo --initialize --force-initialize
+ 		echo " [FAIL]"

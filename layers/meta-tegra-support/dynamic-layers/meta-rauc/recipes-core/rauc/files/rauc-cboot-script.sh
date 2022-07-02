@@ -40,7 +40,7 @@ set_state() {
     local curslot=$(tegra-boot-control --current-slot)
     [ -n "$curslot" -a -n "$1" ] || return 1
     local curname=$(slot_name $curslot)
-    if [ "curname" != "$1" -o "$2" != "good" ]; then
+    if [ "$curname" != "$1" -o "$2" != "good" ]; then
 	echo "Unsupported operation: set-state $1 $2" >&2
 	return 0
     fi
