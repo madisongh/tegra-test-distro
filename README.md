@@ -1,6 +1,6 @@
 # tegra-test-distro
 
-![Build status](https://builder.madison.systems/badges/testdistro-dunfell-32-6.svg)
+![Build status](https://builder.madison.systems/badges/testdistro-dunfell.svg)
 
 * meta-tegra platforms
 * meta-mender-core/meta-mender-tegra integration
