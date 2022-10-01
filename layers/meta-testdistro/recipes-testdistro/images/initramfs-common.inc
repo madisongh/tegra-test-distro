@@ -7,7 +7,6 @@ TEGRA_INITRD_BASEUTILS ?= "busybox"
 
 TEGRA_INITRD_ROOTFSMOUNT ??= ""
 TEGRA_INITRD_BOOTCOUNTCHECK = ""
-TEGRA_INITRD_BOOTCOUNTCHECK:tegra186:secureboot = "tegra-boot-tools-earlyboot"
 TEGRA_INITRD_BOOTCOUNTCHECK:tegra194:secureboot = "tegra-boot-tools-earlyboot"
 
 PACKAGE_INSTALL = "\

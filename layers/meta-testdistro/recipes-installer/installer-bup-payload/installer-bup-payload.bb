@@ -1,7 +1,7 @@
 DESCRIPTION = "Generates a bootloader update payload for use with nv_update_engine when using a kernel with bundled initramfs"
 LICENSE = "MIT"
 
-COMPATIBLE_MACHINE = "(tegra186|tegra194)"
+COMPATIBLE_MACHINE = "(tegra194)"
 
 INHIBIT_DEFAULT_DEPS = "1"
 
@@ -35,7 +35,7 @@ do_deploy() {
 	done
     fi
 }
-do_deploy[depends] += "linux-td-sysinstall:do_deploy ${SOC_FAMILY}-flashtools-native:do_populate_sysroot dtc-native:do_populate_sysroot"
+do_deploy[depends] += "linux-td-sysinstall:do_deploy tegra-flashtools-native:do_populate_sysroot dtc-native:do_populate_sysroot"
 do_deploy[depends] += "tegra-redundant-boot-rollback:do_populate_sysroot tegra-bootfiles:do_populate_sysroot"
 do_deploy[depends] += "coreutils-native:do_populate_sysroot cboot:do_deploy virtual/secure-os:do_deploy virtual/bootlogo:do_deploy"
 addtask deploy before do_build

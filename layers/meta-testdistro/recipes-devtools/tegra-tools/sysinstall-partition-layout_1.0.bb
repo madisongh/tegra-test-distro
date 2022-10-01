@@ -14,11 +14,11 @@ do_configure() {
 
 do_compile() {
     flashtype="sdmmc_user"
-    if ${STAGING_BINDIR_NATIVE}/tegra186-flash/nvflashxmlparse -l flash.xml.in | tail -n "+2" | grep -q "sdcard"; then
+    if ${STAGING_BINDIR_NATIVE}/tegra-flash/nvflashxmlparse -l flash.xml.in | tail -n "+2" | grep -q "sdcard"; then
         flashtype="sdcard"
     fi
     rm -f ${B}/layout.tmp
-    ${STAGING_BINDIR_NATIVE}/tegra186-flash/nvflashxmlparse -t $flashtype flash.xml.in > ${B}/layout.tmp
+    ${STAGING_BINDIR_NATIVE}/tegra-flash/nvflashxmlparse -t $flashtype flash.xml.in > ${B}/layout.tmp
     rm -f ${B}/partition_table
     touch ${B}/partition_table
     while read line; do

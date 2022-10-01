@@ -1,14 +1,11 @@
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:${COREBASE}/meta-testdistro/files/rauc:"
 
-SRC_URI:append:tegra186 = " file://rauc-cboot-script.sh"
 SRC_URI:append:tegra194 = " file://rauc-cboot-script.sh"
 
 BASEROOTFSDEV = "/dev/disk/by-partlabel"
 BASEROOTFSDEV:cryptparts = "/dev/mapper"
 
 BOOTLOADER = "custom"
-BOOTLOADER = "custom"
-BOOTLOADER:tegra210 = "uboot"
 
 install_cboot_script() {
     install -d ${D}${sysconfdir}/rauc/scripts
@@ -21,9 +18,6 @@ do_install:append() {
     sed -i -e's,@MACHINE@,${MACHINE},' -e's,@BASEROOTFSDEV@,${BASEROOTFSDEV},' -e's,@BOOTLOADER@,${BOOTLOADER},' ${D}${sysconfdir}/rauc/system.conf
 }
 
-do_install:append:tegra186() {
-    install_cboot_script
-}
 do_install:append:tegra194() {
     install_cboot_script
 }
