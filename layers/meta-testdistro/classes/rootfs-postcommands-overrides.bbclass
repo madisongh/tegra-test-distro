@@ -22,6 +22,7 @@ semi_stateless_rootfs_hook () {
     # Also ensure that the split-off mountpoint directories are empty,
     # except for /data, which has to stick around for mender imaging.
     for d in /var/log /var/extra; do
+	[ -d ${IMAGE_ROOTFS}$d ] || continue
 	find ${IMAGE_ROOTFS}$d -mindepth 1 -maxdepth 1 -exec rm -rf {} \;
     done
 }
