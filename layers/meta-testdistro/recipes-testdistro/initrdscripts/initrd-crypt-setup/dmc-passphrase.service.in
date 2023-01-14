@@ -9,7 +9,7 @@ ConditionPathExists=!/run/crypt/passphrase
 Type=oneshot
 RemainAfterExit=yes
 ExecStartPre=@BASE_BINDIR@/mkdir -p -m 0700 /run/crypt
-ExecStart=@BASE_BINDIR@/sh -c "[ `cat /sys/devices/platform/tegra-fuse/odm_production_mode` = "0x00000000" ] || @BINDIR@/keystoretool --dmc-passphrase --output=/run/crypt/passphrase"
+ExecStart=@BASE_BINDIR@/sh -c "@SBINDIR@/luks-srv-app --get-unique-pass --context-string=DMCPP > /run/crypt/passphrase"
 
 [Install]
 WantedBy=cryptsetup-pre.target
