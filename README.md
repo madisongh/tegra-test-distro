@@ -1,18 +1,18 @@
 # tegra-test-distro
 
-![Build status](https://builder.madison.systems/badges/testdistro-master.svg)
+![Build status](https://builder.madison.systems/badges/testdistro-kirkstone-32-7.svg)
 
 Distro for testing the following:
 
 * Jetson secure boot support with
-  * LUKS partition encryption
-  * The [keystore](https://github.com/madisongh/keystore) Trusted Application
+  * LUKS partition encryption (using the luks-srv TA in L4T)
 * Other miscellaneous distribution features, such as
   * Full use of systemd in the initramfs
   * Semi-stateless rootfs using ramdisk overlay
   * Use of an AWS S3 bucket for downloads and sstate mirrors
   * Use of [digsigserver](https://github.com/madisongh/digisgserver) for signing boot artifacts, kernel modules, and Mender artifacts.
   * Cloud-based CI in AWS EC2 using the buildbot-based [autobuilder](https://github.com/madisongh/autobuilder)
+  * Use of swupdate, in a basic way, for software updates
 
 This test distro is derived from the OE4T
 [reference/demo distro](https://github.com/OE4T/tegra-demo-distro).
@@ -42,19 +42,9 @@ configuration and credentials available for access to your S3 bucket during buil
 
 ## Distributions
 
-Use the `--distro` option with `setup-env` to specify a distribution for your build,
-or customize the DISTRO setting in your `$BUILDDIR/conf/local.conf` to reference one
-of the supported distributions.
+Only the `testdistro` DISTRO setting is currently tested.  The `testdistro-mender` configuration
+is still present, but not actively maintained.
 
-Currently supported distributions are listed below:
-
-
-| Distribution name | Description                                                   |
-| ----------------- | ------------------------------------------------------------- |
-| testdistro        | Default distro used to demonstrate/test meta-tegra features   |
-| testdistro-mender | Adds [mender](https://www.mender.io/) OTA support             |
-| tegrademo         | from upstream OE4T repository; not regularly tested here      |
-| tegrademo-mender  | from upstream OE4T repository; not regularly tested here      |
 
 ## Images
 
