@@ -9,7 +9,6 @@ SRC_URI += "\
     file://disable_http_server.cfg \
     file://part-format.cfg \
     file://archive.cfg \
-    file://suricatta_general.cfg \
     file://signed-images.cfg \
 "
 

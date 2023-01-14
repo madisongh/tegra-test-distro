@@ -11,20 +11,3 @@ identify : (
 	 { name = "serialnumber"; value = "@SERIALNUMBER@" },
 	 { name = "model"; value = "@MODEL@" }
 );
-
-gservice =
-{
-	url = "http://172.16.2.143:9988/poll"
-	logurl = "http://172.16.2.143:9988/log"
-	logevent : (
-		{ event = "check"; format="#1,date,model,serialnumber,swversion" },
-		{ event = "started"; format="#2,date,model,serialnumber" },
-		{ event = "success"; format="#3,date,model,serialnumber,swversion" },
-		{ event = "fail"; format="#99,date,model,serialnumber,swversion" }
-	);
-};
-
-delta :
-{
-	url = "@DELTAURL@";
-};
