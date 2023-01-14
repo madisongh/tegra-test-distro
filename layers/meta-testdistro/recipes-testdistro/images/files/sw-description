@@ -23,7 +23,7 @@ software =
 				{
 					filename = "@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.tar.gz";
 					type = "archive";
-					sha256 = "@@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.tar.gz";
+					sha256 = "$swupdate_get_sha256(@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.tar.gz)";
 					device = "@@ROOTFS_DEVICE_PATH@@/APP_b";
 					filesystem = "ext4";
 					path = "/";
@@ -33,7 +33,7 @@ software =
 				{
 					filename = "swupdate-bl-update.sh";
 					type = "postinstall";
-					sha256 = "@swupdate-bl-update.sh";
+					sha256 = "$swupdate_get_sha256(swupdate-bl-update.sh)";
 					data = "@@ROOTFS_DEVICE_PATH@@/APP_b";
 				});
 			}
@@ -52,7 +52,7 @@ software =
 				{
 					filename = "@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.tar.gz";
 					type = "archive";
-					sha256 = "@@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.tar.gz";
+					sha256 = "$swupdate_get_sha256(@@SWUPDATE_IMAGE_NAME@@-@@MACHINE@@.tar.gz)";
 					device = "@@ROOTFS_DEVICE_PATH@@/APP";
 					filesystem = "ext4";
 					path = "/";
@@ -62,7 +62,7 @@ software =
 				{
 					filename = "swupdate-bl-update.sh";
 					type = "postinstall";
-					sha256 = "@swupdate-bl-update.sh";
+					sha256 = "$swupdate_get_sha256(swupdate-bl-update.sh)";
 					data = "@@ROOTFS_DEVICE_PATH@@/APP";
 				});
 			}
