@@ -46,6 +46,7 @@ render::134:
 weston-launch::135:
 wayland::136:
 rauc-hawkbit::899:
+sgx::988:
 weston::989:
 avahi-autoipd::990:
 systemd-bus-proxy::992:
@@ -56,4 +57,4 @@ rpc::996:
 sshd::997:
 avahi::998:
 messagebus::999:
-nobody::65534:
+nogroup::65534:
